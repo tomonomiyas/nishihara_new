@@ -1,0 +1,7 @@
+node_modules
+/assets
+template
+vite.config.js
+/bin
+gulp
+_src_old_gulp

@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      fetchpriority="high"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Gotu&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Gotu&display=swap"
+      media="print"
+      onload='this.media="all"'
+    />
+    <title>トップページ</title>
+    <meta name="description" content="トップページのディスクリプションです。" />
+    <meta property="og:title" content="トップページ" />
+    <meta property="og:description" content="トップページのディスクリプションです。" />
+    <meta property="og:image" content="/images/ogp.jpg" />
+    <script type="module" crossorigin src="./assets/js/script.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/style/script.css">
+    <link rel="stylesheet" crossorigin href="./assets/style/style.css">
+  </head>
+
+  <body>
+    <header class="p-header l-header">
+      <div class="p-header__inner">
+        <h1 class="p-header__logo">
+          <a href="/">
+            <img src="./assets/images/logo_vite.C49brna2.svg" alt="vite" />
+          </a>
+        </h1>
+        <nav class="p-header__nav">
+          <ul class="p-header__nav-list">
+            <li class="p-header__nav-item">
+              <a href="#">私たちについて</a>
+            </li>
+            <li class="p-header__nav-modal-wrap">
+              <p>事業内容</p>
+              <ul class="p-header__nav-modal">
+                <li class="p-header__nav-modal-item">
+                  <a href="#">不動産賃貸事業</a>
+                  <ul class="p-header__nav-modal-detail-list">
+                    <li class="p-header__nav-modal-detail-item">
+                      <a href="#">物件検索</a>
+                    </li>
+                    <li class="p-header__nav-modal-detail-item">
+                      <a href="#">物件詳細情報</a>
+                    </li>
+                    <li class="p-header__nav-modal-detail-item">
+                      <a href="#">賃貸手続き・サポート</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="p-header__nav-modal-item">
+                  <a href="#">不動産仲介事業</a>
+                  <ul class="p-header__nav-modal-detail-list">
+                    <li class="p-header__nav-modal-detail-item">
+                      <a href="#">サービス・手続き</a>
+                    </li>
+                    <li class="p-header__nav-modal-detail-item">
+                      <a href="#">不動産情報・アドバイス</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="p-header__nav-modal-item">
+                  <a href="#">不動産コンサルティング事業</a>
+                  <ul class="p-header__nav-modal-detail-list">
+                    <li class="p-header__nav-modal-detail-item">
+                      <a href="#">市場調査・分析</a>
+                    </li>
+                    <li class="p-header__nav-modal-detail-item">
+                      <a href="#">投資コンサルティングについて</a>
+                    </li>
+                    <li class="p-header__nav-modal-detail-item">
+                      <a href="#">不動産開発支援</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="p-header__nav-item">
+              <a href="#">施工医実績</a>
+            </li>
+            <li class="p-header__nav-item">
+              <a href="#">お知らせ</a>
+            </li>
+            <li class="p-header__nav-item">
+              <a href="#">お客様の声</a>
+            </li>
+            <li class="p-header__nav-item p-header__nav-item--contact">
+              <a href="/contact/">お問い合わせ</a>
+            </li>
+          </ul>
+        </nav>
+        <button class="p-header__hamburger js-hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="drawer-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div id="drawer-menu" class="p-header__drawer js-drawer" aria-hidden="true">
+          <nav class="p-header__drawer-nav">
+            <ul class="p-header__drawer-list">
+              <li class="p-header__drawer-item">
+                <a href="#">私たちについて</a>
+              </li>
+              <li class="p-header__drawer-item">
+                <button
+                  type="button"
+                  class="p-header__drawer-accordion-title js-drawer-accordion"
+                  aria-expanded="false"
+                  aria-controls="accordion-business"
+                  aria-label="事業内容を展開"
+                >
+                  事業内容
+                </button>
+                <ul id="accordion-business" class="p-header__drawer-accordion-list" aria-hidden="true">
+                  <li class="p-header__drawer-accordion-item">
+                    <a href="#">不動産賃貸事業</a>
+                    <ul class="p-header__drawer-accordion-detail-list">
+                      <li class="p-header__drawer-accordion-detail-item">
+                        <a href="#">物件検索</a>
+                      </li>
+                      <li class="p-header__drawer-accordion-detail-item">
+                        <a href="#">物件詳細情報</a>
+                      </li>
+                      <li class="p-header__drawer-accordion-detail-item">
+                        <a href="#">賃貸手続き・サポート</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="p-header__drawer-accordion-item">
+                    <a href="#">不動産仲介事業</a>
+                    <ul class="p-header__drawer-accordion-detail-list">
+                      <li class="p-header__drawer-accordion-detail-item">
+                        <a href="#">サービス・手続き</a>
+                      </li>
+                      <li class="p-header__drawer-accordion-detail-item">
+                        <a href="#">不動産情報・アドバイス</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="p-header__drawer-accordion-item">
+                    <a href="#">不動産コンサルティング事業</a>
+                    <ul class="p-header__drawer-accordion-detail-list">
+                      <li class="p-header__drawer-accordion-detail-item">
+                        <a href="#">市場調査・分析</a>
+                      </li>
+                      <li class="p-header__drawer-accordion-detail-item">
+                        <a href="#">投資コンサルティングについて</a>
+                      </li>
+                      <li class="p-header__drawer-accordion-detail-item">
+                        <a href="#">不動産開発支援</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="p-header__drawer-item">
+                <a href="#">施工実績</a>
+              </li>
+              <li class="p-header__drawer-item">
+                <a href="#">お知らせ</a>
+              </li>
+              <li class="p-header__drawer-item">
+                <a href="#">お客様の声</a>
+              </li>
+              <li class="p-header__drawer-item p-header__drawer-item--contact">
+                <a href="/contact/">お問い合わせ</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main class="l-top">
+      <section class="p-mv">
+        <div class="p-mv__inner">
+          <div class="p-mv__title-wrap">
+            <h2 class="p-mv__main-title">メインタイトルだよ</h2>
+            <p class="p-mv__sub-title">
+              ここにサブタイトルが入ります。<br />ここにサブタイトルが入ります。ここにサブタイトルが入ります。<br />ここにサブタイトルが入ります。
+            </p>
+          </div>
+          <div class="p-mv__splide splide js-mv-splide" aria-label="main-visual">
+            <div class="splide__track">
+              <ul class="splide__list">
+                <li class="splide__slide">
+                  <div class="splide__slide-image">
+                    <picture>
+                      <source srcset="./assets/images/image_mv_01.C2hes_sL.webp " type="image/webp" />
+                      <img src="./assets/images/image_mv_01.6KCkupdN.png" width="977" height="1800" alt="" fetchpriority="high" />
+                    </picture>
+                  </div>
+                </li>
+                <li class="splide__slide">
+                  <div class="splide__slide-image">
+                    <picture>
+                      <source srcset="./assets/images/image_mv_02.Cglf4oET.webp " type="image/webp" />
+                      <img src="./assets/images/image_mv_02.BcRghy70.png" width="977" height="1800" alt="" />
+                    </picture>
+                  </div>
+                </li>
+                <li class="splide__slide">
+                  <div class="splide__slide-image">
+                    <picture>
+                      <source srcset="./assets/images/image_mv_03.DgMrL6wM.webp " type="image/webp" />
+                      <img src="./assets/images/image_mv_03.Dxzk4fZE.png" width="977" height="1800" alt="" />
+                    </picture>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="p-sample l-top__sample">
+        <div class="p-sample__inner l-inner">
+          <h2 class="c-section-title" data-title="sample" data-position="center">sample</h2>
+          <div class="p-sample__link-wrap">
+            <a class="p-sample__link" href="/_components.html">パーツ一覧へ</a>
+            <p>↑のページで共通パーツを制作してください</p>
+          </div>
+          <div class="p-sample__link-wrap">
+            <a class="p-sample__link" href="/contact/">問い合わせへ</a>
+          </div>
+
+          <hr class="p-sample__divider" />
+
+          <p>背景画像の読み込み</p>
+          <div class="p-sample__bg"></div>
+
+          <hr class="p-sample__divider" />
+
+          <p>通常画像の読み込み(imgの下部をマスクでフェードかけてます)</p>
+          <div class="p-sample__image">
+            <img src="./assets/images/image_sample.BLp6h4T2.webp" width="512" height="512" alt="猫の画像" />
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="p-footer">
+      <div class="p-footer__inner l-inner">
+        <div class="p-footer__content">
+          <div class="p-footer__logo">
+            <a href="#">
+              <img src="./assets/images/logo_vite.C49brna2.svg" alt="vite" />
+            </a>
+          </div>
+          <nav class="p-footer__nav">
+            <ul class="p-footer__nav-list">
+              <li class="p-footer__nav-item"><a href="#">ホーム</a></li>
+              <li class="p-footer__nav-item"><a href="#">私たちについて</a></li>
+              <li class="p-footer__nav-item"><a href="#">事業内容</a></li>
+              <li class="p-footer__nav-item"><a href="/contact/">お問い合わせ</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="p-footer__bottom">
+          <p class="p-footer__copyright">&copy; 2025 Vite. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

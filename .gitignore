@@ -1,0 +1,15 @@
+.vscode
+.DS_Store
+node_modules
+package-lock.json
+assets
+
+# 検証・作業用ファイル
+mcp-log/
+xd-file/
+screenshots/
+.playwright-mcp/
+logs/
+*.png
+*.jpeg
+*.jpg
