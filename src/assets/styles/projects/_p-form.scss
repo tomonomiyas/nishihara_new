@@ -1,0 +1,294 @@
+@use "../global" as *;
+
+.p-form {
+  margin-block-start: calc(40 * var(--to-rem));
+
+  @include mq(md) {
+    margin-block-start: calc(64 * var(--to-rem));
+  }
+}
+
+// 各項目間の縦リズム（XD: 項目ピッチ PC152px / SP142px に合わせる）
+.p-form > .p-form__item + .p-form__item {
+  margin-block-start: calc(28 * var(--to-rem));
+
+  @include mq(md) {
+    margin-block-start: calc(38 * var(--to-rem));
+  }
+}
+
+.p-form__privacyBox {
+  margin-block-start: calc(32 * var(--to-rem));
+
+  @include mq(md) {
+    margin-block-start: calc(40 * var(--to-rem));
+  }
+}
+
+.p-form__agree {
+  margin-block-start: calc(32 * var(--to-rem));
+
+  @include mq(md) {
+    margin-block-start: calc(40 * var(--to-rem));
+  }
+}
+
+.p-form__buttonWrap {
+  margin-block-start: calc(32 * var(--to-rem));
+
+  @include mq(md) {
+    margin-block-start: calc(40 * var(--to-rem));
+  }
+}
+
+// ラベル
+.p-form__label {
+  display: inline-flex;
+  align-items: center;
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-medium);
+  line-height: 1;
+  color: var(--color-text-main);
+}
+
+.p-form__label--required::after {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(36 * var(--to-rem));
+  height: calc(24 * var(--to-rem));
+  margin-inline-start: calc(8 * var(--to-rem));
+  font-size: calc(14 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  line-height: 1;
+  color: var(--color-white);
+  content: "必須";
+  background-color: var(--color-required);
+  border-radius: var(--radius-base);
+}
+
+// 入力欄
+.p-form__input,
+.p-form__textarea {
+  display: block;
+  width: 100%;
+  padding-block: calc(12 * var(--to-rem));
+  padding-inline: calc(16 * var(--to-rem));
+  margin-block-start: calc(8 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  line-height: 1.5;
+  color: var(--color-text-main);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border-accent);
+  border-radius: var(--radius-base);
+  transition: border-color var(--duration);
+}
+
+.p-form__input {
+  height: calc(48 * var(--to-rem));
+}
+
+.p-form__textarea {
+  min-height: calc(240 * var(--to-rem));
+  resize: vertical;
+}
+
+.p-form__input:focus,
+.p-form__textarea:focus {
+  border-color: var(--color-accent);
+  outline: none;
+}
+
+.p-form__input.is-error,
+.p-form__textarea.is-error {
+  border-color: var(--color-required);
+}
+
+// 入力例（フィールドの下）
+.p-form__example {
+  margin-block-start: calc(8 * var(--to-rem));
+  font-size: calc(14 * var(--to-rem));
+  line-height: 1.5;
+  color: var(--color-text-sub);
+}
+
+// 個人情報ボックス
+.p-form__privacyBox {
+  padding-block: calc(20 * var(--to-rem));
+  padding-inline: calc(20 * var(--to-rem));
+  border: 1px solid var(--color-border-accent);
+  border-radius: var(--radius-base);
+
+  @include mq(md) {
+    padding-block: calc(24 * var(--to-rem));
+    padding-inline: calc(32 * var(--to-rem));
+  }
+}
+
+.p-form__privacyText {
+  font-size: calc(14 * var(--to-rem));
+  line-height: 1.8;
+  color: var(--color-text-main);
+
+  @include mq(md) {
+    font-size: calc(16 * var(--to-rem));
+  }
+}
+
+.p-form__link {
+  color: var(--color-accent);
+  text-decoration: underline;
+  transition: opacity var(--duration);
+
+  @media (any-hover: hover) {
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+// 同意チェック（中央寄せ）
+.p-form__agree {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.p-form__agreeBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(36 * var(--to-rem));
+  height: calc(24 * var(--to-rem));
+  margin-inline-end: calc(12 * var(--to-rem));
+  font-size: calc(14 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  line-height: 1;
+  color: var(--color-white);
+  background-color: var(--color-required);
+  border-radius: var(--radius-base);
+}
+
+.p-form__agreeCheck {
+  position: relative;
+  width: calc(24 * var(--to-rem));
+  height: calc(24 * var(--to-rem));
+  margin-inline-end: calc(12 * var(--to-rem));
+  appearance: none;
+  cursor: pointer;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border-sub);
+  border-radius: var(--radius-base);
+  transition: border-color var(--duration);
+}
+
+.p-form__agreeCheck:checked {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.p-form__agreeCheck:checked::after {
+  position: absolute;
+  top: calc(4 * var(--to-rem));
+  left: calc(9 * var(--to-rem));
+  width: calc(6 * var(--to-rem));
+  height: calc(11 * var(--to-rem));
+  content: "";
+  border: solid var(--color-white);
+  border-width: 0 2px 2px 0;
+  rotate: 45deg;
+}
+
+.p-form__agreeCheck:focus {
+  outline: none;
+}
+
+.p-form__agreeText {
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-medium);
+  color: var(--color-text-main);
+  user-select: none;
+}
+
+// 送信ボタン（中央・矢印なし）
+.c-btn--submit {
+  justify-content: center;
+  padding-inline-start: 0;
+  margin-inline: auto;
+
+  &::after {
+    content: none;
+  }
+}
+
+.p-form__buttonWrap {
+  text-align: center;
+}
+
+.p-form__error {
+  display: block;
+  margin-block-start: calc(8 * var(--to-rem));
+  font-size: calc(14 * var(--to-rem));
+  color: var(--color-required);
+}
+
+.p-form__error--center {
+  margin-block-start: calc(12 * var(--to-rem));
+  text-align: center;
+}
+
+// ───────── 確認画面 ─────────
+.p-form--confirm > .p-form__item + .p-form__item {
+  margin-block-start: calc(24 * var(--to-rem));
+
+  @include mq(md) {
+    margin-block-start: calc(28 * var(--to-rem));
+  }
+}
+
+.p-form__confirmValue {
+  margin-block-start: calc(8 * var(--to-rem));
+  font-size: calc(16 * var(--to-rem));
+  line-height: 1.8;
+  color: var(--color-text-main);
+  word-break: break-all;
+}
+
+// ボタングループ（確認画面：縦並び中央）
+.p-form__buttonGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-block-start: calc(40 * var(--to-rem));
+}
+
+.p-form__buttonGroup > .c-btn + .c-btn {
+  margin-block-start: calc(16 * var(--to-rem));
+}
+
+// 修正する（薄青）
+.c-btn--back {
+  justify-content: center;
+  padding-inline-start: 0;
+  color: var(--color-accent);
+  background-color: var(--color-bg-light);
+  border-color: var(--color-bg-light);
+
+  &::after {
+    content: none;
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      color: var(--color-white);
+      background-color: var(--color-accent);
+      border-color: var(--color-accent);
+
+      &::after {
+        content: none;
+      }
+    }
+  }
+}

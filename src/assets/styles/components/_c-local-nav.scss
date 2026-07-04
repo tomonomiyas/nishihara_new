@@ -1,0 +1,113 @@
+@use "../global" as *;
+
+// 下層共通サイドナビ（会社案内サブメニュー等）
+// 幅・配置は各ページのラッパー（__side）側で管理する。ここでは見た目のみ担う。
+.c-localNav {
+  width: 100%;
+}
+
+// 項目リスト全体の左ボーダー
+.c-localNav__list {
+  border-left: 2px solid var(--color-border-accent);
+}
+
+// 見出し（会社案内）
+.c-localNav__head {
+  position: relative;
+}
+
+.c-localNav__head a,
+.c-localNav__head span {
+  display: flex;
+  align-items: center;
+  height: calc(72 * var(--to-rem));
+  padding-inline: calc(32 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  color: var(--color-white);
+  background-color: var(--color-accent);
+}
+
+// 見出しの右矢印
+.c-localNav__head a::after {
+  width: calc(6 * var(--to-rem));
+  height: calc(12 * var(--to-rem));
+  margin-inline-start: auto;
+  content: "";
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 12'%3E%3Cpath d='M0 0l6 6-6 6' fill='none' stroke='white'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.c-localNav__item a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: calc(56 * var(--to-rem));
+  padding-block: calc(16 * var(--to-rem));
+  padding-inline: calc(32 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-medium);
+  color: var(--color-text-main);
+  transition: color var(--duration);
+}
+
+// 項目左の縦線（アクセント）はカレント項目のみ表示
+.c-localNav__item--current > a::before {
+  position: absolute;
+  top: 0;
+  left: -2px;
+  width: calc(3 * var(--to-rem));
+  height: 100%;
+  content: "";
+  background-color: var(--color-accent);
+}
+
+@media (any-hover: hover) {
+  .c-localNav__item a:hover {
+    color: var(--color-accent);
+  }
+}
+
+// カレント項目
+.c-localNav__item--current > a {
+  font-weight: var(--fw-bold);
+  color: var(--color-accent);
+}
+
+// 子項目のカレント（役員一覧など）
+.c-localNav__sub--current > a {
+  font-weight: var(--fw-bold);
+  color: var(--color-accent);
+}
+
+// 子メニュー（役員一覧など）は通常は隠し、親がカレントの時だけ展開
+.c-localNav__sub {
+  display: none;
+}
+
+.c-localNav__item--current > .c-localNav__sub {
+  display: block;
+}
+
+.c-localNav__sub a {
+  padding-inline-start: calc(48 * var(--to-rem));
+}
+
+// 子メニューを持つ親項目（会社概要など）の開閉矢印
+.c-localNav__item:has(.c-localNav__sub) > a::after {
+  width: calc(12 * var(--to-rem));
+  height: calc(6 * var(--to-rem));
+  margin-inline-start: auto;
+  content: "";
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 6'%3E%3Cpath d='M0 0l6 6 6-6' fill='none' stroke='%233072BF'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+// カレント時（子メニュー展開中）は矢印を上向きに
+.c-localNav__item--current:has(.c-localNav__sub) > a::after {
+  transform: rotate(180deg);
+}

@@ -1,0 +1,63 @@
+@use "../global" as *;
+
+.c-section-title {
+  display: flex;
+  flex-direction: column;
+  gap: calc(8 * var(--to-rem));
+  align-items: flex-start;
+
+  &[data-align="center"] {
+    align-items: center;
+    text-align: center;
+  }
+
+  &__ja--white {
+    font-family: var(--base-font-family);
+    font-size: calc(20 * var(--to-rem)); // 元のサイズに復元
+    font-weight: var(--fw-bold);
+    line-height: 1.6;
+    color: var(--color-white);
+  }
+
+  &__en {
+    font-family: var(--accent-font-family);
+    font-size: calc(13 * var(--to-rem));
+    font-style: italic;
+    font-weight: var(--fw-semibold);
+    color: var(--color-accent);
+    text-transform: capitalize;
+  }
+
+  &__ja {
+    font-family: var(--base-font-family);
+    font-size: calc(20 * var(--to-rem)); // 元のサイズに復元
+    font-weight: var(--fw-bold);
+    line-height: 1.6;
+    color: var(--color-accent);
+  }
+
+  // 大見出し用
+  &--lg {
+    .c-section-title__ja {
+      font-size: calc(24 * var(--to-rem));
+
+      @include mq(md) {
+        font-size: calc(32 * var(--to-rem));
+      }
+    }
+  }
+
+  // With a small line below or beside
+  &--with-line {
+    flex-direction: row;
+    gap: calc(16 * var(--to-rem));
+    align-items: center;
+
+    &::before {
+      width: calc(20 * var(--to-rem));
+      height: 1px;
+      content: "";
+      background-color: var(--color-border-accent);
+    }
+  }
+}

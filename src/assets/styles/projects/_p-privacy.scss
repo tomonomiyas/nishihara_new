@@ -1,0 +1,122 @@
+@use "../global" as *;
+
+// privacy ページ本体（1カラムテキスト）
+.p-privacy {
+  padding-block: calc(60 * var(--to-rem)) calc(80 * var(--to-rem));
+
+  @include mq("md") {
+    padding-block: calc(80 * var(--to-rem)) calc(120 * var(--to-rem));
+  }
+}
+
+// 導入文
+.p-privacy__intro {
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-regular);
+  line-height: 1.8;
+  color: var(--color-text-main);
+
+  @include mq("md") {
+    line-height: 2;
+  }
+}
+
+// 大見出しブロック
+.p-privacy__block {
+  margin-top: calc(60 * var(--to-rem));
+
+  @include mq("md") {
+    margin-top: calc(80 * var(--to-rem));
+  }
+}
+
+// 大見出し（淡青帯 + 左アクセントバー）
+.p-privacy__heading {
+  padding-block: calc(14 * var(--to-rem));
+  padding-inline: calc(24 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(22 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  line-height: 1.8;
+  color: var(--color-text-main);
+  background-color: var(--color-bg-light);
+  border-left: calc(6 * var(--to-rem)) solid var(--color-accent);
+
+  @include mq("md") {
+    padding-block: calc(13 * var(--to-rem));
+    padding-inline: calc(26 * var(--to-rem));
+    font-size: calc(24 * var(--to-rem));
+    line-height: 1.75;
+  }
+}
+
+// 小見出し（lead・左に短い水平ライン装飾）
+.p-privacy__lead {
+  position: relative;
+  padding-inline-start: calc(24 * var(--to-rem));
+  margin-top: calc(48 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(18 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  line-height: 1.8;
+  color: var(--color-accent);
+
+  @include mq("md") {
+    padding-inline-start: calc(28 * var(--to-rem));
+    margin-top: calc(60 * var(--to-rem));
+    font-size: calc(20 * var(--to-rem));
+    line-height: 1.5;
+  }
+}
+
+// h2帯直下の最初の lead は余白を詰める
+.p-privacy__heading + .p-privacy__lead {
+  margin-top: calc(32 * var(--to-rem));
+
+  @include mq("md") {
+    margin-top: calc(40 * var(--to-rem));
+  }
+}
+
+.p-privacy__lead::before {
+  position: absolute;
+  inset-inline-start: 0;
+  top: 50%;
+  width: calc(16 * var(--to-rem));
+  height: 1px;
+  content: "";
+  background-color: var(--color-border-sub);
+
+  @include mq("md") {
+    width: calc(20 * var(--to-rem));
+  }
+}
+
+// 本文
+.p-privacy__text {
+  margin-top: calc(16 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-regular);
+  line-height: 1.8;
+  color: var(--color-text-main);
+
+  @include mq("md") {
+    line-height: 2;
+  }
+}
+
+// lead 直後の最初の本文は余白を24pxに
+.p-privacy__lead + .p-privacy__text {
+  margin-top: calc(24 * var(--to-rem));
+}
+
+// 箇条書き段落（字下げ）
+.p-privacy__text--list {
+  padding-inline-start: calc(20 * var(--to-rem));
+
+  @include mq("md") {
+    padding-inline-start: calc(40 * var(--to-rem));
+  }
+}

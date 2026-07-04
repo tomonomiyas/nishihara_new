@@ -1,0 +1,43 @@
+@use "../global" as *;
+
+// 送信完了ページ用のスタイル
+.p-contact__complete {
+  padding-block: calc(48 * var(--to-rem));
+  text-align: center;
+
+  @include mq(md) {
+    padding-block: calc(80 * var(--to-rem));
+  }
+}
+
+.p-contact__completeTitle {
+  font-size: calc(28 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  color: var(--color-accent);
+
+  @include mq(md) {
+    font-size: calc(40 * var(--to-rem));
+  }
+}
+
+.p-contact__completeText {
+  margin-block-start: calc(24 * var(--to-rem));
+  font-size: calc(14 * var(--to-rem));
+  line-height: 1.8;
+  color: var(--color-text-main);
+
+  @include mq(md) {
+    margin-block-start: calc(30 * var(--to-rem));
+    font-size: calc(16 * var(--to-rem));
+  }
+}
+
+.p-contact__completeButton {
+  display: flex;
+  justify-content: center;
+  margin-block-start: calc(40 * var(--to-rem));
+
+  @include mq(md) {
+    margin-block-start: calc(50 * var(--to-rem));
+  }
+}

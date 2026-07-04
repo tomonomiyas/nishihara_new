@@ -1,0 +1,80 @@
+@use "../global" as *;
+
+// 会社案内など下層ページ共通のローカルナビ（右カラム）
+// デザインは c-localNav（会社案内サイドナビ）に揃える。
+// HTML構造・JS（アンカースクロール / current 切替）はそのまま、見た目のみ共通化する。
+.p-localNav {
+  width: 100%;
+
+  @include mq("md") {
+    flex-shrink: 0;
+    width: calc(280 * var(--to-rem));
+  }
+}
+
+// 見出し（青背景タブ）
+.p-localNav__head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: calc(72 * var(--to-rem));
+  padding-inline: calc(32 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  color: var(--color-white);
+  background-color: var(--color-accent);
+}
+
+// 見出しの右矢印
+.p-localNav__head::after {
+  width: calc(6 * var(--to-rem));
+  height: calc(12 * var(--to-rem));
+  margin-inline-start: auto;
+  content: "";
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 12'%3E%3Cpath d='M0 0l6 6-6 6' fill='none' stroke='white'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+// 項目リスト全体の左ボーダー
+.p-localNav__list {
+  border-left: 2px solid var(--color-border-accent);
+}
+
+.p-localNav__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: calc(56 * var(--to-rem));
+  padding-block: calc(16 * var(--to-rem));
+  padding-inline: calc(32 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-medium);
+  color: var(--color-text-main);
+  transition: color var(--duration);
+}
+
+// カレント項目左の縦線（アクセント）
+.p-localNav__item--current > .p-localNav__link::before {
+  position: absolute;
+  top: 0;
+  left: -2px;
+  width: calc(3 * var(--to-rem));
+  height: 100%;
+  content: "";
+  background-color: var(--color-accent);
+}
+
+@media (any-hover: hover) {
+  .p-localNav__link:hover {
+    color: var(--color-accent);
+  }
+}
+
+// カレント項目
+.p-localNav__item--current > .p-localNav__link {
+  font-weight: var(--fw-bold);
+  color: var(--color-accent);
+}

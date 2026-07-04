@@ -1,0 +1,272 @@
+@use "../global" as *;
+
+.p-group {
+  padding-block: calc(40 * var(--to-rem));
+
+  @include mq("md") {
+    padding-block: calc(80 * var(--to-rem)); // XD: FV帯下端→組織図h2 gap=80
+  }
+}
+
+// 本体 2カラム（左 main + 右 localNav）
+.p-group__body {
+  display: flex;
+  flex-direction: column;
+  gap: calc(40 * var(--to-rem));
+
+  @include mq("lg") {
+    flex-direction: row;
+    gap: calc(40 * var(--to-rem));
+    align-items: flex-start;
+  }
+}
+
+.p-group__main {
+  width: 100%;
+  min-width: 0;
+
+  @include mq("lg") {
+    flex: 1;
+  }
+}
+
+.p-group__side {
+  width: 100%;
+
+  @include mq("lg") {
+    flex-shrink: 0;
+    width: calc(280 * var(--to-rem));
+  }
+}
+
+// 見出しバー（薄青背景帯＋左の青アクセント）
+.p-group__barHead {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: calc(56 * var(--to-rem));
+  padding-block: calc(8 * var(--to-rem));
+  padding-inline: calc(24 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(22 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  line-height: 1.4;
+  color: var(--color-text-main);
+  background-color: var(--color-bg-light);
+
+  @include mq("md") {
+    min-height: calc(67 * var(--to-rem));
+    padding-inline: calc(32 * var(--to-rem));
+    font-size: calc(24 * var(--to-rem));
+  }
+}
+
+.p-group__barHead::before {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  width: calc(6 * var(--to-rem));
+  content: "";
+  background-color: var(--color-accent);
+}
+
+// 組織図ツリー
+.p-group__chart {
+  margin-top: calc(24 * var(--to-rem));
+
+  @include mq("md") {
+    margin-top: calc(40 * var(--to-rem)); // XD: 組織図h2終端→親会社 gap=40
+  }
+}
+
+// 子会社グループ（ツリーの縦線＋インデント）
+.p-group__children {
+  margin-top: calc(20 * var(--to-rem)); // XD: 親会社→子会社 gap=20
+
+  @include mq("md") {
+    margin-inline-start: calc(40 * var(--to-rem));
+    border-inline-start: 1px solid var(--color-border-accent);
+  }
+}
+
+// 会社ブロック
+.p-group__company {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border-accent);
+
+  @include mq("md") {
+    flex-direction: row;
+    align-items: stretch;
+  }
+}
+
+.p-group__company + .p-group__company {
+  margin-top: calc(20 * var(--to-rem)); // XD: ツリー内ブロック間 gap=20
+}
+
+// 子会社カードへ伸びるツリー横ヒゲ
+.p-group__children .p-group__company {
+  position: relative;
+}
+
+.p-group__children .p-group__company::before {
+  @include mq("md") {
+    position: absolute;
+    inset-inline-start: calc(-40 * var(--to-rem));
+    top: calc(40 * var(--to-rem));
+    width: calc(40 * var(--to-rem));
+    height: 1px;
+    content: "";
+    background-color: var(--color-border-accent);
+  }
+}
+
+// 会社ブロック左カラム（ロゴ＋社名＋リンク＋住所）
+.p-group__companyHead {
+  padding-block: calc(24 * var(--to-rem));
+  padding-inline: calc(24 * var(--to-rem));
+  background-color: var(--color-bg-light);
+
+  @include mq("md") {
+    flex-shrink: 0;
+    width: calc(350 * var(--to-rem));
+  }
+}
+
+.p-group__company--parent .p-group__companyHead {
+  @include mq("md") {
+    width: calc(430 * var(--to-rem));
+  }
+}
+
+.p-group__logo img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.p-group__companyName {
+  margin-top: calc(16 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  line-height: 2;
+  color: var(--color-text-main);
+}
+
+// ウェブサイトリンク
+.p-group__siteLink {
+  display: inline-flex;
+  gap: calc(8 * var(--to-rem));
+  align-items: center;
+  margin-top: calc(8 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-medium);
+  line-height: 2;
+  color: var(--color-text-main);
+  text-decoration: none;
+  transition: color var(--duration);
+}
+
+.p-group__siteLinkIcon {
+  width: calc(12 * var(--to-rem));
+  height: calc(12 * var(--to-rem));
+}
+
+@media (any-hover: hover) {
+  // UIガイドライン: 文字色#3072BF + 下線を表示
+  .p-group__siteLink:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+}
+
+// 住所・TEL・FAX
+.p-group__address {
+  padding-top: calc(16 * var(--to-rem));
+  margin-top: calc(16 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-regular);
+  line-height: 2;
+  color: var(--color-text-main);
+  border-top: 1px solid var(--color-border-accent);
+}
+
+// 部署リスト（右カラム）
+.p-group__depts {
+  padding-block: calc(24 * var(--to-rem));
+  padding-inline: calc(24 * var(--to-rem));
+
+  @include mq("md") {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.p-group__dept {
+  padding-block: calc(8 * var(--to-rem));
+  padding-inline: calc(16 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-regular);
+  line-height: 1.6;
+  color: var(--color-text-main);
+  background-color: var(--color-bg-light);
+}
+
+.p-group__dept + .p-group__dept {
+  margin-top: calc(10 * var(--to-rem));
+}
+
+// 関連団体一覧 見出し（セクション間余白）
+.p-group__orgHead {
+  margin-top: calc(60 * var(--to-rem));
+
+  @include mq("md") {
+    margin-top: calc(80 * var(--to-rem)); // XD: 組織図→関連団体 gap=80
+  }
+}
+
+// 関連団体リスト（2カラム）
+.p-group__orgList {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: calc(8 * var(--to-rem)) calc(40 * var(--to-rem));
+  margin-top: calc(24 * var(--to-rem));
+
+  @include mq("md") {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: calc(8 * var(--to-rem)) calc(40 * var(--to-rem));
+  }
+}
+
+.p-group__orgLink {
+  display: inline-flex;
+  gap: calc(10 * var(--to-rem));
+  align-items: center;
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-regular);
+  line-height: 2;
+  color: var(--color-text-main);
+  text-decoration: none;
+  transition: color var(--duration);
+}
+
+.p-group__orgIcon {
+  flex-shrink: 0;
+  width: calc(12 * var(--to-rem));
+  height: calc(12 * var(--to-rem));
+}
+
+@media (any-hover: hover) {
+  // UIガイドライン: 文字色#3072BF + 下線を表示
+  .p-group__orgLink:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+}

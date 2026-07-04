@@ -1,0 +1,81 @@
+@use "../global" as *;
+
+// 下層ページ共通パンくず
+.p-breadcrumb {
+  background-color: var(--color-white);
+  border-top: 1px solid var(--color-border-accent);
+}
+
+.p-breadcrumb__inner {
+  display: flex;
+  gap: calc(12 * var(--to-rem));
+  align-items: center;
+  justify-content: space-between;
+  padding-block: calc(20 * var(--to-rem));
+}
+
+.p-breadcrumb__wrapper {
+  min-width: 0;
+
+  // SP時：コンテンツ幅に収まらないパンくずは折り返さず横スクロールで閲覧
+  overflow-x: auto;
+  font-size: calc(14 * var(--to-rem));
+  line-height: 2;
+  color: var(--color-text-main);
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; // Firefox
+
+  &::-webkit-scrollbar {
+    display: none; // Chrome / Safari
+  }
+}
+
+.p-breadcrumb__wrapper a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--duration);
+}
+
+@media (any-hover: hover) {
+  // UIガイドライン: リンク名の下に線を表示
+  .p-breadcrumb__wrapper a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+}
+
+// 区切り「>」（bcn_display の区切り文字を装飾）
+.p-breadcrumb__wrapper .separator {
+  margin-inline: calc(8 * var(--to-rem));
+  color: var(--color-accent);
+}
+
+// ページトップへ戻る丸ボタン
+.p-breadcrumb__totop {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  width: calc(40 * var(--to-rem));
+  height: calc(40 * var(--to-rem));
+  background-color: var(--color-accent);
+  border-radius: 100%;
+  transition: opacity var(--duration);
+}
+
+.p-breadcrumb__totopArrow {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  width: calc(10 * var(--to-rem));
+  height: calc(10 * var(--to-rem));
+  border-top: 2px solid var(--color-white);
+  border-right: 2px solid var(--color-white);
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+@media (any-hover: hover) {
+  .p-breadcrumb__totop:hover {
+    opacity: 0.8;
+  }
+}

@@ -1,0 +1,124 @@
+@use "../global" as *;
+
+.p-overview {
+  padding-block: calc(60 * var(--to-rem));
+
+  @include mq("md") {
+    padding-block: calc(80 * var(--to-rem));
+  }
+}
+
+.p-overview__body {
+  display: flex;
+  flex-direction: column;
+  gap: calc(40 * var(--to-rem));
+  align-items: flex-start;
+
+  @include mq("lg") {
+    flex-direction: row;
+    gap: calc(40 * var(--to-rem));
+  }
+}
+
+.p-overview__main {
+  width: 100%;
+  min-width: 0;
+
+  @include mq("lg") {
+    flex: 1;
+  }
+}
+
+.p-overview__side {
+  width: 100%;
+
+  @include mq("lg") {
+    flex-shrink: 0;
+    width: calc(280 * var(--to-rem));
+  }
+}
+
+// テーブル上の見出し帯（薄青背景＋左の青線＋黒文字）
+.p-overview__title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: calc(67 * var(--to-rem));
+  padding-inline: calc(32 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(20 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  color: var(--color-text-main);
+  background-color: var(--color-bg-light);
+}
+
+.p-overview__title::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(6 * var(--to-rem));
+  height: 100%;
+  content: "";
+  background-color: var(--color-accent);
+}
+
+// 会社概要テーブル
+.p-overview__table {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: 1px solid var(--color-border-accent);
+}
+
+.p-overview__table tr {
+  display: block;
+
+  @include mq("md") {
+    display: table-row;
+  }
+}
+
+.p-overview__table th,
+.p-overview__table td {
+  display: block;
+  width: 100%;
+  padding-block: calc(16 * var(--to-rem));
+  padding-inline: calc(16 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  line-height: 1.8;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--color-border-accent);
+
+  @include mq("md") {
+    display: table-cell;
+    width: auto;
+  }
+}
+
+.p-overview__table th {
+  font-weight: var(--fw-bold);
+  color: var(--color-text-main);
+  background-color: var(--color-bg-light);
+
+  @include mq("md") {
+    width: calc(260 * var(--to-rem));
+  }
+}
+
+.p-overview__table td {
+  color: var(--color-text-main);
+  background-color: var(--color-white);
+}
+
+.p-overview__table td a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  transition: opacity var(--duration);
+}
+
+@media (any-hover: hover) {
+  .p-overview__table td a:hover {
+    opacity: 0.7;
+  }
+}

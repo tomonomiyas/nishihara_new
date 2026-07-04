@@ -1,0 +1,203 @@
+@use "../global" as *;
+
+.p-location {
+  padding-block: calc(40 * var(--to-rem));
+
+  @include mq("md") {
+    padding-block: calc(80 * var(--to-rem)); // XD: FV帯下端→本社h2帯 gap=80
+  }
+}
+
+// 本体 2カラム（左 main + 右 localNav）
+.p-location__inner {
+  display: flex;
+  flex-direction: column;
+  gap: calc(40 * var(--to-rem));
+
+  @include mq("md") {
+    flex-direction: row;
+    gap: calc(40 * var(--to-rem));
+    align-items: flex-start;
+  }
+}
+
+.p-location__main {
+  @include mq("md") {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+// サイドナビ「会社案内」ラッパー（中身は共通コンポーネント c-localNav）
+.p-location__side {
+  width: 100%;
+
+  @include mq("md") {
+    flex-shrink: 0;
+    width: calc(280 * var(--to-rem));
+  }
+}
+
+// ブロック（本社 / 支店・工場）
+.p-location__block + .p-location__block {
+  margin-top: calc(40 * var(--to-rem));
+
+  @include mq("md") {
+    margin-top: calc(56 * var(--to-rem));
+  }
+}
+
+// 見出しバー（背景帯＋左アクセント）
+.p-location__barHead {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: calc(56 * var(--to-rem));
+  padding-block: calc(8 * var(--to-rem));
+  padding-inline: calc(24 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(22 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  line-height: 1.4;
+  color: var(--color-text-main);
+  background-color: var(--color-bg-light);
+
+  @include mq("md") {
+    min-height: calc(67 * var(--to-rem));
+    padding-inline: calc(32 * var(--to-rem));
+    font-size: calc(24 * var(--to-rem));
+  }
+}
+
+.p-location__barHead::before {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  width: calc(6 * var(--to-rem));
+  content: "";
+  background-color: var(--color-accent);
+}
+
+// 支店・工場カードグリッド（2列）
+.p-location__cards {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: calc(40 * var(--to-rem));
+  margin-top: calc(40 * var(--to-rem));
+
+  @include mq("md") {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: calc(56 * var(--to-rem)) calc(40 * var(--to-rem));
+  }
+}
+
+// カード（本社はメディアブロック / 支店はグリッド要素）
+.p-location__card {
+  display: flex;
+  flex-direction: column;
+  gap: calc(20 * var(--to-rem));
+}
+
+// 本社カード（画像左 + テキスト右の横並び）
+.p-location__card--main {
+  margin-top: calc(40 * var(--to-rem));
+
+  @include mq("md") {
+    flex-direction: row;
+    gap: calc(40 * var(--to-rem));
+    align-items: flex-start;
+  }
+}
+
+.p-location__cardImg {
+  width: 100%;
+  aspect-ratio: 410 / 253;
+  overflow: hidden;
+  background-color: var(--color-bg-light); // 画像未支給時のプレースホルダ
+
+  @include mq("md") {
+    width: 100%;
+  }
+}
+
+.p-location__card--main .p-location__cardImg {
+  @include mq("md") {
+    flex-shrink: 0;
+    width: calc(410 * var(--to-rem));
+  }
+}
+
+.p-location__cardImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.p-location__cardBody {
+  @include mq("md") {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+// 拠点名
+.p-location__cardName {
+  font-family: var(--base-font-family);
+  font-size: calc(20 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  line-height: 1.5;
+  color: var(--color-accent);
+}
+
+// 住所・TEL・FAX
+.p-location__cardInfo {
+  margin-top: calc(8 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-regular);
+  line-height: 2;
+  color: var(--color-text-main);
+
+  @include mq("md") {
+    line-height: 1.8;
+  }
+}
+
+// Googleマップ テキストリンク
+.p-location__mapLink {
+  position: relative;
+  display: inline-flex;
+  gap: calc(10 * var(--to-rem));
+  align-items: center;
+  padding-inline-start: calc(20 * var(--to-rem));
+  margin-top: calc(16 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-medium);
+  line-height: 1.5;
+  color: var(--color-text-main);
+  transition: color var(--duration);
+}
+
+// 先頭の青chevron（＞）
+.p-location__mapLink::before {
+  position: absolute;
+  inset-inline-start: 0;
+  width: calc(6 * var(--to-rem));
+  height: calc(10 * var(--to-rem));
+  content: "";
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 12'%3E%3Cpath d='M0 0l6 6-6 6' fill='none' stroke='%233072BF'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.p-location__mapLinkIcon {
+  width: calc(12 * var(--to-rem));
+  height: calc(12 * var(--to-rem));
+}
+
+@media (any-hover: hover) {
+  .p-location__mapLink:hover {
+    color: var(--color-accent);
+  }
+}

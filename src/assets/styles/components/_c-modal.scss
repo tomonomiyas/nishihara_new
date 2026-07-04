@@ -1,0 +1,81 @@
+@use "../global" as *;
+
+.c-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity 0.4s,
+    visibility 0.4s;
+
+  &.is-open {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.c-modal__overlay {
+  position: absolute;
+  inset: 0;
+  cursor: zoom-out;
+  background-color: rgb(0 0 0 / 40%); // Less dark, more gray as in mockup
+}
+
+.c-modal__content {
+  position: relative;
+  z-index: 1;
+  width: 90%;
+  max-width: calc(1180 / 1920 * 100%);
+  max-height: 90vh;
+  padding: calc(12 * var(--to-rem)); // Smaller padding as in mockup
+  background-color: var(--color-white);
+  border-radius: var(--radius-base);
+  box-shadow: 0 4px 20px rgb(0 0 0 / 10%);
+  transition: transform 0.4s;
+  transform: translateY(20px);
+
+  .is-open & {
+    transform: translateY(0);
+  }
+}
+
+.c-modal__image-wrap {
+  max-height: calc(90vh - 24px);
+  overflow: auto;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.c-modal__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: transform var(--duration);
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  svg {
+    display: block;
+    width: calc(28 * var(--to-rem));
+    height: calc(28 * var(--to-rem));
+  }
+}

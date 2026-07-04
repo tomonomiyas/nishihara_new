@@ -1,0 +1,81 @@
+@use "../global" as *;
+
+// お問い合わせ送信完了（サンクス）ページ本体
+// ※このプロジェクトはSPファースト。ベース=SP / @include mq("md")=PC(768px〜)
+// STEPインジケーターは共通パーツ .p-contactStep を使用（_p-contactStep.scss）
+.p-contactThanks {
+  padding-block: calc(48 * var(--to-rem)) calc(56 * var(--to-rem));
+
+  @include mq("md") {
+    padding-block: calc(80 * var(--to-rem)) calc(80 * var(--to-rem));
+  }
+}
+
+// body 直下先頭の .p-contactStep は自身の margin-block-start を持つため、
+// FV直下の余白が二重にならないよう body 側の padding-block-start を 0 にする
+.p-contactThanks .p-contactStep {
+  margin-block-start: 0;
+}
+
+// 完了メッセージブロック（STEP底→lead = XD 80px）
+.p-contactThanks__message {
+  margin-top: calc(48 * var(--to-rem));
+
+  @include mq("md") {
+    margin-top: calc(80 * var(--to-rem));
+  }
+}
+
+// lead見出し（左に短い水平ライン装飾）
+.p-contactThanks__lead {
+  position: relative;
+  padding-inline-start: calc(24 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(18 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  line-height: 1.5;
+  color: var(--color-accent);
+
+  @include mq("md") {
+    padding-inline-start: calc(28 * var(--to-rem));
+    font-size: calc(20 * var(--to-rem));
+  }
+}
+
+.p-contactThanks__lead::before {
+  position: absolute;
+  inset-inline-start: 0;
+  top: 50%;
+  width: calc(16 * var(--to-rem));
+  height: 1px;
+  content: "";
+  background-color: var(--color-border-sub);
+
+  @include mq("md") {
+    width: calc(20 * var(--to-rem));
+  }
+}
+
+// 本文（lead底→本文 = XD 24px）
+.p-contactThanks__text {
+  margin-top: calc(20 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-regular);
+  line-height: 2;
+  color: var(--color-text-main);
+
+  @include mq("md") {
+    margin-top: calc(24 * var(--to-rem));
+  }
+}
+
+// アクション（トップへ戻るボタン、本文底→ボタン = XD 80px）
+.p-contactThanks__action {
+  margin-top: calc(48 * var(--to-rem));
+  text-align: center;
+
+  @include mq("md") {
+    margin-top: calc(80 * var(--to-rem));
+  }
+}

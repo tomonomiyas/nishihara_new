@@ -1,0 +1,56 @@
+@use "../global" as *;
+
+.c-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-medium);
+  color: var(--color-text-main);
+  text-decoration: none;
+  transition: color var(--duration);
+
+  // Arrow
+  &::before {
+    display: inline-block;
+    width: calc(6 * var(--to-rem));
+    height: calc(10 * var(--to-rem));
+    margin-inline-end: calc(8 * var(--to-rem));
+    content: "";
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 10'%3E%3Cpath d='M1 1l4 4-4 4' fill='none' stroke='%23333' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition:
+      transform var(--duration),
+      background-image var(--duration);
+  }
+
+  // Underline (Hidden by default)
+  &::after {
+    position: absolute;
+    bottom: calc(-2 * var(--to-rem));
+    left: 0;
+    width: 100%;
+    height: 1px;
+    content: "";
+    background-color: var(--color-accent);
+    transition: transform var(--duration);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      color: var(--color-accent);
+
+      &::before {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 10'%3E%3Cpath d='M1 1l4 4-4 4' fill='none' stroke='%233072BF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+        transform: translateX(calc(4 * var(--to-rem)));
+      }
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+  }
+}

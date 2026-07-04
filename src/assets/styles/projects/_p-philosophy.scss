@@ -1,0 +1,152 @@
+@use "../global" as *;
+
+.p-philosophy {
+  padding-block: calc(40 * var(--to-rem));
+
+  @include mq("md") {
+    padding-block: calc(60 * var(--to-rem));
+  }
+}
+
+// 本体 2カラム（左 main + 右 localNav）
+.p-philosophy__inner {
+  display: flex;
+  flex-direction: column;
+  gap: calc(40 * var(--to-rem));
+
+  @include mq("md") {
+    flex-direction: row;
+    gap: calc(40 * var(--to-rem));
+    align-items: flex-start;
+  }
+}
+
+.p-philosophy__main {
+  @include mq("md") {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+// サイドナビ「会社案内」ラッパー（中身は共通コンポーネント c-localNav）
+.p-philosophy__side {
+  width: 100%;
+
+  @include mq("md") {
+    flex-shrink: 0;
+    width: calc(280 * var(--to-rem));
+  }
+}
+
+// 理念ブロック（2個目に上余白）
+.p-philosophy__block + .p-philosophy__block {
+  margin-top: calc(40 * var(--to-rem));
+
+  @include mq("md") {
+    margin-top: calc(56 * var(--to-rem));
+  }
+}
+
+// 見出しバー（背景帯＋左アクセント）
+.p-philosophy__barHead {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: calc(56 * var(--to-rem));
+  padding-block: calc(8 * var(--to-rem));
+  padding-inline: calc(24 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(22 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  line-height: 1.4;
+  color: var(--color-text-main);
+  background-color: var(--color-bg-light);
+
+  @include mq("md") {
+    min-height: calc(67 * var(--to-rem));
+    padding-inline: calc(32 * var(--to-rem));
+    font-size: calc(24 * var(--to-rem));
+  }
+}
+
+.p-philosophy__barHead::before {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  width: calc(6 * var(--to-rem));
+  content: "";
+  background-color: var(--color-accent);
+}
+
+// リード（強調文＋左横線）
+.p-philosophy__lead {
+  position: relative;
+  padding-inline-start: calc(32 * var(--to-rem));
+  margin-top: calc(24 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(18 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  line-height: 1.6;
+  color: var(--color-accent);
+
+  @include mq("md") {
+    margin-top: calc(40 * var(--to-rem));
+    font-size: calc(20 * var(--to-rem));
+  }
+}
+
+.p-philosophy__lead::before {
+  position: absolute;
+  inset-block-start: calc(0.8em);
+  inset-inline-start: 0;
+  width: calc(20 * var(--to-rem));
+  height: 1px;
+  content: "";
+  background-color: var(--color-accent);
+}
+
+// ビジョン本文行（画像＋本文）
+.p-philosophy__visionBody {
+  display: flex;
+  flex-direction: column;
+  gap: calc(20 * var(--to-rem));
+  margin-top: calc(24 * var(--to-rem));
+
+  @include mq("md") {
+    flex-direction: row;
+    gap: calc(40 * var(--to-rem));
+    align-items: flex-start;
+  }
+}
+
+.p-philosophy__visionImg {
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 410 / 253;
+  overflow: hidden;
+  background-color: var(--color-bg-light); // 画像未支給時のプレースホルダ
+
+  @include mq("md") {
+    flex-shrink: 0;
+    width: calc(410 * var(--to-rem));
+  }
+}
+
+.p-philosophy__visionImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.p-philosophy__visionText {
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-regular);
+  line-height: 1.8;
+  color: var(--color-text-main);
+
+  @include mq("md") {
+    flex: 1;
+    min-width: 0;
+  }
+}

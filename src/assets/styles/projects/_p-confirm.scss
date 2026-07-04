@@ -1,0 +1,93 @@
+@use "../global" as *;
+
+// 確認テーブル（ラベル＋確認値の表示専用。入力ページ p-form とトークンを共有）
+// lead → table の余白＝XD: lead下618 → tr 698 = gap 80
+.p-confirm {
+  margin-block-start: calc(40 * var(--to-rem));
+
+  @include mq("md") {
+    margin-block-start: calc(80 * var(--to-rem));
+  }
+}
+
+// 各行の縦リズム（XD 行ピッチ122px → ラベル24 + dd48 + 行間 ≒ 40px）
+.p-confirm__row + .p-confirm__row {
+  margin-block-start: calc(24 * var(--to-rem));
+
+  @include mq("md") {
+    margin-block-start: calc(40 * var(--to-rem));
+  }
+}
+
+// ラベル（dt）
+.p-confirm__label {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-medium);
+  line-height: 1;
+  color: var(--color-text-main);
+}
+
+.p-confirm__label--required::after {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(36 * var(--to-rem));
+  height: calc(24 * var(--to-rem));
+  margin-inline-start: calc(8 * var(--to-rem));
+  font-size: calc(14 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  line-height: 1;
+  color: var(--color-white);
+  content: "必須";
+  background-color: var(--color-required);
+  border-radius: var(--radius-base);
+}
+
+// 確認値（dd）
+.p-confirm__value {
+  display: flex;
+  align-items: center;
+  min-height: calc(48 * var(--to-rem));
+  padding-block: calc(8 * var(--to-rem));
+  padding-inline: calc(16 * var(--to-rem));
+  margin-block-start: calc(8 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-regular);
+  line-height: 2;
+  color: var(--color-text-main);
+  word-break: break-word;
+  background-color: var(--color-bg-light);
+  border-radius: var(--radius-base);
+}
+
+// お問い合わせ内容（複数行・テキストエリア相当 XD h=272）
+.p-confirm__value--message {
+  align-items: flex-start;
+  min-height: calc(240 * var(--to-rem));
+  padding-block: calc(16 * var(--to-rem));
+  white-space: pre-wrap;
+
+  @include mq("md") {
+    min-height: calc(272 * var(--to-rem));
+  }
+}
+
+// ボタン群（縦並び・中央・gap20）XD: 最終行下端1614 → 送信ボタン1694 = gap 80
+.p-confirm__buttonWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-block-start: calc(48 * var(--to-rem));
+
+  @include mq("md") {
+    margin-block-start: calc(80 * var(--to-rem));
+  }
+}
+
+.p-confirm__buttonWrap > * + * {
+  margin-block-start: calc(20 * var(--to-rem));
+}

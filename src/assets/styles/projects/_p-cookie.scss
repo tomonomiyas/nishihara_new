@@ -1,0 +1,190 @@
+@use "../global" as *;
+
+// Cookie 同意バナー（画面下部に追従）
+.p-cookie {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 950;
+  background-color: var(--color-white);
+
+  // XD: shadow 0 0 10 / #303133 alpha 0.10
+  box-shadow: 0 0 calc(10 * var(--to-rem)) rgb(48 49 51 / 10%);
+}
+
+.p-cookie[hidden] {
+  display: none;
+}
+
+.p-cookie__inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  // SP: テキスト→ボタンの縦積み（XD: text top=57, setting top=158, accept top=207）
+  gap: calc(16 * var(--to-rem));
+  padding-block: calc(20 * var(--to-rem));
+  padding-inline: calc(15 * var(--to-rem)); // XD SP: 左右15px
+
+  // Tab: テキスト左 + ボタン縦2段 + 閉じる右（XD Tab: text x40, ボタン群 右寄せ縦2段, 閉じる右端）
+  @include mq("md") {
+    flex-direction: row;
+    gap: calc(20 * var(--to-rem));
+    align-items: center;
+    padding-block: calc(24 * var(--to-rem)); // XD Tab: ボタン群 h83 を h134 内に上下24px
+    padding-inline: calc(40 * var(--to-rem)); // XD PC/Tab: 左右40px
+  }
+
+  // PC: 全要素を横1列（XD PC: text→設定→受入→閉じる 横並び h75）
+  @include mq("pc") {
+    padding-block: calc(19 * var(--to-rem)); // XD PC: ボタン h37 を h75 内に上下19px
+  }
+}
+
+.p-cookie__text {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--base-font-family);
+  font-size: calc(12 * var(--to-rem)); // XD: 12px
+  font-weight: var(--fw-regular);
+  line-height: 1.5; // XD: 18px / 12px = 1.5
+  color: var(--color-text-main);
+}
+
+.p-cookie__bold {
+  font-weight: var(--fw-bold);
+}
+
+.p-cookie__link {
+  color: var(--color-accent);
+  text-decoration: underline;
+  transition: color var(--duration);
+}
+
+@media (any-hover: hover) {
+  .p-cookie__link:hover {
+    color: var(--color-accent-sub);
+  }
+}
+
+.p-cookie__actions {
+  display: flex;
+
+  // SP: ボタン縦積み・全幅（XD: setting→accept, w360）
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: calc(12 * var(--to-rem));
+
+  // Tab: ボタン縦2段のまま（XD Tab: 設定 top24 / 受入 top73 = 縦並び）
+  @include mq("md") {
+    align-items: flex-end;
+  }
+
+  // PC: 横並び（XD PC: 設定→受入 横1列）
+  @include mq("pc") {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.p-cookie__setting,
+.p-cookie__accept {
+  display: inline-flex;
+
+  // Tab で受入ボタンも240固定にするため flex-shrink を止める
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 100%; // SP: 全幅（XD w360）
+  height: calc(37 * var(--to-rem)); // XD: h37
+  font-family: var(--base-font-family);
+  font-size: calc(12 * var(--to-rem)); // XD: 12px
+  font-weight: var(--fw-regular); // XD: Regular
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  border-radius: var(--radius-base); // XD: 角丸2px
+  transition:
+    color var(--duration),
+    background-color var(--duration),
+    border-color var(--duration);
+
+  @include mq("md") {
+    width: calc(240 * var(--to-rem)); // XD PC/Tab: w240
+  }
+}
+
+// 設定ボタン: 枠#CFDAEA / 文字#666 / 白背景
+.p-cookie__setting {
+  color: var(--color-text-sub); // XD: #666
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border-accent); // XD: #CFDAEA
+}
+
+@media (any-hover: hover) {
+  .p-cookie__setting:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+}
+
+// 同意ボタン: 背景#3072BF / 文字白
+.p-cookie__accept {
+  color: var(--color-white);
+  background-color: var(--color-accent); // XD: #3072BF
+  border: 1px solid var(--color-accent);
+}
+
+@media (any-hover: hover) {
+  .p-cookie__accept:hover {
+    color: var(--color-accent);
+    background-color: var(--color-white);
+  }
+}
+
+// 閉じる（×）ボタン: XD 37×37 のタップ領域に細線グレー×（背景なし）
+.p-cookie__close {
+  position: absolute;
+  top: calc(10 * var(--to-rem)); // XD SP: 右上 top=10
+  right: calc(15 * var(--to-rem));
+  display: block;
+  flex-shrink: 0;
+  width: calc(37 * var(--to-rem)); // XD: 37×37（タップ領域）
+  height: calc(37 * var(--to-rem));
+  cursor: pointer;
+
+  @include mq("md") {
+    position: static;
+    top: auto;
+    right: auto;
+  }
+}
+
+// × 印: 12×12 の対角線2本（線幅2px・#303133）
+.p-cookie__closeIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(12 * var(--to-rem)); // XD: 12×12
+  height: 2px; // XD: 線幅2px
+  background-color: var(--color-text-main); // XD: #303133
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+// もう1本の対角線: 親の中央に重ねてさらに90度回す（合計135度＝逆向き）
+.p-cookie__closeIcon::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  content: "";
+  background-color: var(--color-text-main); // XD: #303133
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+@media (any-hover: hover) {
+  .p-cookie__close:hover {
+    opacity: 0.7;
+  }
+}

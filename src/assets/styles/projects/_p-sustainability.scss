@@ -1,0 +1,661 @@
+@use "../global" as *;
+
+// ===== サステナビリティ（活動報告アーカイブ）ページ =====
+
+.p-sustainability {
+  padding-block: calc(60 * var(--to-rem));
+
+  @include mq("md") {
+    padding-block: calc(80 * var(--to-rem));
+  }
+}
+
+// 2カラム（左メイン／右追従ナビ）
+.p-sustainability__body {
+  display: flex;
+  flex-direction: column;
+  gap: calc(40 * var(--to-rem));
+  align-items: flex-start;
+
+  @include mq("lg") {
+    flex-direction: row;
+    gap: calc(40 * var(--to-rem));
+  }
+}
+
+.p-sustainability__main {
+  width: 100%;
+  min-width: 0;
+
+  @include mq("lg") {
+    flex: 1;
+  }
+}
+
+.p-sustainability__side {
+  width: 100%;
+
+  @include mq("lg") {
+    position: sticky;
+    top: calc(var(--header-height) + 20px);
+    flex-shrink: 0;
+    width: calc(280 * var(--to-rem));
+  }
+}
+
+// ----- 基本方針リード -----
+.p-sustainability__lead {
+  position: relative;
+}
+
+.p-sustainability__leadSub {
+  position: relative;
+  padding-inline-start: calc(28 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(18 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  line-height: 1.5;
+  color: var(--color-accent);
+
+  @include mq("md") {
+    font-size: calc(20 * var(--to-rem));
+  }
+}
+
+.p-sustainability__leadSub::before {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 0;
+  width: calc(20 * var(--to-rem));
+  height: 1px;
+  content: "";
+  background-color: var(--color-accent);
+}
+
+.p-sustainability__leadMain {
+  margin-top: calc(16 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(24 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  line-height: 1.75;
+  color: var(--color-accent);
+
+  @include mq("md") {
+    font-size: calc(32 * var(--to-rem));
+  }
+}
+
+// ----- 導入本文 + 装飾画像 -----
+.p-sustainability__intro {
+  margin-top: calc(40 * var(--to-rem));
+
+  @include mq("lg") {
+    display: flex;
+    gap: calc(40 * var(--to-rem));
+    align-items: flex-start;
+    margin-top: calc(47 * var(--to-rem));
+  }
+}
+
+.p-sustainability__introText {
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-regular);
+  line-height: 2;
+  color: var(--color-text-main);
+
+  @include mq("lg") {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.p-sustainability__introImgs {
+  position: relative;
+  aspect-ratio: 510 / 425;
+  margin-top: calc(24 * var(--to-rem));
+
+  @include mq("lg") {
+    flex-shrink: 0;
+    width: calc(340 * var(--to-rem));
+    aspect-ratio: 510 / 425;
+    margin-top: 0;
+  }
+}
+
+.p-sustainability__introImg {
+  position: absolute;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: var(--radius-base);
+}
+
+// 円形グラデーション装飾（240×240）— 最背面・写真の背後に重なる
+.p-sustainability__introImg--03 {
+  inset-block-start: 60%;
+  inset-inline-start: 15.69%;
+  width: 47.06%;
+  aspect-ratio: 1 / 1;
+  background-image: linear-gradient(to right, #cfdaea, #76cfd6);
+  border-radius: 50%;
+}
+
+// 親子写真（400×300）— 左上起点
+.p-sustainability__introImg--01 {
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  width: 78.43%;
+  aspect-ratio: 400 / 300;
+  background-image: image-set(
+    url("/assets/images/img_sustainability--01.webp") type("image/webp"),
+    url("/assets/images/img_sustainability--01.jpg") type("image/jpeg")
+  );
+}
+
+// 若葉写真（300×200）— 右下にオフセットして重なる（最前面）
+.p-sustainability__introImg--02 {
+  inset-block-start: 52.94%;
+  inset-inline-start: 41.18%;
+  width: 58.82%;
+  aspect-ratio: 300 / 200;
+  background-image: image-set(
+    url("/assets/images/img_sustainability--02.webp") type("image/webp"),
+    url("/assets/images/img_sustainability--02.png") type("image/png")
+  );
+}
+
+// ----- 共通: セクションブロック -----
+.p-sustainability__block {
+  margin-top: calc(60 * var(--to-rem));
+  scroll-margin-top: calc(var(--header-height) + 20px);
+
+  @include mq("md") {
+    margin-top: calc(80 * var(--to-rem));
+  }
+}
+
+// 見出し帯（左アクセントバー付き）
+.p-sustainability__heading {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: calc(56 * var(--to-rem));
+  padding-inline: calc(24 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(20 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  line-height: 1.5;
+  color: var(--color-text-main);
+  background-color: var(--color-bg-light);
+
+  @include mq("md") {
+    min-height: calc(67 * var(--to-rem));
+    padding-inline: calc(32 * var(--to-rem));
+    font-size: calc(24 * var(--to-rem));
+  }
+}
+
+.p-sustainability__heading::before {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  width: calc(6 * var(--to-rem));
+  height: 100%;
+  content: "";
+  background-color: var(--color-accent);
+}
+
+// ブロック内の本文
+.p-sustainability__text {
+  margin-top: calc(24 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-regular);
+  line-height: 2;
+  color: var(--color-text-main);
+}
+
+.p-sustainability__empty {
+  margin-top: calc(24 * var(--to-rem));
+  font-size: calc(15 * var(--to-rem));
+  color: var(--color-text-sub);
+}
+
+// ----- 活動報告（カルーセル） -----
+.p-sustainability__activity {
+  margin-top: calc(24 * var(--to-rem));
+}
+
+.p-sustainability__slider .splide__track {
+  padding-block-end: calc(4 * var(--to-rem));
+}
+
+.p-sustainability__slider .splide__slide {
+  width: calc(240 * var(--to-rem));
+  max-width: 80%;
+}
+
+.p-sustainability__card {
+  height: 100%;
+  background-color: var(--color-white);
+}
+
+.p-sustainability__cardLink {
+  display: block;
+  color: var(--color-text-main);
+}
+
+.p-sustainability__cardThumb {
+  aspect-ratio: 240 / 160;
+  overflow: hidden;
+  background-color: var(--color-border-accent);
+  border-radius: var(--radius-base);
+}
+
+.p-sustainability__cardThumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.p-sustainability__cardTitle {
+  display: -webkit-box;
+  margin-top: calc(12 * var(--to-rem));
+  overflow: hidden;
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-regular);
+  line-height: 2;
+  color: var(--color-text-main);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+
+  @media (any-hover: hover) {
+    transition: color var(--duration);
+  }
+}
+
+@media (any-hover: hover) {
+  .p-sustainability__cardLink:hover .p-sustainability__cardTitle {
+    color: var(--color-accent);
+  }
+}
+
+// Splide 進捗バー（スクロールバー風）
+.p-sustainability__slider .splide__pagination {
+  position: static;
+  display: block;
+  width: 100%;
+  height: calc(4 * var(--to-rem));
+  padding: 0;
+  margin-top: calc(24 * var(--to-rem));
+  background-color: var(--color-bg-light);
+  border-radius: calc(2 * var(--to-rem));
+}
+
+// ----- 推進体制（組織図） -----
+.p-sustainability__org {
+  padding: calc(24 * var(--to-rem));
+  margin-top: calc(24 * var(--to-rem));
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border-accent);
+  border-radius: var(--radius-base);
+
+  @include mq("md") {
+    padding: calc(40 * var(--to-rem));
+  }
+}
+
+.p-sustainability__orgTitle {
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-medium);
+  line-height: 1.5;
+  color: var(--color-text-main);
+  text-align: center;
+}
+
+.p-sustainability__orgChart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: calc(16 * var(--to-rem));
+}
+
+.p-sustainability__orgBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: calc(560 * var(--to-rem));
+  min-height: calc(56 * var(--to-rem));
+  padding-block: calc(12 * var(--to-rem));
+  padding-inline: calc(16 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  line-height: 1.4;
+  text-align: center;
+  border-radius: var(--radius-base);
+}
+
+.p-sustainability__orgBox--light {
+  font-weight: var(--fw-regular);
+  color: var(--color-text-main);
+  background-color: var(--color-bg-light);
+}
+
+.p-sustainability__orgBox--primary {
+  font-weight: var(--fw-medium);
+  color: var(--color-white);
+  background-color: var(--color-accent);
+}
+
+.p-sustainability__orgBox--sub {
+  font-weight: var(--fw-medium);
+  color: var(--color-white);
+  background-color: var(--color-accent-sub);
+}
+
+.p-sustainability__orgBoxSub {
+  margin-top: calc(4 * var(--to-rem));
+  font-size: calc(14 * var(--to-rem));
+  font-weight: var(--fw-regular);
+}
+
+// 縦矢印
+.p-sustainability__orgArrow {
+  position: relative;
+  display: block;
+  width: 1px;
+  height: calc(24 * var(--to-rem));
+  background-color: var(--color-border-sub);
+}
+
+.p-sustainability__orgArrow::after {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-start: 50%;
+  width: calc(8 * var(--to-rem));
+  height: calc(8 * var(--to-rem));
+  content: "";
+  border-right: 1px solid var(--color-border-sub);
+  border-bottom: 1px solid var(--color-border-sub);
+  transform: translate(-50%, 25%) rotate(45deg);
+}
+
+// ----- 推進計画（STEP） -----
+.p-sustainability__steps {
+  margin-top: calc(24 * var(--to-rem));
+}
+
+.p-sustainability__step {
+  display: flex;
+  gap: calc(20 * var(--to-rem));
+  align-items: flex-start;
+  padding-block: calc(24 * var(--to-rem));
+  border-top: 1px solid var(--color-border-accent);
+}
+
+.p-sustainability__step:last-child {
+  border-bottom: 1px solid var(--color-border-accent);
+}
+
+.p-sustainability__stepIcon {
+  flex-shrink: 0;
+  width: calc(80 * var(--to-rem));
+  height: calc(80 * var(--to-rem));
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  @include mq("md") {
+    width: calc(120 * var(--to-rem));
+    height: calc(120 * var(--to-rem));
+  }
+}
+
+.p-sustainability__stepIcon--01 {
+  background-image: url("/assets/images/icon_sustainability-step--01.svg");
+}
+
+.p-sustainability__stepIcon--02 {
+  background-image: url("/assets/images/icon_sustainability-step--02.svg");
+}
+
+.p-sustainability__stepIcon--03 {
+  background-image: url("/assets/images/icon_sustainability-step--03.svg");
+}
+
+.p-sustainability__stepBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.p-sustainability__stepTag {
+  display: inline-block;
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  line-height: 1;
+  color: var(--color-accent);
+}
+
+.p-sustainability__stepText {
+  margin-top: calc(12 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-regular);
+  line-height: 2;
+  color: var(--color-text-main);
+}
+
+// ----- 重要課題（ESGテーブル） -----
+.p-sustainability__tableWrap {
+  margin-top: calc(24 * var(--to-rem));
+  overflow-x: auto;
+}
+
+.p-sustainability__table {
+  width: 100%;
+  min-width: calc(700 * var(--to-rem));
+  font-family: var(--base-font-family);
+  border-collapse: collapse;
+}
+
+.p-sustainability__th {
+  padding-block: calc(12 * var(--to-rem));
+  padding-inline: calc(12 * var(--to-rem));
+  font-size: calc(14 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  line-height: 1.4;
+  color: var(--color-white);
+  text-align: center;
+  background-color: var(--color-accent);
+  border: 1px solid var(--color-white);
+}
+
+.p-sustainability__thNote {
+  display: block;
+  font-size: calc(12 * var(--to-rem));
+  font-weight: var(--fw-regular);
+}
+
+.p-sustainability__td {
+  padding-block: calc(16 * var(--to-rem));
+  padding-inline: calc(12 * var(--to-rem));
+  font-size: calc(14 * var(--to-rem));
+  font-weight: var(--fw-regular);
+  line-height: 1.6;
+  color: var(--color-text-main);
+  vertical-align: middle;
+  border: 1px solid var(--color-border-accent);
+}
+
+.p-sustainability__td--issue {
+  font-weight: var(--fw-medium);
+  text-align: start;
+  background-color: var(--color-bg-light);
+}
+
+.p-sustainability__td--esg {
+  width: calc(72 * var(--to-rem));
+  text-align: center;
+}
+
+.p-sustainability__mark {
+  display: inline-block;
+  width: calc(14 * var(--to-rem));
+  height: calc(14 * var(--to-rem));
+  background-color: var(--color-accent);
+  border-radius: 100%;
+}
+
+.p-sustainability__actionList {
+  display: flex;
+  flex-direction: column;
+  gap: calc(8 * var(--to-rem));
+}
+
+.p-sustainability__actionItem {
+  position: relative;
+  padding-inline-start: calc(16 * var(--to-rem));
+}
+
+.p-sustainability__actionItem::before {
+  position: absolute;
+  inset-block-start: calc(10 * var(--to-rem));
+  inset-inline-start: 0;
+  width: calc(6 * var(--to-rem));
+  height: calc(6 * var(--to-rem));
+  content: "";
+  background-color: var(--color-accent);
+  border-radius: 100%;
+}
+
+// ----- サステナビリティトピックス（news-list） -----
+.p-sustainability__news {
+  margin-top: calc(24 * var(--to-rem));
+  border-top: 1px solid var(--color-border-accent);
+}
+
+.p-sustainability__newsItem {
+  border-bottom: 1px solid var(--color-border-accent);
+}
+
+.p-sustainability__newsLink {
+  display: block;
+  padding-block: calc(20 * var(--to-rem));
+  color: var(--color-text-main);
+
+  @media (any-hover: hover) {
+    transition: color var(--duration);
+  }
+}
+
+.p-sustainability__newsMeta {
+  display: flex;
+  gap: calc(16 * var(--to-rem));
+  align-items: center;
+}
+
+.p-sustainability__newsDate {
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-regular);
+  line-height: 1.5;
+  color: var(--color-text-main);
+}
+
+.p-sustainability__newsCat {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: calc(135 * var(--to-rem));
+  padding-block: calc(2 * var(--to-rem));
+  padding-inline: calc(12 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(14 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  line-height: 1.5;
+  color: var(--color-white);
+  text-align: center;
+  background-color: var(--color-accent);
+  border-radius: var(--radius-base);
+}
+
+.p-sustainability__newsTitle {
+  margin-top: calc(8 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-regular);
+  line-height: 1.75;
+  color: var(--color-text-main);
+}
+
+@media (any-hover: hover) {
+  .p-sustainability__newsLink:hover .p-sustainability__newsTitle {
+    color: var(--color-accent);
+  }
+}
+
+// 一覧ボタン
+.p-sustainability__more {
+  margin-top: calc(32 * var(--to-rem));
+  text-align: center;
+}
+
+.p-sustainability__moreBtn {
+  display: inline-flex;
+  gap: calc(12 * var(--to-rem));
+  align-items: center;
+  min-height: calc(48 * var(--to-rem));
+  padding-block: calc(8 * var(--to-rem));
+  padding-inline: calc(40 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-medium);
+  line-height: 1.5;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-base);
+
+  @media (any-hover: hover) {
+    transition:
+      color var(--duration),
+      background-color var(--duration);
+  }
+}
+
+.p-sustainability__moreBtnIcon {
+  position: relative;
+  width: calc(16 * var(--to-rem));
+  height: calc(8 * var(--to-rem));
+  transition: transform var(--duration);
+}
+
+.p-sustainability__moreBtnIcon::after {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-end: 0;
+  width: calc(8 * var(--to-rem));
+  height: calc(8 * var(--to-rem));
+  content: "";
+  border-top: 1px solid currentcolor;
+  border-right: 1px solid currentcolor;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+@media (any-hover: hover) {
+  .p-sustainability__moreBtn:hover {
+    color: var(--color-white);
+    background-color: var(--color-accent);
+  }
+
+  // ホバーで矢印を右に4pxスライド（共通リンク c-link と同挙動）
+  .p-sustainability__moreBtn:hover .p-sustainability__moreBtnIcon {
+    transform: translateX(calc(4 * var(--to-rem)));
+  }
+}

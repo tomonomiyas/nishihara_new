@@ -1,0 +1,48 @@
+@use "../global" as *;
+
+.p-top-mv {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - var(--header-height));
+  margin-top: var(--header-height); // header is fixed
+  overflow: hidden;
+}
+
+.p-top-mv__image {
+  width: 100%;
+  height: 100%;
+}
+
+.p-top-mv__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.p-top-mv__content {
+  position: absolute;
+  top: 0;
+  right: 7.8%;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.p-top-mv__title-wrap {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.p-top-mv__title {
+  width: 100%;
+  max-width: calc(420 * var(--to-rem));
+
+  @include mq(md) {
+    max-width: calc(800 * var(--to-rem));
+  }
+}
+
+.p-top-mv__title img {
+  width: 100%;
+  height: auto;
+}

@@ -1,0 +1,197 @@
+@use "../global" as *;
+
+// グループのあゆみ ページ本体
+.p-history {
+  padding-block: calc(60 * var(--to-rem));
+
+  @include mq("md") {
+    padding-block: calc(80 * var(--to-rem));
+  }
+}
+
+// PC: 本文カラム + サイドナビ の2カラム / SP: 縦積み
+.p-history__layout {
+  @include mq("pc") {
+    display: flex;
+    gap: calc(40 * var(--to-rem));
+    align-items: flex-start;
+  }
+}
+
+.p-history__main {
+  @include mq("pc") {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+// セクション見出し帯（左アクセントバー付き）
+.p-history__heading {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: calc(56 * var(--to-rem));
+  padding-inline: calc(24 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(22 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  line-height: 1.5;
+  color: var(--color-text-main);
+  background-color: var(--color-bg-light);
+
+  @include mq("md") {
+    min-height: calc(67 * var(--to-rem));
+    padding-inline: calc(32 * var(--to-rem));
+    font-size: calc(24 * var(--to-rem));
+    line-height: 1.75;
+  }
+}
+
+.p-history__heading::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(6 * var(--to-rem));
+  height: 100%;
+  content: "";
+  background-color: var(--color-accent);
+}
+
+// 年代タブ（年代から探す）
+.p-history__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(20 * var(--to-rem));
+  margin-top: calc(40 * var(--to-rem));
+}
+
+.p-history__tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // SP: 2列（gap 20px を差し引いた半幅）
+  width: calc((100% - calc(20 * var(--to-rem))) / 2);
+  min-height: calc(56 * var(--to-rem));
+  padding-inline: calc(16 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-medium);
+  line-height: 1;
+  color: var(--color-text-main);
+  text-decoration: none;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border-accent);
+  border-radius: var(--radius-base);
+  transition: opacity var(--duration);
+
+  // PC: 4列横並び（固定幅200px）
+  @include mq("md") {
+    width: calc(200 * var(--to-rem));
+  }
+}
+
+// 下向き矢印アイコン（右寄せ）
+.p-history__tabArrow {
+  position: absolute;
+  top: 50%;
+  right: calc(16 * var(--to-rem));
+  width: calc(10 * var(--to-rem));
+  height: calc(6 * var(--to-rem));
+  transform: translateY(-50%);
+}
+
+.p-history__tabArrow::before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: calc(8 * var(--to-rem));
+  height: calc(8 * var(--to-rem));
+  content: "";
+  border-right: 2px solid var(--color-accent);
+  border-bottom: 2px solid var(--color-accent);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+@media (any-hover: hover) {
+  .p-history__tab:hover {
+    opacity: 0.7;
+  }
+}
+
+// 年表リスト
+.p-history__list {
+  margin-top: calc(40 * var(--to-rem));
+  border-top: 1px solid var(--color-border-accent);
+}
+
+// 年表行（PC: 年号 + 内容 の横並び / SP: 縦積み）
+.p-history__row {
+  padding-block: calc(20 * var(--to-rem));
+  border-bottom: 1px solid var(--color-border-accent);
+  scroll-margin-top: calc(80 * var(--to-rem));
+
+  @include mq("pc") {
+    display: flex;
+    align-items: flex-start;
+  }
+}
+
+// 年号
+.p-history__year {
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  line-height: 1.5;
+  color: var(--color-accent);
+
+  @include mq("pc") {
+    flex-shrink: 0;
+    width: calc(200 * var(--to-rem));
+  }
+}
+
+.p-history__yearUnit {
+  margin-left: calc(4 * var(--to-rem));
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-bold);
+}
+
+// 内容ブロック
+.p-history__body {
+  margin-top: calc(8 * var(--to-rem));
+
+  @include mq("pc") {
+    flex: 1;
+    min-width: 0;
+    margin-top: 0;
+  }
+}
+
+.p-history__text {
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-regular);
+  line-height: 1.8;
+  color: var(--color-text-main);
+}
+
+// リード文（各年の1行目を強調表示）
+.p-history__text--lead {
+  font-size: calc(20 * var(--to-rem));
+  line-height: 1.5;
+}
+
+.p-history__text + .p-history__text {
+  margin-top: calc(4 * var(--to-rem));
+}
+
+// サイドナビ「会社案内」ラッパー（中身は共通コンポーネント c-localNav）
+.p-history__side {
+  width: 100%;
+
+  @include mq("pc") {
+    flex-shrink: 0;
+    width: calc(280 * var(--to-rem));
+  }
+}

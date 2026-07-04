@@ -1,0 +1,83 @@
+@use "../global" as *;
+
+.c-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: calc(240 * var(--to-rem));
+  height: calc(56 * var(--to-rem));
+  padding-inline-start: calc(24 * var(--to-rem));
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-medium);
+  color: var(--color-white);
+  background-color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-base);
+  transition:
+    background-color var(--duration),
+    color var(--duration),
+    border-color var(--duration);
+
+  // Arrow
+  &::after {
+    position: absolute;
+    top: 50%;
+    right: calc(20 * var(--to-rem));
+    display: inline-block;
+    width: calc(6 * var(--to-rem));
+    height: calc(12 * var(--to-rem));
+    content: "";
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 12'%3E%3Cpath d='M0 0l6 6-6 6' fill='none' stroke='white'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: transform var(--duration);
+    transform: translateY(-50%);
+  }
+
+  @media (any-hover: hover) {
+    &:hover {
+      color: var(--color-accent);
+      background-color: var(--color-white);
+
+      &::after {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 12'%3E%3Cpath d='M0 0l6 6-6 6' fill='none' stroke='%233072BF'/%3E%3C/svg%3E");
+        transform: translate(calc(4 * var(--to-rem)), -50%);
+      }
+    }
+  }
+
+  // Large variant
+  &--large {
+    width: calc(240 * var(--to-rem));
+    height: calc(64 * var(--to-rem));
+  }
+
+  // Contact (Full Rounded)
+  &--contact {
+    border-radius: calc(30 * var(--to-rem)); // Fully rounded
+  }
+
+  // Back / 修正（白地・ストローク・テキスト色ダーク）
+  &--back {
+    color: var(--color-text-main);
+    background-color: var(--color-white);
+    border-color: var(--color-border-accent);
+
+    &::after {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 12'%3E%3Cpath d='M0 0l6 6-6 6' fill='none' stroke='%233072BF'/%3E%3C/svg%3E");
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: var(--color-accent);
+        background-color: var(--color-white);
+        border-color: var(--color-accent);
+
+        &::after {
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 12'%3E%3Cpath d='M0 0l6 6-6 6' fill='none' stroke='%233072BF'/%3E%3C/svg%3E");
+        }
+      }
+    }
+  }
+}

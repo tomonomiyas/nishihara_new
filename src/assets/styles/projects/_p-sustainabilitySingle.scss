@@ -1,0 +1,305 @@
+@use "../global" as *;
+
+.p-sustainabilitySingle__section {
+  padding-block: calc(40 * var(--to-rem)) calc(60 * var(--to-rem));
+
+  @include mq("md") {
+    padding-block: calc(80 * var(--to-rem)) calc(120 * var(--to-rem));
+  }
+}
+
+// 2カラム（左メイン／右追従ナビ）
+.p-sustainabilitySingle__body {
+  display: flex;
+  flex-direction: column;
+  gap: calc(40 * var(--to-rem));
+  align-items: flex-start;
+
+  @include mq("lg") {
+    flex-direction: row;
+  }
+}
+
+.p-sustainabilitySingle__main {
+  width: 100%;
+  min-width: 0;
+
+  @include mq("lg") {
+    flex: 1;
+  }
+}
+
+.p-sustainabilitySingle__side {
+  width: 100%;
+
+  @include mq("lg") {
+    flex-shrink: 0;
+    width: calc(280 * var(--to-rem));
+  }
+}
+
+// 右ナビの追従
+.p-sustainabilitySingle__nav {
+  @include mq("lg") {
+    position: sticky;
+    top: calc(var(--header-height) + 20px);
+  }
+}
+
+.p-localNav__headLink {
+  display: block;
+  color: inherit;
+}
+
+// 記事タイトル（薄青背景＋左青線）
+.p-sustainabilitySingle__title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: calc(109 * var(--to-rem));
+  padding-block: calc(12 * var(--to-rem));
+  padding-inline: calc(32 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(20 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  line-height: 1.75;
+  color: var(--color-text-main);
+  background-color: var(--color-bg-light);
+
+  @include mq("md") {
+    font-size: calc(24 * var(--to-rem));
+  }
+}
+
+.p-sustainabilitySingle__title::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(6 * var(--to-rem));
+  height: 100%;
+  content: "";
+  background-color: var(--color-accent);
+}
+
+// サムネイル画像
+.p-sustainabilitySingle__thumb {
+  aspect-ratio: 360 / 223;
+  margin-top: calc(40 * var(--to-rem));
+  overflow: hidden;
+  background-color: var(--color-bg-light);
+  border-radius: var(--radius-base);
+
+  @include mq("md") {
+    aspect-ratio: 860 / 532;
+  }
+}
+
+.p-sustainabilitySingle__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+// 本文（the_content）
+.p-sustainabilitySingle__content {
+  margin-top: calc(40 * var(--to-rem));
+  font-family: var(--base-font-family);
+}
+
+.p-sustainabilitySingle__content > * + * {
+  margin-top: calc(24 * var(--to-rem));
+}
+
+.p-sustainabilitySingle__content p {
+  font-size: calc(16 * var(--to-rem));
+  line-height: 2;
+  color: var(--color-text-main);
+}
+
+// 本文中の小見出し（lead：青文字＋左横線）
+.p-sustainabilitySingle__content h2,
+.p-sustainabilitySingle__content h3,
+.p-sustainabilitySingle__content h4 {
+  position: relative;
+  padding-inline-start: calc(28 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(20 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  line-height: 1.6;
+  color: var(--color-accent);
+}
+
+.p-sustainabilitySingle__content h2::before,
+.p-sustainabilitySingle__content h3::before,
+.p-sustainabilitySingle__content h4::before {
+  position: absolute;
+  top: calc(1em * 0.8);
+  left: 0;
+  width: calc(20 * var(--to-rem));
+  height: 1px;
+  content: "";
+  background-color: var(--color-accent);
+}
+
+.p-sustainabilitySingle__content a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  transition: opacity var(--duration);
+}
+
+.p-sustainabilitySingle__content strong,
+.p-sustainabilitySingle__content b {
+  font-weight: var(--fw-bold);
+}
+
+.p-sustainabilitySingle__content ul,
+.p-sustainabilitySingle__content ol {
+  padding-inline-start: calc(24 * var(--to-rem));
+  font-size: calc(16 * var(--to-rem));
+  line-height: 2;
+  color: var(--color-text-main);
+}
+
+.p-sustainabilitySingle__content ul {
+  list-style: disc;
+}
+
+.p-sustainabilitySingle__content ol {
+  list-style: decimal;
+}
+
+.p-sustainabilitySingle__content img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-base);
+}
+
+@media (any-hover: hover) {
+  .p-sustainabilitySingle__content a:hover {
+    opacity: 0.7;
+  }
+}
+
+// フッターアクション（戻る／SNS共有）
+.p-sustainabilitySingle__actions {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: calc(24 * var(--to-rem));
+  align-items: center;
+  padding-top: calc(40 * var(--to-rem));
+  margin-top: calc(40 * var(--to-rem));
+  border-top: 1px solid var(--color-border-accent);
+
+  @include mq("md") {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+// 戻るボタン
+.p-sustainabilitySingle__back {
+  display: inline-flex;
+  gap: calc(12 * var(--to-rem));
+  align-items: center;
+  justify-content: center;
+  min-height: calc(53 * var(--to-rem));
+  padding-block: calc(8 * var(--to-rem));
+  padding-inline: calc(24 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-medium);
+  color: var(--color-white);
+  background-color: var(--color-accent);
+  border-radius: var(--radius-base);
+  transition: opacity var(--duration);
+
+  @include mq("md") {
+    min-height: calc(56 * var(--to-rem));
+  }
+}
+
+.p-sustainabilitySingle__backIcon {
+  display: inline-flex;
+  width: calc(6 * var(--to-rem));
+}
+
+.p-sustainabilitySingle__backIcon img {
+  width: 100%;
+  height: auto;
+}
+
+@media (any-hover: hover) {
+  .p-sustainabilitySingle__back:hover {
+    opacity: 0.8;
+  }
+}
+
+// SNS共有ボタン
+.p-sustainabilitySingle__share {
+  display: flex;
+  gap: calc(12 * var(--to-rem));
+  align-items: center;
+}
+
+.p-sustainabilitySingle__shareBtn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(56 * var(--to-rem));
+  height: calc(56 * var(--to-rem));
+  cursor: pointer;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border-accent);
+  border-radius: var(--radius-base);
+  transition: background-color var(--duration);
+}
+
+.p-sustainabilitySingle__shareBtn img {
+  width: auto;
+  height: auto;
+}
+
+.p-sustainabilitySingle__shareBtn--x img {
+  width: calc(27 * var(--to-rem));
+}
+
+.p-sustainabilitySingle__shareBtn--fb img {
+  width: calc(36 * var(--to-rem));
+}
+
+.p-sustainabilitySingle__shareBtn--copy img {
+  width: calc(25 * var(--to-rem));
+}
+
+@media (any-hover: hover) {
+  .p-sustainabilitySingle__shareBtn:hover {
+    background-color: var(--color-bg-light);
+  }
+}
+
+// コピー完了トースト
+.p-sustainabilitySingle__copyToast {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  padding-block: calc(4 * var(--to-rem));
+  padding-inline: calc(12 * var(--to-rem));
+  font-size: calc(12 * var(--to-rem));
+  color: var(--color-white);
+  white-space: nowrap;
+  visibility: hidden;
+  background-color: var(--color-text-main);
+  border-radius: var(--radius-base);
+  opacity: 0;
+  transition:
+    opacity var(--duration),
+    visibility var(--duration);
+  transform: translateX(-50%);
+}
+
+.p-sustainabilitySingle__shareBtn--copy.is-copied .p-sustainabilitySingle__copyToast {
+  visibility: visible;
+  opacity: 1;
+}

@@ -1,0 +1,163 @@
+@use "../global" as *;
+
+// 役員一覧ページ本体
+.p-officer {
+  padding-block: calc(60 * var(--to-rem));
+
+  @include mq("md") {
+    padding-block: calc(80 * var(--to-rem));
+  }
+}
+
+// PC: 本文カラム + サイドナビ の2カラム / SP: 縦積み
+.p-officer__layout {
+  @include mq("pc") {
+    display: flex;
+    gap: calc(40 * var(--to-rem));
+    align-items: flex-start;
+  }
+}
+
+.p-officer__main {
+  @include mq("pc") {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+// セクション見出し帯（左アクセントバー付き）
+.p-officer__heading {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: calc(56 * var(--to-rem));
+  padding-inline: calc(24 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(22 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  line-height: 1.5;
+  color: var(--color-text-main);
+  background-color: var(--color-bg-light);
+
+  @include mq("md") {
+    min-height: calc(67 * var(--to-rem));
+    padding-inline: calc(32 * var(--to-rem));
+    font-size: calc(24 * var(--to-rem));
+    line-height: 1.75;
+  }
+}
+
+// 見出し帯 左端のアクセントバー
+.p-officer__heading::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(6 * var(--to-rem));
+  height: 100%;
+  content: "";
+  background-color: var(--color-accent);
+}
+
+// 役員テーブル
+.p-officer__table {
+  width: 100%;
+  margin-top: calc(40 * var(--to-rem));
+  border-collapse: collapse;
+
+  @include mq("md") {
+    table-layout: fixed;
+  }
+}
+
+// SP: 行を縦積み（th 上 / td 下）
+.p-officer__row {
+  display: block;
+  border-top: 1px solid var(--color-border-accent);
+
+  @include mq("md") {
+    display: table-row;
+    border-top: none;
+  }
+}
+
+.p-officer__row:last-child {
+  border-bottom: 1px solid var(--color-border-accent);
+
+  @include mq("md") {
+    border-bottom: none;
+  }
+}
+
+// 役職セル（th）
+.p-officer__role {
+  display: block;
+  padding-block: calc(12 * var(--to-rem));
+  padding-inline: calc(12 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-medium);
+  line-height: 1.5;
+  color: var(--color-text-main);
+  text-align: left;
+  vertical-align: middle;
+  background-color: var(--color-bg-light);
+
+  @include mq("md") {
+    display: table-cell;
+    width: calc(260 * var(--to-rem));
+    padding-block: calc(16 * var(--to-rem));
+    padding-inline: calc(16 * var(--to-rem));
+    border-top: 1px solid var(--color-border-accent);
+    border-bottom: 1px solid var(--color-border-accent);
+  }
+}
+
+// 氏名セル（td）
+.p-officer__name {
+  display: block;
+  padding-block: calc(12 * var(--to-rem));
+  padding-inline: calc(12 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-regular);
+  line-height: 1.5;
+  color: var(--color-text-main);
+  vertical-align: middle;
+  background-color: var(--color-white);
+  border-top: 1px solid var(--color-border-accent);
+
+  @include mq("md") {
+    display: table-cell;
+    padding-block: calc(16 * var(--to-rem));
+    padding-inline: calc(16 * var(--to-rem));
+    border-bottom: 1px solid var(--color-border-accent);
+  }
+}
+
+// SP: th と td の間の区切り線は td 側 border-top で表現、md 以上では行罫線に統合
+.p-officer__row:last-child .p-officer__name {
+  @include mq("md") {
+    border-bottom: 1px solid var(--color-border-accent);
+  }
+}
+
+// 注記
+.p-officer__note {
+  margin-top: calc(8 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-regular);
+  line-height: 2;
+  color: var(--color-text-main);
+  text-align: right;
+}
+
+// サイドナビ「会社案内」ラッパー（中身は共通コンポーネント c-localNav）
+.p-officer__side {
+  width: 100%;
+
+  @include mq("pc") {
+    flex-shrink: 0;
+    width: calc(280 * var(--to-rem));
+  }
+}

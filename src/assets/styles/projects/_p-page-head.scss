@@ -1,0 +1,27 @@
+@use "../global" as *;
+
+// 下層ページ共通FV（会社案内などのページ見出し帯）
+.p-pageHead {
+  margin-top: var(--header-height); // header is fixed
+  background-color: var(--color-bg-light);
+}
+
+.p-pageHead__inner {
+  padding-block: calc(45 * var(--to-rem));
+
+  @include mq("md") {
+    padding-block: calc(89 * var(--to-rem));
+  }
+}
+
+.p-pageHead__title {
+  font-family: var(--base-font-family);
+  font-size: calc(24 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  line-height: 1;
+  color: var(--color-accent);
+
+  @include mq("md") {
+    font-size: calc(40 * var(--to-rem));
+  }
+}
