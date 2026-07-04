@@ -3,45 +3,63 @@
 .p-footer {
   padding-block-start: calc(60 * var(--to-rem));
   background-color: var(--color-bg-light); // #EFF6FA
+
+  @include mq("md"){ 
+  padding-block: calc(40 * var(--to-rem));
+  }
 }
 
 .p-footer__inner {
-  max-width: var(--inner);
-  padding-inline: var(--padding-inner);
+  max-width: calc(var(--inner-sp) + var(--padding-inner) * 2);
   margin-inline: auto;
   container-type: inline-size;
+  padding-inline: calc(35 * var(--to-rem));
+  
+  @include mq("md"){ 
+    max-width: var(--inner);
+  padding-inline: calc(40 * var(--to-rem));
+  }
+  @include mq(pc) {
+    max-width: calc(var(--inner) + var(--padding-inner) * 2);
+    padding-inline: var(--padding-inner);
+}
 }
 
 .p-footer__top {
   display: flex;
   flex-direction: column;
   gap: calc(30 * var(--to-rem));
-  align-items: flex-start;
+align-items: center;
   padding-block-end: calc(38 * var(--to-rem));
   margin-block-end: calc(36 * var(--to-rem));
   border-block-end: 1px solid #cfdae9; // Specified in JSON
 
-  // タブレット帯(768〜1259)はロゴ＋会社情報を横並び、お問い合わせは下段全幅にして潰れ防止
+  // タブレット以上: ロゴ｜会社情報｜お問い合わせ を横1列（info の flex-grow で問い合わせを右端へ）
   @include mq(md) {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: calc(30 * var(--to-rem)) calc(40 * var(--to-rem));
+    flex-direction: row;
+    gap: calc(30 * var(--to-rem));
     align-items: center;
+    margin-block-end: calc(24 * var(--to-rem));
   }
 
-  // PC(1260〜)で本来の3要素横並び
   @include mq(pc) {
-    display: flex;
-    flex-direction: row;
-    gap: calc(60 * var(--to-rem));
-    align-items: flex-start;
-    justify-content: space-between;
+    gap: calc(40 * var(--to-rem));
   }
 }
 
 .p-footer__logo {
   flex-shrink: 0;
-  width: calc(230 * var(--to-rem));
+  width: calc(320 * var(--to-rem));
+  margin-inline: auto;
+
+  @include mq("md"){
+  flex-shrink: 1; // 狭幅では縮小して溢れ防止（336pxは上限）
+  min-width: 0;
+  width: calc(336 * var(--to-rem));
+  align-self: center;
+  margin-inline: unset;
+  }
+}
 
   .p-footer__logo a {
     display: block;
@@ -57,8 +75,9 @@
   .p-footer__logo img {
     width: 100%;
     height: auto;
+    aspect-ratio: 320/15.14;
+    display: block;
   }
-}
 
 .p-footer__contact-btn {
   position: relative;
@@ -67,16 +86,16 @@
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  max-width: calc(380 * var(--to-rem));
-  height: calc(64 * var(--to-rem));
+  max-width: calc(320 * var(--to-rem));
+  height: calc(56 * var(--to-rem));
 
-  // タブレット帯はgrid下段に全幅配置（潰れ防止）
+  // タブレット以上: 横1列の右端に配置（XD: 300×64）。狭幅では縮小して溢れ防止（300pxは上限、文字幅で下限）
   @include mq(md) {
-    grid-column: 1 / -1;
-  }
-
-  @include mq(pc) {
-    grid-column: auto;
+    flex-shrink: 1;
+    width: calc(300 * var(--to-rem));
+    max-width: none;
+    height: calc(64 * var(--to-rem));
+    white-space: nowrap;
   }
 
   padding-inline-start: calc(32 * var(--to-rem));
@@ -96,7 +115,7 @@
   &::after {
     position: absolute;
     top: 50%;
-    right: calc(32 * var(--to-rem));
+    right: calc(24 * var(--to-rem));
     width: calc(6 * var(--to-rem));
     height: calc(12 * var(--to-rem));
     content: "";
@@ -124,11 +143,19 @@
 
 .p-footer__middle {
   padding-block-end: calc(26 * var(--to-rem));
+
+  @include mq("md"){ 
+  padding-block-end: calc(10 * var(--to-rem));
+  }
 }
 
 .p-footer__info {
   flex-grow: 1;
   flex-shrink: 0;
+
+  @include mq("md"){ 
+    align-self: center;
+  }
 }
 
 .p-footer__company-name {
@@ -137,6 +164,7 @@
   font-size: calc(16 * var(--to-rem));
   font-weight: var(--fw-bold);
   color: #000;
+  letter-spacing: .0em;
 }
 
 .p-footer__address {
@@ -146,43 +174,41 @@
 }
 
 .p-footer__nav {
-  display: flex;
-  flex-direction: column;
-  gap: calc(40 * var(--to-rem));
-
-  // タブレット帯は2列グリッドに抑えて窮屈・折返しを防止（Group会社列は全幅）
-  @include mq(md) {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: calc(36 * var(--to-rem)) calc(40 * var(--to-rem));
-  }
-
-  // PC(1260〜)で本来の3列横並び
-  @include mq(pc) {
-    display: flex;
-    flex-direction: row;
-    flex-grow: 1;
-    gap: clamp(calc(30 * var(--to-rem)), 5cqi, calc(60 * var(--to-rem)));
-    justify-content: flex-start;
-  }
-}
-
-.p-footer__nav-col {
+  // SP: 主要リンク(2列) の下にグループ会社(全幅)を縦積み
   display: flex;
   flex-direction: column;
   gap: calc(32 * var(--to-rem));
 
-  &--wide {
-    // タブレット帯は2列グリッドの下段全幅
-    @include mq(md) {
-      grid-column: 1 / -1;
-    }
+  // タブレット以上: 主要リンク | グループ会社 を横並び（上揃え）
+  @include mq(md) {
+    flex-direction: row;
+    gap: calc(60 * var(--to-rem));
+    align-items: flex-start;
+  }
 
-    @include mq(pc) {
-      grid-column: auto;
-      min-width: calc(300 * var(--to-rem));
-      margin-inline-start: calc(80 * var(--to-rem));
-    }
+  @include mq(pc) {
+    gap: clamp(calc(40 * var(--to-rem)), 5cqi, calc(80 * var(--to-rem)));
+  }
+}
+
+.p-footer__nav-main {
+  // SP: 2列（左: 会社案内/サステナビリティ, 右: 事業紹介/お知らせ ＝ row-major）
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: calc(16 * var(--to-rem)) 0;
+
+  // タブレット: 1列（会社案内 → 事業紹介 → サステナビリティ → お知らせ）
+  @include mq(md) {
+    flex-shrink: 0;
+    grid-template-columns: 1fr;
+    gap: calc(12 * var(--to-rem));
+  }
+
+  // PC: 2列（左: 会社案内/サステナビリティ, 右: 事業紹介/お知らせ）
+  @include mq(pc) {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: clamp(calc(40 * var(--to-rem)), 4cqi, calc(70 * var(--to-rem)));
+    row-gap: calc(20 * var(--to-rem));
   }
 }
 
@@ -193,21 +219,29 @@
 }
 
 .p-footer__nav-main-link {
+  // SP: 矢印＋和文の横並び（英字ラベルは非表示）
   display: flex;
-  flex-direction: column;
-  gap: calc(4 * var(--to-rem));
-  align-items: flex-start;
+  gap: calc(16 * var(--to-rem)); // Fixed gap between arrow and Japanese title
+  align-items: center;
   text-decoration: none;
-
-  // タブレット帯から英字＋和文を横並びにし和文の折返しを防止
-  @include mq(md) {
-    flex-direction: row;
-    gap: calc(16 * var(--to-rem)); // Fixed gap between arrow and Japanese title
-    align-items: center;
-  }
 
   &.is-static {
     cursor: default;
+  }
+
+  // SP: 英字ラベルの代わりに矢印を和文の前に表示（md以上は英字側の矢印に切替）
+  &:not(.is-static)::before {
+    flex-shrink: 0;
+    width: calc(4 * var(--to-rem));
+    height: calc(8 * var(--to-rem));
+    content: "";
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 8'%3E%3Cpath d='M0 0l4 4-4 4' fill='none' stroke='%233171BF'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    @include mq(md) {
+      display: none;
+    }
   }
 }
 
@@ -223,7 +257,7 @@
 }
 
 .p-footer__nav-en {
-  display: flex;
+  display: none; // SPでは英字ラベル非表示（矢印+和文のみ）
   flex-shrink: 0; // Prevent shrinking
   align-items: center;
   font-family: var(--accent-font-family); // Inter
@@ -232,12 +266,9 @@
   font-weight: var(--fw-semibold);
   color: var(--color-accent); // #3072BF
 
-  // タブレット帯は和文開始位置を揃える固定幅（PCより狭め）
+  // タブレット以上で表示。和文開始位置を揃える固定幅（英字96px＋矢印の位置に合わせる）
   @include mq(md) {
-    width: calc(90 * var(--to-rem));
-  }
-
-  @include mq(pc) {
+    display: flex;
     width: calc(100 * var(--to-rem)); // Fixed width to align the start of Japanese text
   }
 
@@ -258,6 +289,11 @@
       display: block;
     }
   }
+}
+
+// グループ会社の見出し（is-static）は矢印を出さない
+.p-footer__nav-main-link.is-static .p-footer__nav-en::after {
+  content: none;
 }
 
 .p-footer__nav-title {
@@ -312,9 +348,16 @@
 }
 
 .p-footer__banner-list {
+  // SP: 1列・全幅で縦積み（XD: 各320×60 / 間隔12px）
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: calc(20 * var(--to-rem));
+  grid-template-columns: 1fr;
+  gap: calc(12 * var(--to-rem));
+
+  // タブレット帯は2列
+  @include mq(md) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: calc(20 * var(--to-rem));
+  }
 
   @include mq(pc) {
     grid-template-columns: repeat(4, 1fr);
@@ -326,7 +369,6 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: calc(60 * var(--to-rem));
   background-color: var(--color-white);
   // Moved border-radius and overflow to anchor tag to prevent border clipping
   // border-radius: calc(2 * var(--to-rem));
@@ -346,6 +388,23 @@
   border: 2px solid transparent;
   border-radius: calc(2 * var(--to-rem));
   transition: border-color var(--duration);
+  padding-block: calc(3 * var(--to-rem));
+
+  // 外部リンクアイコン（XD: バナー右上に16×16・6pxインセット）
+  &::before {
+    position: absolute;
+    top: calc(6 * var(--to-rem));
+    right: calc(6 * var(--to-rem));
+    z-index: 6; // ホバーオーバーレイ(::after z5)より前面
+    width: calc(16 * var(--to-rem));
+    height: calc(16 * var(--to-rem));
+    content: "";
+    background-image: url("/assets/images/icon_external_link.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    pointer-events: none;
+  }
 
   &::after {
     position: absolute;
@@ -368,12 +427,20 @@
     }
   }
 }
-
-.p-footer__banner-item picture,
+.p-footer__banner-item picture {
+  display: block;
+  width: min(100%, calc(190 * var(--to-rem)));  
+  @include mq("md"){ 
+  width: min(100%, calc(200 * var(--to-rem)));
+}
+}
 .p-footer__banner-item img {
   object-fit: contain;
   position: relative; // Ensure image stays above background
   z-index: 1;
+  aspect-ratio: 200/50;
+  width:  100%;
+  height: auto;
 }
 
 .p-footer__bottom-bar {

@@ -8,21 +8,18 @@
   }
 }
 
-// 本体 2カラム（左 main + 右 localNav）
+// 本体レイアウト（PC のみ 左 main + 右 localNav の2カラム。
+// tab/sp は単カラムで、localNav を本体の下に全幅で配置）
 .p-philosophy__inner {
-  display: flex;
-  flex-direction: column;
-  gap: calc(40 * var(--to-rem));
-
-  @include mq("md") {
-    flex-direction: row;
+  @include mq("pc") {
+    display: flex;
     gap: calc(40 * var(--to-rem));
     align-items: flex-start;
   }
 }
 
 .p-philosophy__main {
-  @include mq("md") {
+  @include mq("pc") {
     flex: 1;
     min-width: 0;
   }
@@ -31,10 +28,16 @@
 // サイドナビ「会社案内」ラッパー（中身は共通コンポーネント c-localNav）
 .p-philosophy__side {
   width: 100%;
+  margin-top: calc(40 * var(--to-rem));
 
   @include mq("md") {
+    margin-top: calc(80 * var(--to-rem));
+  }
+
+  @include mq("pc") {
     flex-shrink: 0;
     width: calc(280 * var(--to-rem));
+    margin-top: 0;
   }
 }
 
@@ -81,13 +84,15 @@
 // リード（強調文＋左横線）
 .p-philosophy__lead {
   position: relative;
-  padding-inline-start: calc(32 * var(--to-rem));
   margin-top: calc(24 * var(--to-rem));
   font-family: var(--base-font-family);
   font-size: calc(18 * var(--to-rem));
   font-weight: var(--fw-bold);
   line-height: 1.6;
   color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  gap: calc(8 * var(--to-rem));
 
   @include mq("md") {
     margin-top: calc(40 * var(--to-rem));
@@ -96,13 +101,16 @@
 }
 
 .p-philosophy__lead::before {
-  position: absolute;
   inset-block-start: calc(0.8em);
   inset-inline-start: 0;
-  width: calc(20 * var(--to-rem));
+  width: calc(16 * var(--to-rem));
   height: 1px;
   content: "";
   background-color: var(--color-accent);
+
+  @include mq("md"){ 
+  width: calc(20 * var(--to-rem));
+  }
 }
 
 // ビジョン本文行（画像＋本文）

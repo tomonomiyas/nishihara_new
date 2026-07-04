@@ -1,6 +1,8 @@
 // === 定数定義 ===
 const BREAKPOINTS = {
-  TABLET: 768,
+  // ハンバーガー（ドロワー）が消えて横並びナビに切り替わる幅。
+  // tabではドロワーを使うため、pc(1260)以上でのみドロワーを強制クローズする。
+  DESKTOP: 1260,
 };
 
 const ANIMATION = {
@@ -224,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener(
       "resize",
       throttle(() => {
-        if (window.matchMedia(`(min-width: ${BREAKPOINTS.TABLET}px)`).matches) {
+        if (window.matchMedia(`(min-width: ${BREAKPOINTS.DESKTOP}px)`).matches) {
           if (hamburger.classList.contains("is-open")) {
             hamburger.classList.remove("is-open");
             hamburger.setAttribute("aria-expanded", "false");

@@ -2,10 +2,15 @@
 
 .l-inner {
   max-width: calc(var(--inner-sp) + var(--padding-inner) * 2);
-  padding-inline: var(--padding-inner);
+  padding-inline: var(--padding-inner-sp);
   margin-inline: auto;
 
-  @include mq("md") {
-    max-width: calc(var(--inner) + var(--padding-inner) * 2);
+  @include mq("md"){ 
+    padding-inline: var(--padding-inner-tab);
+    max-width: calc(var(--inner) + var(--padding-inner) * 2);  }
+    
+    @include mq("pc") {
+  padding-inline: var(--padding-inner);
   }
+
 }

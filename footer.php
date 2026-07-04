@@ -22,60 +22,46 @@
     <div class="p-footer__middle">
 
       <nav class="p-footer__nav">
-        <!-- Column 1: Company & Sustainability -->
-        <div class="p-footer__nav-col">
-          <div class="p-footer__nav-group">
-            <a href="<?php page_path('company'); ?>" class="p-footer__nav-main-link">
-              <span class="p-footer__nav-en">Company</span>
-              <span class="p-footer__nav-title">会社案内</span>
-            </a>
-          </div>
-          <div class="p-footer__nav-group">
-            <a href="<?php page_path('sustainability'); ?>" class="p-footer__nav-main-link">
-              <span class="p-footer__nav-en">Sustainability</span>
-              <span class="p-footer__nav-title">サステナビリティ</span>
-            </a>
-          </div>
+        <!-- 主要リンク（SP/PC=2列, タブレット=1列。並び順が全BPの基準） -->
+        <div class="p-footer__nav-main">
+          <a href="<?php page_path('company'); ?>" class="p-footer__nav-main-link">
+            <span class="p-footer__nav-en">Company</span>
+            <span class="p-footer__nav-title">会社案内</span>
+          </a>
+          <a href="<?php page_path('business'); ?>" class="p-footer__nav-main-link">
+            <span class="p-footer__nav-en">Business</span>
+            <span class="p-footer__nav-title">事業紹介</span>
+          </a>
+          <a href="<?php page_path('sustainability'); ?>" class="p-footer__nav-main-link">
+            <span class="p-footer__nav-en">Sustainability</span>
+            <span class="p-footer__nav-title">サステナビリティ</span>
+          </a>
+          <a href="<?php page_path('news'); ?>" class="p-footer__nav-main-link">
+            <span class="p-footer__nav-en">News</span>
+            <span class="p-footer__nav-title">お知らせ</span>
+          </a>
         </div>
 
-        <!-- Column 2: Business & News -->
-        <div class="p-footer__nav-col">
-          <div class="p-footer__nav-group">
-            <a href="<?php page_path('business'); ?>" class="p-footer__nav-main-link">
-              <span class="p-footer__nav-en">Business</span>
-              <span class="p-footer__nav-title">事業紹介</span>
-            </a>
-          </div>
-          <div class="p-footer__nav-group">
-            <a href="<?php page_path('news'); ?>" class="p-footer__nav-main-link">
-              <span class="p-footer__nav-en">News</span>
-              <span class="p-footer__nav-title">お知らせ</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Column 3: Group Companies -->
-        <div class="p-footer__nav-col p-footer__nav-col--wide">
-          <div class="p-footer__nav-group">
+        <!-- グループ会社（SP=全幅下段, タブレット/PC=右側） -->
+        <div class="p-footer__nav-group p-footer__nav-group--company">
             <div class="p-footer__nav-main-link is-static">
               <span class="p-footer__nav-en">Group company</span>
               <span class="p-footer__nav-title">グループ会社のご案内</span>
             </div>
             <ul class="p-footer__nav-list">
               <li class="p-footer__nav-item">
-                <a href="https://nishihara-shoji.co.jp/" target="_blank" rel="noopener">株式会社西原商事</a>
+                <a href="https://www.nishihara-corp.jp/" target="_blank" rel="noopener">株式会社西原商事</a>
               </li>
               <li class="p-footer__nav-item">
-                <a href="https://beetle-eng.co.jp/" target="_blank" rel="noopener">株式会社ビートルエンジニアリング</a>
+                <a href="https://beetleengineering.jp/" target="_blank" rel="noopener">株式会社ビートルエンジニアリング</a>
               </li>
               <li class="p-footer__nav-item">
-                <a href="https://beetle-mgt.co.jp/" target="_blank" rel="noopener">株式会社ビートルマネージメント</a>
+                <a href="https://beetlemanagement.com/" target="_blank" rel="noopener">株式会社ビートルマネージメント</a>
               </li>
               <li class="p-footer__nav-item">
                 <a href="https://rebit-japan.co.jp/" target="_blank" rel="noopener">株式会社リビットジャパン</a>
               </li>
             </ul>
-          </div>
         </div>
       </nav>
     </div>
@@ -83,7 +69,7 @@
     <div class="p-footer__banners">
       <ul class="p-footer__banner-list">
         <li class="p-footer__banner-item">
-          <a href="#" target="_blank" rel="noopener">
+          <a href="https://beetlemanagement.com/outline" target="_blank" rel="noopener">
             <picture>
               <source srcset="<?php img_path('/logo_bee-net.webp'); ?>" type="image/webp">
               <img src="<?php img_path('/logo_bee-net.png'); ?>" alt="ビーネットシステム">
@@ -91,7 +77,7 @@
           </a>
         </li>
         <li class="p-footer__banner-item">
-          <a href="#" target="_blank" rel="noopener">
+          <a href="https://www.dusttalk.com/" target="_blank" rel="noopener">
             <picture>
               <source srcset="<?php img_path('/logo_dustalk.webp'); ?>" type="image/webp">
               <img src="<?php img_path('/logo_dustalk.png'); ?>" alt="Dustalk">
@@ -102,7 +88,7 @@
           <a href="#" target="_blank" rel="noopener">
             <picture>
               <source srcset="<?php img_path('/logo_beetle-auction.webp'); ?>" type="image/webp">
-              <img src="<?php img_path('/logo_beetle-auction.png'); ?>" alt="ビートルオークション">
+              <img src="<?php img_path('/logo_beetle-auction.png'); ?>" alt="bee-bid">
             </picture>
           </a>
         </li>
@@ -110,7 +96,7 @@
           <a href="#" target="_blank" rel="noopener">
             <picture>
               <source srcset="<?php img_path('/logo_rebitbox.webp'); ?>" type="image/webp">
-              <img src="<?php img_path('/logo_rebitbox.png'); ?>" alt="ビートルオークション">
+              <img src="<?php img_path('/logo_rebitbox.png'); ?>" alt="Rebit Box">
             </picture>
           </a>
         </li>
