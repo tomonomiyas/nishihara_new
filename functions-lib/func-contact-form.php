@@ -110,8 +110,7 @@ function nishihara_contact_send_mails($values)
 {
     // ▼▼ 本番の担当者アドレスが決まったら、ここだけ変更する ▼▼
     //     例) $admin_to = 'info@nishihara-hd.co.jp';
-    // $admin_to = get_option('admin_email');
-    $admin_to = 'scent5spr11@gmail.com';
+    $admin_to = get_option('admin_email');
     // ▲▲──────────────────────────────────────────────▲▲
 
     $site_name = wp_specialchars_decode(get_bloginfo('name'), ENT_QUOTES);
