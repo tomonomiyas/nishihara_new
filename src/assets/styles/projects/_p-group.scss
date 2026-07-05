@@ -8,14 +8,11 @@
   }
 }
 
-// 本体 2カラム（左 main + 右 localNav）
+// 本体レイアウト（PC のみ 左 main + 右 localNav の2カラム。
+// tab/sp は単カラムで、localNav を本体の下に全幅で配置）※他の会社案内下層と統一
 .p-group__body {
-  display: flex;
-  flex-direction: column;
-  gap: calc(40 * var(--to-rem));
-
-  @include mq("lg") {
-    flex-direction: row;
+  @include mq("pc") {
+    display: flex;
     gap: calc(40 * var(--to-rem));
     align-items: flex-start;
   }
@@ -25,17 +22,23 @@
   width: 100%;
   min-width: 0;
 
-  @include mq("lg") {
+  @include mq("pc") {
     flex: 1;
   }
 }
 
 .p-group__side {
   width: 100%;
+  margin-top: calc(60 * var(--to-rem));
 
-  @include mq("lg") {
+  @include mq("md") {
+    margin-top: calc(80 * var(--to-rem));
+  }
+
+  @include mq("pc") {
     flex-shrink: 0;
     width: calc(280 * var(--to-rem));
+    margin-top: 0;
   }
 }
 
@@ -79,13 +82,29 @@
   }
 }
 
-// 子会社グループ（ツリーの縦線＋インデント）
+// 子会社グループ（ツリーの縦トランク＋インデント）
 .p-group__children {
+  position: relative;
+  margin-inline-start: calc(30 * var(--to-rem)); // SP: 子会社カードを30pxインデント（右端は親と揃う）
   margin-top: calc(20 * var(--to-rem)); // XD: 親会社→子会社 gap=20
 
   @include mq("md") {
-    margin-inline-start: calc(40 * var(--to-rem));
-    border-inline-start: 1px solid var(--color-border-accent);
+    padding-inline-start: calc(40 * var(--to-rem)); // カードをトランクから40px離す（横ヒゲ分）
+    margin-inline-start: calc(40 * var(--to-rem)); // main左端からのインデント
+  }
+}
+
+// 縦トランク（親会社下端 → 最終カード中央。中央より下の余分は最終カードの::afterでマスク）
+.p-group__children::before {
+  position: absolute;
+  inset-block: calc(-20 * var(--to-rem)) 0; // 上は親会社の下端まで伸ばす
+  inset-inline-start: calc(-15 * var(--to-rem)); // SP: 子カード左端から左に15px（横ヒゲ分）
+  width: 1px;
+  content: "";
+  background-color: var(--color-border-accent);
+
+  @include mq("md") {
+    inset-inline-start: 0; // PC: children の padding(40px) でカードから離れる
   }
 }
 
@@ -106,32 +125,53 @@
   margin-top: calc(20 * var(--to-rem)); // XD: ツリー内ブロック間 gap=20
 }
 
-// 子会社カードへ伸びるツリー横ヒゲ
+// 子会社カードへ伸びるツリー横ヒゲ（カードの上下中央でトランクと接続）
 .p-group__children .p-group__company {
   position: relative;
 }
 
 .p-group__children .p-group__company::before {
+  position: absolute;
+  inset-inline-start: calc(-15 * var(--to-rem)); // SP: 横ヒゲ15px
+  top: 50%;
+  width: calc(15 * var(--to-rem));
+  height: 1px;
+  content: "";
+  background-color: var(--color-border-accent);
+
   @include mq("md") {
-    position: absolute;
-    inset-inline-start: calc(-40 * var(--to-rem));
-    top: calc(40 * var(--to-rem));
+    inset-inline-start: calc(-40 * var(--to-rem)); // PC: 横ヒゲ40px
     width: calc(40 * var(--to-rem));
-    height: 1px;
-    content: "";
-    background-color: var(--color-border-accent);
+  }
+}
+
+// 最終カードの中央より下に残るトランクの余分を隠す
+.p-group__children .p-group__company:last-child::after {
+  position: absolute;
+  inset-inline-start: calc(-15 * var(--to-rem) - 2px); // SP
+  top: 50%;
+  bottom: 0;
+  width: 4px;
+  content: "";
+  background-color: var(--color-white);
+
+  @include mq("md") {
+    inset-inline-start: calc(-40 * var(--to-rem) - 2px);
   }
 }
 
 // 会社ブロック左カラム（ロゴ＋社名＋リンク＋住所）
 .p-group__companyHead {
-  padding-block: calc(24 * var(--to-rem));
-  padding-inline: calc(24 * var(--to-rem));
+  padding-block: calc(30 * var(--to-rem));
+  padding-inline: calc(15 * var(--to-rem));
+  text-align: center; // ロゴ・社名・リンクを中央寄せ（住所のみ左寄せ）
   background-color: var(--color-bg-light);
 
   @include mq("md") {
     flex-shrink: 0;
     width: calc(350 * var(--to-rem));
+    padding-block: calc(40 * var(--to-rem)) calc(32 * var(--to-rem));
+    padding-inline: calc(25 * var(--to-rem));
   }
 }
 
@@ -141,10 +181,34 @@
   }
 }
 
+// 配布ロゴは2xアセット。グローバル reset(img{width/height:100%}) を打ち消し、実寸(1x)で中央表示
 .p-group__logo img {
+  display: inline-block;
   width: auto;
   max-width: 100%;
   height: auto;
+  object-fit: contain;
+}
+
+// 各社ロゴの表示幅（デザイン実寸＝配布アセットの1/2）
+.p-group__logo--hld img {
+  width: calc(300 * var(--to-rem)); // SP
+
+  @include mq("md") {
+    width: calc(338 * var(--to-rem));
+  }
+}
+
+.p-group__logo--beetle img {
+  width: calc(116 * var(--to-rem));
+}
+
+.p-group__logo--eng img {
+  width: calc(256 * var(--to-rem));
+}
+
+.p-group__logo--mgt img {
+  width: calc(286 * var(--to-rem));
 }
 
 .p-group__companyName {
@@ -154,14 +218,18 @@
   font-weight: var(--fw-bold);
   line-height: 2;
   color: var(--color-text-main);
+
+  @include mq("md") {
+    margin-top: calc(24 * var(--to-rem));
+  }
 }
 
-// ウェブサイトリンク
+// ウェブサイトリンク（common_btn: 左に青シェブロン「>」＋テキスト＋外部リンクアイコン）
 .p-group__siteLink {
   display: inline-flex;
-  gap: calc(8 * var(--to-rem));
+  gap: calc(12 * var(--to-rem)); // XD: シェブロン→テキスト／テキスト→アイコン いずれも12px
   align-items: center;
-  margin-top: calc(8 * var(--to-rem));
+  margin-top: calc(16 * var(--to-rem));
   font-family: var(--base-font-family);
   font-size: calc(16 * var(--to-rem));
   font-weight: var(--fw-medium);
@@ -169,6 +237,22 @@
   color: var(--color-text-main);
   text-decoration: none;
   transition: color var(--duration);
+
+  // 左の青シェブロン「>」（XD: 4x8px・stroke #3072BF）
+  &::before {
+    flex-shrink: 0;
+    width: calc(4 * var(--to-rem));
+    height: calc(8 * var(--to-rem));
+    content: "";
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5 10'%3E%3Cpath d='M1 1l3.5 4-3.5 4' fill='none' stroke='%233072BF' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+
+  @include mq("md") {
+    margin-top: calc(24 * var(--to-rem));
+  }
 }
 
 .p-group__siteLinkIcon {
@@ -184,7 +268,7 @@
   }
 }
 
-// 住所・TEL・FAX
+// 住所・TEL・FAX（区切り線の下・左寄せ）
 .p-group__address {
   padding-top: calc(16 * var(--to-rem));
   margin-top: calc(16 * var(--to-rem));
@@ -193,17 +277,27 @@
   font-weight: var(--fw-regular);
   line-height: 2;
   color: var(--color-text-main);
+  text-align: left;
   border-top: 1px solid var(--color-border-accent);
+
+  @include mq("md") {
+    padding-top: calc(24 * var(--to-rem));
+    margin-top: calc(24 * var(--to-rem));
+  }
 }
 
 // 部署リスト（右カラム）
 .p-group__depts {
   padding-block: calc(24 * var(--to-rem));
-  padding-inline: calc(24 * var(--to-rem));
+  padding-inline: calc(15 * var(--to-rem));
 
   @include mq("md") {
+    display: flex;
     flex: 1;
+    flex-direction: column;
+    justify-content: center;
     min-width: 0;
+    padding-inline: calc(24 * var(--to-rem));
   }
 }
 

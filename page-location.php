@@ -35,7 +35,7 @@
                             </p>
                             <a class="p-location__mapLink" href="https://maps.app.goo.gl/2yGyR865WRRqKBPL7" target="_blank" rel="noopener noreferrer">
                                 <span class="p-location__mapLinkText">Google Mapを別ウインドウで表示する</span>
-                                <img class="p-location__mapLinkIcon" src="<?php img_path('/icon_external_link.svg'); ?>"
+                                <img class="p-location__mapLinkIcon" src="<?php img_path('/icon_external_link_black.svg'); ?>"
                                     alt="" width="12" height="12">
                             </a>
                         </div>
@@ -65,7 +65,7 @@
                                 <a class="p-location__mapLink" href="https://maps.app.goo.gl/15XDfU3zY3uLtbnS6" target="_blank" rel="noopener noreferrer">
                                     <span class="p-location__mapLinkText">Google Mapを別ウインドウで表示する</span>
                                     <img class="p-location__mapLinkIcon"
-                                        src="<?php img_path('/icon_external_link.svg'); ?>" alt="" width="12"
+                                        src="<?php img_path('/icon_external_link_black.svg'); ?>" alt="" width="12"
                                         height="12">
                                 </a>
                             </div>
@@ -89,7 +89,7 @@
                                 <a class="p-location__mapLink" href="https://maps.app.goo.gl/y8R1agKd5yhZYDMy6" target="_blank" rel="noopener noreferrer">
                                     <span class="p-location__mapLinkText">Google Mapを別ウインドウで表示する</span>
                                     <img class="p-location__mapLinkIcon"
-                                        src="<?php img_path('/icon_external_link.svg'); ?>" alt="" width="12"
+                                        src="<?php img_path('/icon_external_link_black.svg'); ?>" alt="" width="12"
                                         height="12">
                                 </a>
                             </div>
@@ -113,7 +113,7 @@
                                 <a class="p-location__mapLink" href="https://maps.app.goo.gl/KrvpxF6QFPjTq8gA6" target="_blank" rel="noopener noreferrer">
                                     <span class="p-location__mapLinkText">Google Mapを別ウインドウで表示する</span>
                                     <img class="p-location__mapLinkIcon"
-                                        src="<?php img_path('/icon_external_link.svg'); ?>" alt="" width="12"
+                                        src="<?php img_path('/icon_external_link_black.svg'); ?>" alt="" width="12"
                                         height="12">
                                 </a>
                             </div>
@@ -137,7 +137,7 @@
                                 <a class="p-location__mapLink" href="https://maps.app.goo.gl/mXLVoNiVpiik8svp9" target="_blank" rel="noopener noreferrer">
                                     <span class="p-location__mapLinkText">Google Mapを別ウインドウで表示する</span>
                                     <img class="p-location__mapLinkIcon"
-                                        src="<?php img_path('/icon_external_link.svg'); ?>" alt="" width="12"
+                                        src="<?php img_path('/icon_external_link_black.svg'); ?>" alt="" width="12"
                                         height="12">
                                 </a>
                             </div>
@@ -161,7 +161,7 @@
                                 <a class="p-location__mapLink" href="https://maps.app.goo.gl/5CnoPksKVomMGeES9" target="_blank" rel="noopener noreferrer">
                                     <span class="p-location__mapLinkText">Google Mapを別ウインドウで表示する</span>
                                     <img class="p-location__mapLinkIcon"
-                                        src="<?php img_path('/icon_external_link.svg'); ?>" alt="" width="12"
+                                        src="<?php img_path('/icon_external_link_black.svg'); ?>" alt="" width="12"
                                         height="12">
                                 </a>
                             </div>
@@ -185,7 +185,7 @@
                                 <a class="p-location__mapLink" href="https://maps.app.goo.gl/SnytLNrxK6QBynBcA" target="_blank" rel="noopener noreferrer">
                                     <span class="p-location__mapLinkText">Google Mapを別ウインドウで表示する</span>
                                     <img class="p-location__mapLinkIcon"
-                                        src="<?php img_path('/icon_external_link.svg'); ?>" alt="" width="12"
+                                        src="<?php img_path('/icon_external_link_black.svg'); ?>" alt="" width="12"
                                         height="12">
                                 </a>
                             </div>
@@ -209,7 +209,7 @@
                                 <a class="p-location__mapLink" href="https://maps.app.goo.gl/myHeiaCpsTNQJR117" target="_blank" rel="noopener noreferrer">
                                     <span class="p-location__mapLinkText">Google Mapを別ウインドウで表示する</span>
                                     <img class="p-location__mapLinkIcon"
-                                        src="<?php img_path('/icon_external_link.svg'); ?>" alt="" width="12"
+                                        src="<?php img_path('/icon_external_link_black.svg'); ?>" alt="" width="12"
                                         height="12">
                                 </a>
                             </div>
@@ -233,7 +233,7 @@
                                 <a class="p-location__mapLink" href="https://maps.app.goo.gl/2bMAxTh2DZdBbbQm7" target="_blank" rel="noopener noreferrer">
                                     <span class="p-location__mapLinkText">Google Mapを別ウインドウで表示する</span>
                                     <img class="p-location__mapLinkIcon"
-                                        src="<?php img_path('/icon_external_link.svg'); ?>" alt="" width="12"
+                                        src="<?php img_path('/icon_external_link_black.svg'); ?>" alt="" width="12"
                                         height="12">
                                 </a>
                             </div>
@@ -257,7 +257,7 @@
                                 <a class="p-location__mapLink" href="https://maps.app.goo.gl/DCFGRPx75namkL1o8" target="_blank" rel="noopener noreferrer">
                                     <span class="p-location__mapLinkText">Google Mapを別ウインドウで表示する</span>
                                     <img class="p-location__mapLinkIcon"
-                                        src="<?php img_path('/icon_external_link.svg'); ?>" alt="" width="12"
+                                        src="<?php img_path('/icon_external_link_black.svg'); ?>" alt="" width="12"
                                         height="12">
                                 </a>
                             </div>

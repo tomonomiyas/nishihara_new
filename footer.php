@@ -115,7 +115,7 @@
 <div class="p-cookie js-cookie" role="dialog" aria-label="Cookieの使用について" hidden>
   <div class="p-cookie__inner">
     <p class="p-cookie__text">
-      当サイトでは、サイトの利便性向上を目的として<span class="p-cookie__bold">Cookie等を使用します。</span>「すべてのCookieを受け入れる」をクリックすると、<span class="p-cookie__bold">Cookie の使用に同意</span>いただいたことになります。Cookieの設定変更及び使用するCookie種類等の詳細は<span class="p-cookie__bold">Cookie設定 および Cookieポリシー</span>をご確認ください。<a href="<?php page_path('privacy-policy'); ?>" class="p-cookie__link">詳しくはこちら</a>
+      当サイトでは、サイトの利便性向上を目的としてCookie等を使用します。「すべてのCookieを受け入れる」をクリックすると、Cookie の使用に同意いただいたことになります。Cookieの設定変更及び使用するCookie種類等の詳細はCookie設定 および Cookieポリシーをご確認ください。<a href="<?php page_path('privacy-policy'); ?>" class="p-cookie__link">詳しくはこちら</a>
     </p>
     <div class="p-cookie__actions">
       <button type="button" class="p-cookie__setting js-cookieSetting">Cookie設定</button>

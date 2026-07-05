@@ -297,14 +297,15 @@
 
 // ----- 推進体制（組織図） -----
 .p-sustainability__org {
-  padding: calc(24 * var(--to-rem));
+  padding: calc(20 * var(--to-rem));
   margin-top: calc(24 * var(--to-rem));
   background-color: var(--color-white);
-  border: 1px solid var(--color-border-accent);
   border-radius: var(--radius-base);
+  box-shadow: 0 0 10px rgb(48 49 51 / 10%);
 
   @include mq("md") {
-    padding: calc(40 * var(--to-rem));
+    padding-block: calc(24 * var(--to-rem));
+    padding-inline: calc(40 * var(--to-rem));
   }
 }
 
@@ -330,13 +331,12 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: calc(560 * var(--to-rem));
   min-height: calc(56 * var(--to-rem));
-  padding-block: calc(12 * var(--to-rem));
+  padding-block: calc(16 * var(--to-rem));
   padding-inline: calc(16 * var(--to-rem));
   font-family: var(--base-font-family);
   font-size: calc(16 * var(--to-rem));
-  line-height: 1.4;
+  line-height: 1.5;
   text-align: center;
   border-radius: var(--radius-base);
 }
@@ -348,12 +348,14 @@
 }
 
 .p-sustainability__orgBox--primary {
+  min-height: calc(76 * var(--to-rem));
   font-weight: var(--fw-medium);
   color: var(--color-white);
   background-color: var(--color-accent);
 }
 
 .p-sustainability__orgBox--sub {
+  min-height: calc(80 * var(--to-rem));
   font-weight: var(--fw-medium);
   color: var(--color-white);
   background-color: var(--color-accent-sub);
@@ -365,25 +367,75 @@
   font-weight: var(--fw-regular);
 }
 
-// 縦矢印
-.p-sustainability__orgArrow {
+// サステナビリティ委員会（推進室＋企画部を囲むブラケット枠）
+.p-sustainability__orgCommittee {
   position: relative;
-  display: block;
-  width: 1px;
-  height: calc(24 * var(--to-rem));
-  background-color: var(--color-border-sub);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-block: calc(12 * var(--to-rem));
+  padding-inline: calc(30 * var(--to-rem)); // 左右対称でボックスを中央に（矢印と軸を揃える）
+  background-color: var(--color-bg-light);
+  border-radius: var(--radius-base);
+
+  @include mq("md") {
+    padding-inline: calc(38 * var(--to-rem)); // (780 - 704) / 2 = デザイン実寸で中央寄せ
+  }
 }
 
-.p-sustainability__orgArrow::after {
+.p-sustainability__orgCommitteeLabel {
   position: absolute;
-  inset-block-end: 0;
+  top: 50%;
+  left: calc(10 * var(--to-rem)); // writing-mode 回転で論理軸がズレるため物理指定
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-medium);
+  line-height: calc(18 / 16);
+  color: var(--color-text-main);
+  white-space: nowrap;
+  writing-mode: vertical-rl;
+  transform: translateY(-50%);
+}
+
+// 縦コネクタ（矢印＋ラベル）
+.p-sustainability__orgConnector {
+  position: relative;
+  z-index: 1; // 委員会背景に少し重なる矢印を上に出す
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(50 * var(--to-rem));
+}
+
+.p-sustainability__orgArrowImg {
+  display: block;
+  width: auto;
+  height: 100%;
+}
+
+// 委員会の縦パディング(12px)が外側矢印の委員会側だけに効き上下非対称になるため、
+// 矢印を委員会側へ 6px 寄せて箱間の中央（上下均等）に揃える
+.p-sustainability__orgConnector:has(+ .p-sustainability__orgCommittee) .p-sustainability__orgArrowImg {
+  transform: translateY(calc(6 * var(--to-rem))); // 指示報告：下へ
+}
+
+.p-sustainability__orgCommittee + .p-sustainability__orgConnector .p-sustainability__orgArrowImg {
+  transform: translateY(calc(-6 * var(--to-rem))); // 連携：上へ
+}
+
+.p-sustainability__orgConnectorLabel {
+  position: absolute;
+  inset-block-start: 50%;
   inset-inline-start: 50%;
-  width: calc(8 * var(--to-rem));
-  height: calc(8 * var(--to-rem));
-  content: "";
-  border-right: 1px solid var(--color-border-sub);
-  border-bottom: 1px solid var(--color-border-sub);
-  transform: translate(-50%, 25%) rotate(45deg);
+  margin-inline-start: calc(14 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(14 * var(--to-rem));
+  line-height: 1.5;
+  color: var(--color-text-main);
+  white-space: nowrap;
+  transform: translateY(-50%);
 }
 
 // ----- 推進計画（STEP） -----

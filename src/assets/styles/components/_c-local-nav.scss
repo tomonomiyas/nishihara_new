@@ -144,9 +144,20 @@
 .c-localNav__item--current > a {
   font-weight: var(--fw-bold);
   color: var(--color-accent);
+@include mq("pc"){ 
+color: var(--color-text-main);
+}
 }
 
-.c-localNav__sub--current > a{
+.c-localNav__sub--current > a {
+  color: var(--color-accent);
+  font-weight: var(--fw-bold);
+
+  @include mq("pc"){ 
+    background-color: var(--color-bg-light);
+  margin-left: calc(32 * var(--to-rem));
+  color: var(--color-text-main);
+  }
 }
 
 // 子メニュー（役員一覧など）は通常は隠し、親がカレントの時だけ展開

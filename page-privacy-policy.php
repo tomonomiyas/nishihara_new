@@ -4,7 +4,7 @@
     <!-- 下層共通FV -->
     <section class="p-pageHead">
         <div class="p-pageHead__inner l-inner">
-            <h1 class="p-pageHead__title">プライバシーポリシー / サイトポリシー</h1>
+            <h1 class="p-pageHead__title">プライバシーポリシー&nbsp;/ サイトポリシー</h1>
         </div>
     </section>
 

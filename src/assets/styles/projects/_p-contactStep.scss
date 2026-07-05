@@ -1,9 +1,25 @@
 @use "../global" as *;
 
 .p-contactStep {
+  position: relative;
   display: flex;
-  gap: calc(12 * var(--to-rem));
+  gap: calc(24 * var(--to-rem));
   margin-block-start: calc(40 * var(--to-rem));
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    height: 2px;
+    content: "";
+    background-color: var(--color-border-light);
+    transform: translateY(-50%);
+
+    @include mq(md) {
+      height: 3px;
+    }
+  }
 
   @include mq(md) {
     gap: calc(20 * var(--to-rem));
@@ -12,12 +28,14 @@
 }
 
 .p-contactStep__item {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex: 1;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: calc(60 * var(--to-rem));
+  height: calc(52 * var(--to-rem));
   background-color: var(--color-bg-light);
   border-radius: var(--radius-base);
 
@@ -32,7 +50,7 @@
 
 .p-contactStep__num {
   font-family: var(--accent-font-family);
-  font-size: calc(11 * var(--to-rem));
+  font-size: calc(10 * var(--to-rem));
   font-style: italic;
   font-weight: var(--fw-semibold);
   line-height: 1;

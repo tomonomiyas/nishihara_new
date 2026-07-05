@@ -8,21 +8,18 @@
   }
 }
 
-// 本体 2カラム（左 main + 右 localNav）
+// 本体レイアウト（PC のみ 左 main + 右 localNav の2カラム。
+// tab/sp は単カラムで、localNav を本体の下に全幅で配置）
 .p-location__inner {
-  display: flex;
-  flex-direction: column;
-  gap: calc(40 * var(--to-rem));
-
-  @include mq("md") {
-    flex-direction: row;
+  @include mq("pc") {
+    display: flex;
     gap: calc(40 * var(--to-rem));
     align-items: flex-start;
   }
 }
 
 .p-location__main {
-  @include mq("md") {
+  @include mq("pc") {
     flex: 1;
     min-width: 0;
   }
@@ -31,10 +28,16 @@
 // サイドナビ「会社案内」ラッパー（中身は共通コンポーネント c-localNav）
 .p-location__side {
   width: 100%;
+  margin-top: calc(40 * var(--to-rem));
 
   @include mq("md") {
+    margin-top: calc(80 * var(--to-rem));
+  }
+
+  @include mq("pc") {
     flex-shrink: 0;
     width: calc(280 * var(--to-rem));
+    margin-top: 0;
   }
 }
 

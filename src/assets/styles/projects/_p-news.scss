@@ -12,8 +12,10 @@
   }
 }
 
+// 本体レイアウト（PC のみ 左 main + 右カテゴリーナビの2カラム。
+// tab/sp は単カラムで、ナビを本体の下に全幅で配置）※会社概要などと統一
 .p-news__body {
-  @include mq("md") {
+  @include mq("pc") {
     display: flex;
     gap: calc(40 * var(--to-rem));
     align-items: flex-start;
@@ -21,9 +23,11 @@
 }
 
 .p-news__main {
-  @include mq("md") {
+  width: 100%;
+  min-width: 0;
+
+  @include mq("pc") {
     flex: 1;
-    min-width: 0;
   }
 }
 
@@ -119,6 +123,10 @@
   font-size: calc(16 * var(--to-rem));
   line-height: 1.5;
   color: var(--color-text-main);
+  overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
 }
 
 @media (any-hover: hover) {
@@ -202,24 +210,29 @@
    右カラム：カテゴリーナビ
    ========================================= */
 .p-news__side {
-  margin-block-start: calc(40 * var(--to-rem));
+  width: 100%;
+  margin-block-start: calc(60 * var(--to-rem));
 
   @include mq("md") {
+    margin-block-start: calc(80 * var(--to-rem));
+  }
+
+  @include mq("pc") {
     position: relative;
     flex-shrink: 0;
     width: calc(280 * var(--to-rem));
     margin-block-start: 0;
 
     // カラム間の縦罫線
-    &::before {
-      position: absolute;
-      top: 0;
-      left: calc(-20 * var(--to-rem));
-      width: 1px;
-      height: 100%;
-      content: "";
-      background-color: var(--color-border-accent);
-    }
+    // &::before {
+    //   position: absolute;
+    //   top: 0;
+    //   left: calc(-20 * var(--to-rem));
+    //   width: 1px;
+    //   height: 100%;
+    //   content: "";
+    //   background-color: var(--color-border-accent);
+    // }
   }
 }
 
@@ -232,7 +245,7 @@
   color: var(--color-text-main);
   border-block-end: 2px solid var(--color-border-accent);
 
-  @include mq("md") {
+  @include mq("pc") {
     display: flex;
     align-items: center;
     height: calc(72 * var(--to-rem));
@@ -246,7 +259,7 @@
   }
 
   // PC：右端の矢印
-  @include mq("md") {
+  @include mq("pc") {
     &::after {
       width: calc(6 * var(--to-rem));
       height: calc(12 * var(--to-rem));
@@ -264,7 +277,7 @@
 .p-news__navItem {
   border-block-end: 1px solid var(--color-border-accent);
 
-  @include mq("md") {
+  @include mq("pc") {
     border-block-end: none;
   }
 }
@@ -282,7 +295,7 @@
     color var(--duration),
     background-color var(--duration);
 
-  @include mq("md") {
+  @include mq("pc") {
     display: flex;
     align-items: center;
     height: calc(56 * var(--to-rem));
@@ -292,7 +305,7 @@
   }
 
   // PC：左マーカー
-  @include mq("md") {
+  @include mq("pc") {
     &::before {
       position: absolute;
       top: 0;
@@ -309,7 +322,7 @@
   font-weight: var(--fw-bold);
   color: var(--color-accent);
 
-  @include mq("md") {
+  @include mq("pc") {
     color: var(--color-text-main);
   }
 }

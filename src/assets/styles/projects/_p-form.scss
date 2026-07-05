@@ -79,8 +79,8 @@
   font-size: calc(16 * var(--to-rem));
   line-height: 1.5;
   color: var(--color-text-main);
-  background-color: var(--color-white);
-  border: 1px solid var(--color-border-accent);
+  background-color: var(--color-bg-light);
+  border: 1px solid transparent;
   border-radius: var(--radius-base);
   transition: border-color var(--duration);
 }
@@ -212,15 +212,11 @@
   user-select: none;
 }
 
-// 送信ボタン（中央・矢印なし）
+// 送信ボタン（中央寄せ・矢印は c-btn 既定を踏襲）
 .c-btn--submit {
   justify-content: center;
   padding-inline-start: 0;
   margin-inline: auto;
-
-  &::after {
-    content: none;
-  }
 }
 
 .p-form__buttonWrap {
@@ -268,13 +264,13 @@
   margin-block-start: calc(16 * var(--to-rem));
 }
 
-// 修正する（薄青）
+// 修正する（白地・枠線・ダーク文字・矢印なし）
 .c-btn--back {
   justify-content: center;
   padding-inline-start: 0;
-  color: var(--color-accent);
-  background-color: var(--color-bg-light);
-  border-color: var(--color-bg-light);
+  color: var(--color-text-main);
+  background-color: var(--color-white);
+  border-color: var(--color-border-accent);
 
   &::after {
     content: none;
@@ -285,10 +281,6 @@
       color: var(--color-white);
       background-color: var(--color-accent);
       border-color: var(--color-accent);
-
-      &::after {
-        content: none;
-      }
     }
   }
 }

@@ -1,5 +1,10 @@
 @use "../global" as *;
 
+// ページ見出しは語単位で折り返す（SP狭幅時のみ「/」直後で改行させ、日本語の途中改行を防ぐ）
+.p-privacy-page .p-pageHead__title {
+  word-break: keep-all;
+}
+
 // privacy ページ本体（1カラムテキスト）
 .p-privacy {
   padding-block: calc(60 * var(--to-rem)) calc(80 * var(--to-rem));
@@ -82,13 +87,14 @@
 .p-privacy__lead::before {
   position: absolute;
   inset-inline-start: 0;
-  top: 50%;
+  top: 0.9em; // line-height 1.8 の1行目中央（複数行折り返し時も1行目に揃える）
   width: calc(16 * var(--to-rem));
   height: 1px;
   content: "";
   background-color: var(--color-border-sub);
 
   @include mq("md") {
+    top: 0.75em; // line-height 1.5 の1行目中央
     width: calc(20 * var(--to-rem));
   }
 }

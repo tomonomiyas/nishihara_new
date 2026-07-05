@@ -260,6 +260,8 @@
 
 /* Hamburger & Drawer */
 .p-header__hamburger {
+  position: relative;
+  z-index: var(--z-index-header); // ドロワー(899)より前面に出す
   display: flex;
   flex-direction: column;
   gap: calc(4 * var(--to-rem));

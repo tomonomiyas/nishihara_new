@@ -1,0 +1,275 @@
+@use "../global" as *;
+
+/* =========================================
+   お知らせ（news）詳細
+   ※ 外側 2 カラム（.p-news / .p-news__body / .p-news__main / .p-news__side）は
+     archive と共通で _p-news.scss を再利用。ここでは記事本文の中身のみ定義する。
+   ========================================= */
+
+.p-newsSingle {
+  width: 100%;
+}
+
+/* ---- 記事タイトル（薄青地＋左青線） ---- */
+.p-newsSingle__title {
+  position: relative;
+  padding-block: calc(16 * var(--to-rem));
+  padding-inline: calc(20 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(20 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  line-height: 1.6;
+  color: var(--color-text-main);
+  background-color: var(--color-bg-light);
+
+  @include mq("md") {
+    padding-block: calc(24 * var(--to-rem));
+    padding-inline: calc(32 * var(--to-rem));
+    font-size: calc(24 * var(--to-rem));
+  }
+}
+
+.p-newsSingle__title::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(6 * var(--to-rem));
+  height: 100%;
+  content: "";
+  background-color: var(--color-accent);
+}
+
+/* ---- 本文（the_content） ---- */
+.p-newsSingle__content {
+  margin-top: calc(32 * var(--to-rem));
+  font-family: var(--base-font-family);
+
+  @include mq("md") {
+    margin-top: calc(40 * var(--to-rem));
+  }
+}
+
+.p-newsSingle__content > * + * {
+  margin-top: calc(24 * var(--to-rem));
+}
+
+.p-newsSingle__content p {
+  font-size: calc(16 * var(--to-rem));
+  line-height: 1.8;
+  color: var(--color-text-main);
+
+  @include mq("md") {
+    line-height: 2;
+  }
+}
+
+/* 本文中の小見出し（青文字＋左の短い横線） */
+.p-newsSingle__content h2,
+.p-newsSingle__content h3,
+.p-newsSingle__content h4 {
+  position: relative;
+  padding-inline-start: calc(28 * var(--to-rem));
+  margin-top: calc(32 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(18 * var(--to-rem));
+  font-weight: var(--fw-bold);
+  line-height: 1.6;
+  color: var(--color-accent);
+
+  @include mq("md") {
+    margin-top: calc(40 * var(--to-rem));
+    font-size: calc(20 * var(--to-rem));
+  }
+}
+
+.p-newsSingle__content h2::before,
+.p-newsSingle__content h3::before,
+.p-newsSingle__content h4::before {
+  position: absolute;
+  top: 0.8em;
+  left: 0;
+  width: calc(20 * var(--to-rem));
+  height: 1px;
+  content: "";
+  background-color: var(--color-accent);
+}
+
+/* 強調・リンク */
+.p-newsSingle__content strong,
+.p-newsSingle__content b {
+  font-weight: var(--fw-bold);
+}
+
+.p-newsSingle__content a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  transition: opacity var(--duration);
+}
+
+@media (any-hover: hover) {
+  .p-newsSingle__content a:hover {
+    opacity: 0.7;
+  }
+}
+
+/* リスト */
+.p-newsSingle__content ul,
+.p-newsSingle__content ol {
+  padding-inline-start: calc(24 * var(--to-rem));
+  font-size: calc(16 * var(--to-rem));
+  line-height: 1.8;
+  color: var(--color-text-main);
+
+  @include mq("md") {
+    line-height: 2;
+  }
+}
+
+.p-newsSingle__content ul {
+  list-style: disc;
+}
+
+.p-newsSingle__content ol {
+  list-style: decimal;
+}
+
+/* 画像（幅は最大でコンテンツ幅まで＝約860px。高さは比率維持） */
+.p-newsSingle__content img {
+  width: 100%;
+  height: auto;
+}
+
+.p-newsSingle__content figure img {
+  display: block;
+}
+
+/* =========================================
+   フッターアクション（SNS共有／一覧に戻る）
+   DOM 順は [share, back]。
+   SP：縦積み（共有が上・戻るが下）。PC：横並び（戻るが左・共有が右）。
+   ========================================= */
+.p-newsSingle__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: calc(40 * var(--to-rem));
+  margin-top: calc(40 * var(--to-rem));
+  border-top: 1px solid var(--color-border-accent);
+
+  @include mq("md") {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: calc(60 * var(--to-rem));
+    margin-top: calc(60 * var(--to-rem));
+  }
+}
+
+/* ---- SNS共有ボタン（枠なしのアイコン） ---- */
+.p-newsSingle__share {
+  display: flex;
+  gap: calc(20 * var(--to-rem));
+  align-items: center;
+}
+
+.p-newsSingle__shareBtn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  transition: opacity var(--duration);
+}
+
+.p-newsSingle__shareBtn img {
+  width: auto;
+  height: auto;
+}
+
+.p-newsSingle__shareBtn--x img {
+  width: calc(24 * var(--to-rem));
+}
+
+.p-newsSingle__shareBtn--fb img {
+  width: calc(34 * var(--to-rem));
+}
+
+.p-newsSingle__shareBtn--copy img {
+  width: calc(24 * var(--to-rem));
+}
+
+@media (any-hover: hover) {
+  .p-newsSingle__shareBtn:hover {
+    opacity: 0.7;
+  }
+}
+
+/* コピー完了トースト */
+.p-newsSingle__copyToast {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  padding-block: calc(4 * var(--to-rem));
+  padding-inline: calc(12 * var(--to-rem));
+  font-size: calc(12 * var(--to-rem));
+  color: var(--color-white);
+  white-space: nowrap;
+  visibility: hidden;
+  background-color: var(--color-text-main);
+  border-radius: var(--radius-base);
+  opacity: 0;
+  transition:
+    opacity var(--duration),
+    visibility var(--duration);
+  transform: translateX(-50%);
+}
+
+.p-newsSingle__shareBtn--copy.is-copied .p-newsSingle__copyToast {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ---- 一覧に戻るボタン（青地・白文字・左矢印） ---- */
+.p-newsSingle__back {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(240 * var(--to-rem));
+  max-width: 100%;
+  min-height: calc(53 * var(--to-rem));
+  padding-block: calc(8 * var(--to-rem));
+  padding-inline: calc(24 * var(--to-rem));
+  margin-top: calc(24 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(15 * var(--to-rem));
+  font-weight: var(--fw-medium);
+  line-height: calc(24 / 15);
+  color: var(--color-white);
+  background-color: var(--color-accent);
+  border-radius: var(--radius-base);
+  transition: opacity var(--duration);
+
+  @include mq("md") {
+    order: -1;
+    margin-top: 0;
+  }
+}
+
+.p-newsSingle__backIcon {
+  display: inline-flex;
+  width: calc(4 * var(--to-rem));
+}
+
+.p-newsSingle__backIcon img {
+  width: 100%;
+  height: auto;
+}
+
+@media (any-hover: hover) {
+  .p-newsSingle__back:hover {
+    opacity: 0.8;
+  }
+}

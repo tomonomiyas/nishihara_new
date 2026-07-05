@@ -24,10 +24,10 @@
                         <!-- 親会社：西原商事ホールディングス -->
                         <div class="p-group__company p-group__company--parent">
                             <div class="p-group__companyHead">
-                                <div class="p-group__logo">
+                                <div class="p-group__logo p-group__logo--hld">
                                     <picture>
                                         <source srcset="<?php img_path('/logo_hld.webp'); ?>" type="image/webp">
-                                        <img src="<?php img_path('/logo_hld.png'); ?>" alt="株式会社西原商事ホールディングス">
+                                        <img src="<?php img_path('/logo_hld.png'); ?>" alt="株式会社西原商事ホールディングス" width="338" height="16" loading="lazy" decoding="async">
                                     </picture>
                                 </div>
                                 <p class="p-group__companyName">株式会社西原商事ホールディングス</p>
@@ -47,16 +47,16 @@
                             <!-- 子会社①：西原商事 -->
                             <div class="p-group__company">
                                 <div class="p-group__companyHead">
-                                    <div class="p-group__logo">
+                                    <div class="p-group__logo p-group__logo--beetle">
                                         <picture>
                                             <source srcset="<?php img_path('/logo_beetle.webp'); ?>" type="image/webp">
-                                            <img src="<?php img_path('/logo_beetle.png'); ?>" alt="株式会社西原商事">
+                                            <img src="<?php img_path('/logo_beetle.png'); ?>" alt="株式会社西原商事" width="116" height="32" loading="lazy" decoding="async">
                                         </picture>
                                     </div>
                                     <p class="p-group__companyName">株式会社西原商事</p>
                                     <a class="p-group__siteLink" href="https://www.nishihara-corp.jp/" target="_blank" rel="noopener noreferrer">
                                         <span class="p-group__siteLinkText">ウェブサイトを見る</span>
-                                        <img class="p-group__siteLinkIcon" src="<?php img_path('/icon_external_link.svg'); ?>" alt="" width="12" height="12">
+                                        <img class="p-group__siteLinkIcon" src="<?php img_path('/icon_external_link_black.svg'); ?>" alt="" width="12" height="12">
                                     </a>
                                     <p class="p-group__address">
                                         〒807-0821<br>
@@ -77,16 +77,16 @@
                             <!-- 子会社②：ビートルエンジニアリング -->
                             <div class="p-group__company">
                                 <div class="p-group__companyHead">
-                                    <div class="p-group__logo">
+                                    <div class="p-group__logo p-group__logo--eng">
                                         <picture>
                                             <source srcset="<?php img_path('/logo_beetle_eng.webp'); ?>" type="image/webp">
-                                            <img src="<?php img_path('/logo_beetle_eng.png'); ?>" alt="株式会社ビートルエンジニアリング">
+                                            <img src="<?php img_path('/logo_beetle_eng.png'); ?>" alt="株式会社ビートルエンジニアリング" width="256" height="44" loading="lazy" decoding="async">
                                         </picture>
                                     </div>
                                     <p class="p-group__companyName">株式会社ビートルエンジニアリング</p>
                                     <a class="p-group__siteLink" href="https://beetleengineering.jp/" target="_blank" rel="noopener noreferrer">
                                         <span class="p-group__siteLinkText">ウェブサイトを見る</span>
-                                        <img class="p-group__siteLinkIcon" src="<?php img_path('/icon_external_link.svg'); ?>" alt="" width="12" height="12">
+                                        <img class="p-group__siteLinkIcon" src="<?php img_path('/icon_external_link_black.svg'); ?>" alt="" width="12" height="12">
                                     </a>
                                     <p class="p-group__address">
                                         〒807-0821<br>
@@ -108,16 +108,16 @@
                             <!-- 子会社③：ビートルマネージメント -->
                             <div class="p-group__company">
                                 <div class="p-group__companyHead">
-                                    <div class="p-group__logo">
+                                    <div class="p-group__logo p-group__logo--mgt">
                                         <picture>
                                             <source srcset="<?php img_path('/logo_beetle_mgt.webp'); ?>" type="image/webp">
-                                            <img src="<?php img_path('/logo_beetle_mgt.png'); ?>" alt="株式会社ビートルマネージメント">
+                                            <img src="<?php img_path('/logo_beetle_mgt.png'); ?>" alt="株式会社ビートルマネージメント" width="286" height="25" loading="lazy" decoding="async">
                                         </picture>
                                     </div>
                                     <p class="p-group__companyName">株式会社ビートルマネージメント</p>
                                     <a class="p-group__siteLink" href="https://beetlemanagement.com/" target="_blank" rel="noopener noreferrer">
                                         <span class="p-group__siteLinkText">ウェブサイトを見る</span>
-                                        <img class="p-group__siteLinkIcon" src="<?php img_path('/icon_external_link.svg'); ?>" alt="" width="12" height="12">
+                                        <img class="p-group__siteLinkIcon" src="<?php img_path('/icon_external_link_black.svg'); ?>" alt="" width="12" height="12">
                                     </a>
                                     <p class="p-group__address">
                                         〒807-0821<br>

@@ -130,17 +130,36 @@ get_header(); ?>
                             <p class="p-sustainability__orgTitle">サステナビリティ推進体制</p>
                             <div class="p-sustainability__orgChart">
                                 <div class="p-sustainability__orgBox p-sustainability__orgBox--light">取締役会</div>
-                                <span class="p-sustainability__orgArrow" aria-hidden="true"></span>
-                                <div class="p-sustainability__orgBox p-sustainability__orgBox--primary">
-                                    <span class="p-sustainability__orgBoxMain">サステナビリティ推進室</span>
-                                    <span class="p-sustainability__orgBoxSub">委員長：常務取締役</span>
+
+                                <div class="p-sustainability__orgConnector">
+                                    <img class="p-sustainability__orgArrowImg" src="<?php img_path('/arrow-up.svg'); ?>" width="9" height="59" alt="" aria-hidden="true" loading="lazy" decoding="async">
+                                    <span class="p-sustainability__orgConnectorLabel">指示報告</span>
                                 </div>
-                                <span class="p-sustainability__orgArrow" aria-hidden="true"></span>
-                                <div class="p-sustainability__orgBox p-sustainability__orgBox--sub">
-                                    <span class="p-sustainability__orgBoxMain">西原商事ホールディングス</span>
-                                    <span class="p-sustainability__orgBoxSub">企画部</span>
+
+                                <div class="p-sustainability__orgCommittee">
+                                    <span class="p-sustainability__orgCommitteeLabel">サステナビリティ委員会</span>
+
+                                    <div class="p-sustainability__orgBox p-sustainability__orgBox--primary">
+                                        <span class="p-sustainability__orgBoxMain">サステナビリティ推進室</span>
+                                        <span class="p-sustainability__orgBoxSub">委員長：常務取締役</span>
+                                    </div>
+
+                                    <div class="p-sustainability__orgConnector">
+                                        <img class="p-sustainability__orgArrowImg" src="<?php img_path('/arrow-up01.svg'); ?>" width="9" height="51" alt="" aria-hidden="true" loading="lazy" decoding="async">
+                                        <span class="p-sustainability__orgConnectorLabel">運営</span>
+                                    </div>
+
+                                    <div class="p-sustainability__orgBox p-sustainability__orgBox--sub">
+                                        <span class="p-sustainability__orgBoxMain">西原商事ホールディングス</span>
+                                        <span class="p-sustainability__orgBoxSub">企画部</span>
+                                    </div>
                                 </div>
-                                <span class="p-sustainability__orgArrow" aria-hidden="true"></span>
+
+                                <div class="p-sustainability__orgConnector">
+                                    <img class="p-sustainability__orgArrowImg" src="<?php img_path('/arrow-up.svg'); ?>" width="9" height="59" alt="" aria-hidden="true" loading="lazy" decoding="async">
+                                    <span class="p-sustainability__orgConnectorLabel">連携</span>
+                                </div>
+
                                 <div class="p-sustainability__orgBox p-sustainability__orgBox--light">各グループ会社</div>
                             </div>
                         </div>
