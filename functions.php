@@ -21,6 +21,9 @@ get_template_part('functions-lib/func-url');
 // スクリプト、スタイルシートの設定
 get_template_part('functions-lib/func-enqueue-assets');
 
+// 別ページ遷移時のアンカー・スムーススクロール（head でネイティブ即時ジャンプを抑止）
+get_template_part('functions-lib/func-anchor-scroll');
+
 // デフォルト投稿タイプのラベル変更
 get_template_part('functions-lib/func-add-posttype-post');
 

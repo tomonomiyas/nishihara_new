@@ -405,6 +405,15 @@
                             </div>
                             <p class="p-top-group__item-title">株式会社 リビットジャパン ｜ コンサルタント及びソリューション事業</p>
                         </a>
+                        <svg class="p-top-group__external-icon" xmlns="http://www.w3.org/2000/svg" width="14"
+                            height="14" viewBox="0 0 14 14">
+                            <path d="M96,0V11.375h11.375V0Zm10.281,10.281H97.094V1.094h9.188Z"
+                                transform="translate(-93.375)" fill="#3072bf" />
+                            <path d="M1.094,106.281V96H0v11.375H11.375v-1.094H1.094Z" transform="translate(0 -93.375)"
+                                fill="#3072bf" />
+                            <path d="M205.3,131.778l3.223-3.223v2.319h1.094v-4.186h-4.186v1.094h2.319L204.531,131Z"
+                                transform="translate(-198.938 -123.224)" fill="#3072bf" />
+                        </svg>
                         <div class="p-top-group__subtitle-section">
                             <p class="p-top-group__subtitle">株式会社 リビットジャパン運用サービス</p>
                             <div class="p-top-group__sub-links">
