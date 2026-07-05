@@ -5,6 +5,9 @@ package-lock.json
 /assets
 /template/dist
 
+# seed（投入用・token を含むため必ず除外。作業完了後は削除する）
+seed/
+
 # 検証・作業用ファイル
 mcp-log/
 xd-file/
