@@ -51,16 +51,46 @@ function initActivitySlider() {
   const slider = document.querySelector(".js-activitySlider");
   if (!slider) return;
 
-  new Splide(slider, {
+  const splide = new Splide(slider, {
     perPage: 3,
+    perMove: 1,
     gap: "25px",
-    pagination: true,
-    arrows: false,
+    // 標準ページネーション（ページ単位のドット）は使わず、
+    // スライド枚数・進行に連動する自前の進捗バーを描画する
+    pagination: false,
+    arrows: true,
     breakpoints: {
       1024: { perPage: 2 },
       600: { perPage: 1, fixedWidth: "80%", focus: "center" },
     },
-  }).mount();
+  });
+
+  // 進捗バー（スクロールバー風）: 青サムの幅＝表示枚数/総枚数、位置＝現在index/総枚数
+  const progress = document.createElement("div");
+  progress.className = "p-sustainability__progress";
+  const thumb = document.createElement("span");
+  thumb.className = "p-sustainability__progressThumb";
+  progress.appendChild(thumb);
+  slider.appendChild(progress);
+
+  const updateProgress = index => {
+    const length = splide.length;
+    const perPage = splide.options.perPage || 1;
+    // 全部見えているときはバー不要
+    if (length <= perPage) {
+      progress.style.display = "none";
+      return;
+    }
+    progress.style.display = "";
+    const maxIndex = length - perPage;
+    const current = Math.min(typeof index === "number" ? index : splide.index, maxIndex);
+    thumb.style.width = (perPage / length) * 100 + "%";
+    thumb.style.left = (current / length) * 100 + "%";
+  };
+
+  splide.on("move", newIndex => updateProgress(newIndex));
+  splide.on("mounted updated resized", () => updateProgress());
+  splide.mount();
 }
 
 // 左コンテンツのスクロール位置に応じて右ナビのアクティブ表示を切り替える

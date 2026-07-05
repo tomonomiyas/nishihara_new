@@ -49,10 +49,21 @@
   font-weight: var(--fw-regular);
   line-height: 1.5; // XD: 18px / 12px = 1.5
   color: var(--color-text-main);
-}
 
-.p-cookie__bold {
-  font-weight: var(--fw-bold);
+  // SP: 右上の絶対配置 × ボタン（w37）と重ならないよう右側にクリアランスを確保
+  padding-inline-end: calc(30 * var(--to-rem));
+
+  // Tab 以上: × はフロー配置になり重ならないためリセット
+  @include mq("md") {
+    padding-inline-end: 0;
+  }
+
+  // PC: 本文幅を 1152px でキャップし、右側の余白でボタン群を右端へ寄せる（XD 0061: text w1152）
+  @include mq("pc") {
+    flex: 0 1 auto;
+    max-width: calc(1152 * var(--to-rem));
+    margin-inline-end: auto;
+  }
 }
 
 .p-cookie__link {
@@ -110,7 +121,8 @@
     border-color var(--duration);
 
   @include mq("md") {
-    width: calc(240 * var(--to-rem)); // XD PC/Tab: w240
+    width: auto; // XD 0061: ボタンは内容幅（Cookie設定 w87 / 受入 w181）
+    padding-inline: calc(12 * var(--to-rem)); // XD 0061: 左右12px（(87-63)/2）
   }
 }
 
@@ -154,33 +166,40 @@
   cursor: pointer;
 
   @include mq("md") {
-    position: static;
+    // static だと × が __inner 基準になりズレるため relative で配置基準を保つ
+    position: relative;
     top: auto;
     right: auto;
   }
 }
 
-// × 印: 12×12 の対角線2本（線幅2px・#303133）
+// × 印: 12×12 の枠内に対角線2本（線幅2px・#303133）
 .p-cookie__closeIcon {
   position: absolute;
   top: 50%;
   left: 50%;
   width: calc(12 * var(--to-rem)); // XD: 12×12
-  height: 2px; // XD: 線幅2px
-  background-color: var(--color-text-main); // XD: #303133
-  transform: translate(-50%, -50%) rotate(45deg);
+  height: calc(12 * var(--to-rem));
+  transform: translate(-50%, -50%);
 }
 
-// もう1本の対角線: 親の中央に重ねてさらに90度回す（合計135度＝逆向き）
-.p-cookie__closeIcon::before {
+.p-cookie__closeIcon::before,
+.p-cookie__closeIcon::after {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 0;
   width: 100%;
-  height: 100%;
+  height: 2px; // XD: 線幅2px
   content: "";
   background-color: var(--color-text-main); // XD: #303133
-  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.p-cookie__closeIcon::before {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.p-cookie__closeIcon::after {
+  transform: translateY(-50%) rotate(-45deg);
 }
 
 @media (any-hover: hover) {

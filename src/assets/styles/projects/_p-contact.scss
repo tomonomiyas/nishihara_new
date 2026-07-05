@@ -27,6 +27,16 @@
   }
 }
 
+// 確認画面のリードのみ太字（入力画面と同クラスのため、隣接する確認フォームで限定）
+.p-contact__lead:has(+ .p-form--confirm) {
+  font-size: calc(18 * var(--to-rem));
+  font-weight: var(--fw-bold);
+
+  @include mq(md) {
+    font-size: calc(20 * var(--to-rem));
+  }
+}
+
 .p-contact__note {
   margin-block-start: calc(24 * var(--to-rem));
   font-size: calc(14 * var(--to-rem));

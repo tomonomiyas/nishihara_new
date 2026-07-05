@@ -62,8 +62,45 @@
   }
 }
 
-// 3rd & 4th cards: Reset layout for nested links
+// 3rd & 4th cards: the main link is nested, so apply the SAME whole-card hover/
+// focus action as the 1st/2nd cards when the MAIN link is hovered or focused.
+// (Sub-links keep their own independent hover. The external icon is anchored to
+// this item via position: relative.)
 .p-top-group__item:nth-child(n + 3) {
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+  transition: border-color var(--duration);
+
+  &::after {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    content: "";
+    background-color: rgb(255 255 255 / 40%);
+    opacity: 0;
+    transition: opacity var(--duration);
+  }
+
+  &:has(.p-top-group__card-link:focus-visible) {
+    border-color: var(--color-accent);
+
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  @media (any-hover: hover) {
+    &:has(.p-top-group__card-link:hover) {
+      border-color: var(--color-accent);
+
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+
   .p-top-group__card-link {
     display: block;
   }

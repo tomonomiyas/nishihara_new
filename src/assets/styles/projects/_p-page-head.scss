@@ -7,10 +7,11 @@
 }
 
 .p-pageHead__inner {
-  padding-block: calc(45 * var(--to-rem));
+  padding-block: calc(40 * var(--to-rem));
+  padding-inline: calc(35 * var(--to-rem));
 
   @include mq("md") {
-    padding-block: calc(89 * var(--to-rem));
+    padding-block: calc(120 * var(--to-rem)) calc(90 * var(--to-rem));
   }
 }
 
@@ -18,7 +19,7 @@
   font-family: var(--base-font-family);
   font-size: calc(24 * var(--to-rem));
   font-weight: var(--fw-bold);
-  line-height: 1;
+  line-height: calc(35/24);
   color: var(--color-accent);
 
   @include mq("md") {

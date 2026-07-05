@@ -11,7 +11,11 @@
   gap: calc(12 * var(--to-rem));
   align-items: center;
   justify-content: space-between;
+  padding-block: calc(8 * var(--to-rem));
+
+  @include mq("md"){ 
   padding-block: calc(20 * var(--to-rem));
+  }
 }
 
 .p-breadcrumb__wrapper {
@@ -56,8 +60,8 @@
   position: relative;
   display: block;
   flex-shrink: 0;
-  width: calc(40 * var(--to-rem));
-  height: calc(40 * var(--to-rem));
+  width: calc(30 * var(--to-rem));
+  height: calc(30 * var(--to-rem));
   background-color: var(--color-accent);
   border-radius: 100%;
   transition: opacity var(--duration);

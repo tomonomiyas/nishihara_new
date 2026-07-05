@@ -44,7 +44,7 @@ $businesses = [
         'lead'     => '北九州・福岡を拠点に、資源物および各種廃棄物の処理・資源化を担う施設を運営しています。高いリサイクル率を基盤に、サーキュラーエコノミーの実装に挑戦しながら、取引先や自治体、教育機関との対話や視察の受け入れを通じて、次の循環をともに考える場づくりを進めています。',
         'mainImg'  => 'img_business--02-1',
         'cards'    => [
-            ['logo' => 'logo_beetle', 'alt' => 'BEETLE', 'url' => '#'],
+            ['logo' => 'logo_beetle_eng', 'alt' => 'Beetle Engineering', 'url' => '#'],
         ],
         'steps'    => [
             [
@@ -74,15 +74,15 @@ $businesses = [
         'lead'     => '東京・九州を拠点に、資源循環や廃棄物処理に関わる情報管理を一元化するソリューションを全国展開しています。全国ネットワークを活かし、適正処理の徹底からリサイクル推進、ESG対応までをトータルに支援します。',
         'mainImg'  => 'img_business--03-1',
         'cards'    => [
-            ['logo' => 'logo_bee-net', 'alt' => 'bee-net', 'url' => '#'],
-            ['logo' => 'logo_bee-net', 'alt' => 'bee-net', 'url' => '#'],
+            ['logo' => 'logo_beetle_mgt', 'alt' => 'Beetle Management', 'url' => '#'],
+            ['logo' => 'logo_bee-net', 'alt' => 'bee-net system', 'url' => '#'],
         ],
         'steps'    => [
             [
                 'num'   => '01',
                 'title' => "廃棄物一元管理システム<br>— bee-net system",
                 'text'  => '廃棄物処理費用・資源物販売・契約書・処理フロー・電子マニフェスト・請求支払い等、廃棄物処理の商流を一元管理するクラウドサービスです。データの蓄積・分析により、適正処理の徹底とコスト削減の予兆把握を可能にし、管理業務の効率化を実現します。',
-                'img'   => 'img_business--03-2',
+                'img'   => 'img_business--03-4',
             ],
             [
                 'num'   => '02',
@@ -94,7 +94,7 @@ $businesses = [
                 'num'   => '03',
                 'title' => '守りの管理から、攻めの意思決定へ',
                 'text'  => '従来の廃棄物管理は、適正処理やコンプライアンス対応が中心でした。当社はそれを前提とし、データをもとにコスト削減や有価物活用の可能性を可視化。創出された原資を、サーキュラーエコノミーやESG施策へつなぐための意思決定ツールを提供します。',
-                'img'   => 'img_business--03-4',
+                'img'   => 'img_business--03-2',
             ],
         ],
     ],
@@ -107,7 +107,7 @@ $businesses = [
         'cards'    => [
             ['logo' => 'logo_dustalk', 'alt' => 'DUSTALK', 'url' => '#'],
             ['logo' => 'logo_beetle-auction', 'alt' => 'bee-bid', 'url' => '#'],
-            ['logo' => 'logo_rebit', 'alt' => 'Rebit', 'url' => '#'],
+            ['logo' => 'logo_rebit_japan', 'alt' => 'ReBit JAPAN', 'url' => '#'],
         ],
         'steps'    => [
             [
@@ -157,36 +157,51 @@ get_header(); ?>
                     <?php foreach ($businesses as $biz) : ?>
                     <article class="p-business__item js-businessItem" id="<?php echo esc_attr($biz['id']); ?>">
                         <h2 class="p-business__itemTitle"><?php echo esc_html($biz['title']); ?></h2>
-                        <p class="p-business__itemLead"><?php echo esc_html($biz['lead']); ?></p>
 
-                        <div class="p-business__itemImg">
-                            <img src="<?php img_path('/' . $biz['mainImg'] . '.jpg'); ?>"
-                                alt="<?php echo esc_attr($biz['title']); ?>" width="860" height="348" loading="lazy">
-                        </div>
+                        <!-- PC: 左メイン画像／右 本文の2カラム -->
+                        <div class="p-business__head">
+                            <div class="p-business__itemImg">
+                                <picture>
+                                    <source srcset="<?php img_path('/' . $biz['mainImg'] . '.webp'); ?>"
+                                        type="image/webp">
+                                    <img src="<?php img_path('/' . $biz['mainImg'] . '.jpg'); ?>"
+                                        alt="<?php echo esc_attr($biz['title']); ?>" width="410" height="348"
+                                        loading="lazy" decoding="async">
+                                </picture>
+                            </div>
 
-                        <!-- 主な事業会社・サービス -->
-                        <div class="p-business__services">
-                            <p class="p-business__servicesTitle">主な事業会社・サービス</p>
-                            <ul class="p-business__cards">
-                                <?php foreach ($biz['cards'] as $card) : ?>
-                                <li class="p-business__card">
-                                    <div class="p-business__cardLogo">
-                                        <picture>
-                                            <source srcset="<?php img_path('/' . $card['logo'] . '.webp'); ?>"
-                                                type="image/webp">
-                                            <img src="<?php img_path('/' . $card['logo'] . '.png'); ?>"
-                                                alt="<?php echo esc_attr($card['alt']); ?>" width="160" height="32"
-                                                loading="lazy">
-                                        </picture>
-                                    </div>
-                                    <a class="p-business__cardBtn" href="<?php echo esc_url($card['url']); ?>"
-                                        target="_blank" rel="noopener noreferrer">
-                                        <span class="p-business__cardBtnText">ウェブサイトを見る</span>
-                                        <span class="p-business__cardBtnIcon" aria-hidden="true"></span>
-                                    </a>
-                                </li>
-                                <?php endforeach; ?>
-                            </ul>
+                            <div class="p-business__headBody">
+                                <p class="p-business__itemLead"><?php echo esc_html($biz['lead']); ?></p>
+
+                                <!-- 主な事業会社・サービス -->
+                                <div class="p-business__services">
+                                    <p class="p-business__servicesTitle">主な事業会社・サービス</p>
+                                    <ul class="p-business__cards">
+                                        <?php foreach ($biz['cards'] as $card) : ?>
+                                        <li class="p-business__card">
+                                            <a class="p-business__cardLink" href="<?php echo esc_url($card['url']); ?>"
+                                                target="_blank" rel="noopener noreferrer">
+                                                <span class="p-business__cardLogo p-business__cardLogo--<?php echo esc_attr(str_replace('logo_', '', $card['logo'])); ?>">
+                                                    <picture>
+                                                        <source srcset="<?php img_path('/' . $card['logo'] . '.webp'); ?>"
+                                                            type="image/webp">
+                                                        <img src="<?php img_path('/' . $card['logo'] . '.png'); ?>"
+                                                            alt="<?php echo esc_attr($card['alt']); ?>" width="160"
+                                                            height="32" loading="lazy" decoding="async">
+                                                    </picture>
+                                                </span>
+                                                <span class="p-business__cardBody">
+                                                    <span class="p-business__cardLabel">ウェブサイトを見る</span>
+                                                    <img class="p-business__cardIcon"
+                                                        src="<?php img_path('/icon_external_link_black.svg'); ?>" alt=""
+                                                        width="12" height="12" loading="lazy" decoding="async">
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- 詳しく見る（開閉） -->
@@ -202,15 +217,19 @@ get_header(); ?>
                                     <ul class="p-business__steps">
                                         <?php foreach ($biz['steps'] as $step) : ?>
                                         <li class="p-business__step">
+                                            <div class="p-business__stepImg">
+                                                <picture>
+                                                    <source srcset="<?php img_path('/' . $step['img'] . '.webp'); ?>"
+                                                        type="image/webp">
+                                                    <img src="<?php img_path('/' . $step['img'] . '.jpg'); ?>"
+                                                        alt="" width="386" height="239" loading="lazy" decoding="async">
+                                                </picture>
+                                            </div>
                                             <div class="p-business__stepHead">
                                                 <span class="p-business__stepTag"><?php echo esc_html($step['num']); ?></span>
                                                 <h3 class="p-business__stepTitle"><?php echo wp_kses($step['title'], ['br' => []]); ?></h3>
                                             </div>
                                             <p class="p-business__stepText"><?php echo esc_html($step['text']); ?></p>
-                                            <div class="p-business__stepImg">
-                                                <img src="<?php img_path('/' . $step['img'] . '.jpg'); ?>"
-                                                    alt="" width="860" height="239" loading="lazy">
-                                            </div>
                                         </li>
                                         <?php endforeach; ?>
                                     </ul>
@@ -221,14 +240,16 @@ get_header(); ?>
                     <?php endforeach; ?>
                 </div>
 
-                <!-- 右：追従ローカルナビ -->
+                <!-- 右：追従ローカルナビ（会社案内サイドナビ c-localNav と共通デザイン） -->
                 <aside class="p-business__side">
-                    <nav class="p-localNav p-business__nav js-businessNav" aria-label="事業紹介メニュー">
-                        <p class="p-localNav__head">事業紹介</p>
-                        <ul class="p-localNav__list">
+                    <nav class="c-localNav p-business__nav js-businessNav" aria-label="事業紹介メニュー">
+                        <p class="c-localNav__head">
+                            <span>事業紹介</span>
+                        </p>
+                        <ul class="c-localNav__list">
                             <?php foreach ($businesses as $i => $biz) : ?>
-                            <li class="p-localNav__item<?php echo $i === 0 ? ' p-localNav__item--current' : ''; ?>">
-                                <a class="p-localNav__link js-businessNavLink"
+                            <li class="c-localNav__item<?php echo $i === 0 ? ' c-localNav__item--current' : ''; ?>">
+                                <a class="js-businessNavLink"
                                     href="#<?php echo esc_attr($biz['id']); ?>"><?php echo esc_html($biz['navLabel']); ?></a>
                             </li>
                             <?php endforeach; ?>

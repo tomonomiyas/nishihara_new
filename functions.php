@@ -24,10 +24,8 @@ get_template_part('functions-lib/func-enqueue-assets');
 // デフォルト投稿タイプのラベル変更
 get_template_part('functions-lib/func-add-posttype-post');
 
-// カスタム投稿の設定
-get_template_part('functions-lib/func-add-posttype-ad-library');
-
 // カスタム投稿（お知らせ news）の設定
+// ※ 広告ライブラリは独立した投稿タイプではなく news_category の「広告ライブラリ」カテゴリーで運用する
 get_template_part('functions-lib/func-add-posttype-news');
 
 // カスタム投稿（活動報告 sustainability）の設定

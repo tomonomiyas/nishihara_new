@@ -10,17 +10,27 @@
   }
 }
 
-// 2カラム（左メイン／右追従ナビ）
+// 2カラム（左メイン／右追従ナビ）— 導入部の下にフル幅から折り返す
 .p-sustainability__body {
   display: flex;
   flex-direction: column;
   gap: calc(40 * var(--to-rem));
   align-items: flex-start;
+  margin-top: calc(60 * var(--to-rem));
+
+  @include mq("md") {
+    margin-top: calc(120 * var(--to-rem));
+  }
 
   @include mq("lg") {
     flex-direction: row;
     gap: calc(40 * var(--to-rem));
   }
+}
+
+// 左カラム先頭ブロックはナビ頭と上端を揃える（余白は __body 側で確保）
+.p-sustainability__main > .p-sustainability__block:first-child {
+  margin-top: 0;
 }
 
 .p-sustainability__main {
@@ -75,7 +85,7 @@
 .p-sustainability__leadMain {
   margin-top: calc(16 * var(--to-rem));
   font-family: var(--base-font-family);
-  font-size: calc(24 * var(--to-rem));
+  font-size: calc(22 * var(--to-rem));
   font-weight: var(--fw-bold);
   line-height: 1.75;
   color: var(--color-accent);
@@ -85,15 +95,18 @@
   }
 }
 
-// ----- 導入本文 + 装飾画像 -----
+// ----- 基本方針＋導入本文（左590）／装飾画像（右510）を横並び -----
 .p-sustainability__intro {
-  margin-top: calc(40 * var(--to-rem));
-
   @include mq("lg") {
     display: flex;
-    gap: calc(40 * var(--to-rem));
     align-items: flex-start;
-    margin-top: calc(47 * var(--to-rem));
+    justify-content: space-between;
+  }
+}
+
+.p-sustainability__introBody {
+  @include mq("lg") {
+    width: calc(590 * var(--to-rem));
   }
 }
 
@@ -103,22 +116,25 @@
   font-weight: var(--fw-regular);
   line-height: 2;
   color: var(--color-text-main);
+}
 
-  @include mq("lg") {
-    flex: 1;
-    min-width: 0;
-  }
+// リード見出し → 導入本文 / 段落 → 段落の縦間隔
+.p-sustainability__lead + .p-sustainability__introText {
+  margin-top: calc(40 * var(--to-rem));
+}
+
+.p-sustainability__introText + .p-sustainability__introText {
+  margin-top: calc(32 * var(--to-rem));
 }
 
 .p-sustainability__introImgs {
   position: relative;
-  aspect-ratio: 510 / 425;
+  aspect-ratio: 510 / 495;
   margin-top: calc(24 * var(--to-rem));
 
   @include mq("lg") {
     flex-shrink: 0;
-    width: calc(340 * var(--to-rem));
-    aspect-ratio: 510 / 425;
+    width: calc(510 * var(--to-rem));
     margin-top: 0;
   }
 }
@@ -134,7 +150,7 @@
 
 // 円形グラデーション装飾（240×240）— 最背面・写真の背後に重なる
 .p-sustainability__introImg--03 {
-  inset-block-start: 60%;
+  inset-block-start: 51.52%;
   inset-inline-start: 15.69%;
   width: 47.06%;
   aspect-ratio: 1 / 1;
@@ -156,7 +172,7 @@
 
 // 若葉写真（300×200）— 右下にオフセットして重なる（最前面）
 .p-sustainability__introImg--02 {
-  inset-block-start: 52.94%;
+  inset-block-start: 45.45%;
   inset-inline-start: 41.18%;
   width: 58.82%;
   aspect-ratio: 300 / 200;
@@ -184,7 +200,7 @@
   min-height: calc(56 * var(--to-rem));
   padding-inline: calc(24 * var(--to-rem));
   font-family: var(--base-font-family);
-  font-size: calc(20 * var(--to-rem));
+  font-size: calc(22 * var(--to-rem));
   font-weight: var(--fw-bold);
   line-height: 1.5;
   color: var(--color-text-main);
@@ -229,7 +245,9 @@
 }
 
 .p-sustainability__slider .splide__track {
-  padding-block-end: calc(4 * var(--to-rem));
+  padding-block: calc(10 * var(--to-rem)) calc(14 * var(--to-rem));
+  // 左右に矢印用のガター（余白）を確保し、カードが矢印に被らないようにする
+  margin-inline: calc(34 * var(--to-rem));
 }
 
 .p-sustainability__slider .splide__slide {
@@ -239,7 +257,10 @@
 
 .p-sustainability__card {
   height: 100%;
+  padding-bottom: calc(20 * var(--to-rem));
   background-color: var(--color-white);
+  border-radius: var(--radius-base);
+  box-shadow: 0 0 10px rgb(48 49 51 / 10%);
 }
 
 .p-sustainability__cardLink {
@@ -262,7 +283,8 @@
 
 .p-sustainability__cardTitle {
   display: -webkit-box;
-  margin-top: calc(12 * var(--to-rem));
+  padding-inline: calc(10 * var(--to-rem));
+  margin-top: calc(20 * var(--to-rem));
   overflow: hidden;
   font-family: var(--base-font-family);
   font-size: calc(16 * var(--to-rem));
@@ -283,28 +305,76 @@
   }
 }
 
-// Splide 進捗バー（スクロールバー風）
-.p-sustainability__slider .splide__pagination {
-  position: static;
-  display: block;
+// 進捗バー（スクロールバー風）: スライド枚数・進行に連動（幅/位置は JS が設定）
+.p-sustainability__progress {
+  position: relative;
   width: 100%;
   height: calc(4 * var(--to-rem));
-  padding: 0;
   margin-top: calc(24 * var(--to-rem));
+  overflow: hidden;
   background-color: var(--color-bg-light);
   border-radius: calc(2 * var(--to-rem));
 }
 
+.p-sustainability__progressThumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: var(--color-accent);
+  border-radius: calc(2 * var(--to-rem));
+  transition:
+    left var(--duration) ease-out,
+    width var(--duration) ease-out;
+}
+
+// Splide 矢印（PC/SP 表示・左右ガターに濃色シェブロン）
+// splide-core.min.css には矢印の配置/反転が無いため、自前で完全指定する
+.p-sustainability__slider .splide__arrow {
+  position: absolute;
+  top: 27%; // サムネイルの縦中央（PC/SP とも root 高の約27%）
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(30 * var(--to-rem));
+  height: calc(30 * var(--to-rem));
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  opacity: 1;
+  transform: translateY(-50%);
+}
+
+.p-sustainability__slider .splide__arrow svg {
+  width: calc(12 * var(--to-rem));
+  height: calc(12 * var(--to-rem));
+  fill: var(--color-text-main);
+}
+
+.p-sustainability__slider .splide__arrow--prev {
+  left: 0;
+}
+
+.p-sustainability__slider .splide__arrow--prev svg {
+  transform: scaleX(-1);
+}
+
+.p-sustainability__slider .splide__arrow--next {
+  right: 0;
+}
+
 // ----- 推進体制（組織図） -----
 .p-sustainability__org {
-  padding: calc(24 * var(--to-rem));
+  padding: calc(20 * var(--to-rem));
   margin-top: calc(24 * var(--to-rem));
   background-color: var(--color-white);
-  border: 1px solid var(--color-border-accent);
   border-radius: var(--radius-base);
+  box-shadow: 0 0 10px rgb(48 49 51 / 10%);
 
   @include mq("md") {
-    padding: calc(40 * var(--to-rem));
+    padding-block: calc(24 * var(--to-rem));
+    padding-inline: calc(40 * var(--to-rem));
   }
 }
 
@@ -330,13 +400,12 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: calc(560 * var(--to-rem));
   min-height: calc(56 * var(--to-rem));
-  padding-block: calc(12 * var(--to-rem));
+  padding-block: calc(16 * var(--to-rem));
   padding-inline: calc(16 * var(--to-rem));
   font-family: var(--base-font-family);
   font-size: calc(16 * var(--to-rem));
-  line-height: 1.4;
+  line-height: 1.5;
   text-align: center;
   border-radius: var(--radius-base);
 }
@@ -348,12 +417,14 @@
 }
 
 .p-sustainability__orgBox--primary {
+  min-height: calc(76 * var(--to-rem));
   font-weight: var(--fw-medium);
   color: var(--color-white);
   background-color: var(--color-accent);
 }
 
 .p-sustainability__orgBox--sub {
+  min-height: calc(80 * var(--to-rem));
   font-weight: var(--fw-medium);
   color: var(--color-white);
   background-color: var(--color-accent-sub);
@@ -365,25 +436,71 @@
   font-weight: var(--fw-regular);
 }
 
-// 縦矢印
-.p-sustainability__orgArrow {
+// サステナビリティ委員会（推進室＋企画部を囲むブラケット枠）
+.p-sustainability__orgCommittee {
   position: relative;
-  display: block;
-  width: 1px;
-  height: calc(24 * var(--to-rem));
-  background-color: var(--color-border-sub);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-block: calc(18 * var(--to-rem)); // デザイン実寸：箱と枠の上下余白 18px
+  padding-inline: calc(56 * var(--to-rem)) calc(20 * var(--to-rem)); // SP は枠を広めに（長い社名を1行維持するため 38 より詰める）
+  background-color: var(--color-bg-light);
+  border-radius: var(--radius-base);
 }
 
-.p-sustainability__orgArrow::after {
+.p-sustainability__orgCommitteeLabel {
   position: absolute;
-  inset-block-end: 0;
+  top: 50%;
+  left: calc(20 * var(--to-rem)); // writing-mode 回転で論理軸がズレるため物理指定
+  font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-medium);
+  line-height: calc(18 / 16);
+  color: var(--color-text-main);
+  white-space: nowrap;
+  writing-mode: vertical-rl;
+  transform: translateY(-50%);
+}
+
+// 縦コネクタ（矢印＋ラベル）
+.p-sustainability__orgConnector {
+  position: relative;
+  z-index: 1; // 委員会背景に少し重なる矢印を上に出す
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(50 * var(--to-rem));
+}
+
+.p-sustainability__orgArrowImg {
+  display: block;
+  width: auto;
+  height: 100%;
+}
+
+// 委員会の縦パディング(18px)が外側矢印の委員会側だけに効き上下非対称になるため、
+// 矢印を委員会側へ 9px(=pad/2) 寄せて箱間の中央（上下均等）に揃える
+.p-sustainability__orgConnector:has(+ .p-sustainability__orgCommittee) .p-sustainability__orgArrowImg {
+  transform: translateY(calc(9 * var(--to-rem))); // 指示報告：下へ
+}
+
+.p-sustainability__orgCommittee + .p-sustainability__orgConnector .p-sustainability__orgArrowImg {
+  transform: translateY(calc(-9 * var(--to-rem))); // 連携：上へ
+}
+
+.p-sustainability__orgConnectorLabel {
+  position: absolute;
+  inset-block-start: 50%;
   inset-inline-start: 50%;
-  width: calc(8 * var(--to-rem));
-  height: calc(8 * var(--to-rem));
-  content: "";
-  border-right: 1px solid var(--color-border-sub);
-  border-bottom: 1px solid var(--color-border-sub);
-  transform: translate(-50%, 25%) rotate(45deg);
+  margin-inline-start: calc(14 * var(--to-rem));
+  font-family: var(--base-font-family);
+  font-size: calc(14 * var(--to-rem));
+  line-height: 1.5;
+  color: var(--color-text-main);
+  white-space: nowrap;
+  transform: translateY(-50%);
 }
 
 // ----- 推進計画（STEP） -----
@@ -392,28 +509,36 @@
 }
 
 .p-sustainability__step {
-  display: flex;
-  gap: calc(20 * var(--to-rem));
-  align-items: flex-start;
   padding-block: calc(24 * var(--to-rem));
+  text-align: center;
   border-top: 1px solid var(--color-border-accent);
+
+  @include mq("md") {
+    display: flex;
+    gap: calc(40 * var(--to-rem));
+    align-items: flex-start;
+    text-align: start;
+  }
 }
 
 .p-sustainability__step:last-child {
   border-bottom: 1px solid var(--color-border-accent);
 }
 
+// アイコン（#eff6fa の円背景は SVG 内に内包）
 .p-sustainability__stepIcon {
-  flex-shrink: 0;
-  width: calc(80 * var(--to-rem));
-  height: calc(80 * var(--to-rem));
+  width: calc(120 * var(--to-rem));
+  height: calc(120 * var(--to-rem));
+  margin-inline: auto;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
 
   @include mq("md") {
-    width: calc(120 * var(--to-rem));
-    height: calc(120 * var(--to-rem));
+    flex-shrink: 0;
+    width: calc(160 * var(--to-rem));
+    height: calc(160 * var(--to-rem));
+    margin-inline: 0;
   }
 }
 
@@ -430,17 +555,29 @@
 }
 
 .p-sustainability__stepBody {
-  flex: 1;
-  min-width: 0;
+  margin-top: calc(16 * var(--to-rem));
+
+  @include mq("md") {
+    flex: 1;
+    min-width: 0;
+    margin-top: 0;
+  }
 }
 
+// STEP バッジ（SP は中央・PC は左）
 .p-sustainability__stepTag {
-  display: inline-block;
-  font-family: var(--base-font-family);
-  font-size: calc(16 * var(--to-rem));
-  font-weight: var(--fw-bold);
+  display: inline-flex;
+  align-items: center;
+  padding-block: calc(4 * var(--to-rem));
+  padding-inline: calc(12 * var(--to-rem));
+  font-family: var(--accent-font-family);
+  font-size: calc(12 * var(--to-rem));
+  font-style: italic;
+  font-weight: var(--fw-semibold);
   line-height: 1;
-  color: var(--color-accent);
+  color: var(--color-white);
+  background-color: var(--color-accent);
+  border-radius: var(--radius-base);
 }
 
 .p-sustainability__stepText {
@@ -450,6 +587,7 @@
   font-weight: var(--fw-regular);
   line-height: 2;
   color: var(--color-text-main);
+  text-align: start;
 }
 
 // ----- 重要課題（ESGテーブル） -----
@@ -468,13 +606,17 @@
 .p-sustainability__th {
   padding-block: calc(12 * var(--to-rem));
   padding-inline: calc(12 * var(--to-rem));
-  font-size: calc(14 * var(--to-rem));
-  font-weight: var(--fw-bold);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-medium);
   line-height: 1.4;
-  color: var(--color-white);
+  color: var(--color-text-main);
   text-align: center;
-  background-color: var(--color-accent);
+  background-color: var(--color-bg-light);
   border: 1px solid var(--color-white);
+}
+
+.p-sustainability__th--esg {
+  font-size: calc(12 * var(--to-rem));
 }
 
 .p-sustainability__thNote {
@@ -494,10 +636,18 @@
   border: 1px solid var(--color-border-accent);
 }
 
+// No. 列（41px・薄青背景）
+.p-sustainability__td--no {
+  width: calc(41 * var(--to-rem));
+  font-weight: var(--fw-medium);
+  text-align: center;
+  background-color: var(--color-bg-light);
+}
+
 .p-sustainability__td--issue {
   font-weight: var(--fw-medium);
   text-align: start;
-  background-color: var(--color-bg-light);
+  background-color: var(--color-white);
 }
 
 .p-sustainability__td--esg {
@@ -505,34 +655,27 @@
   text-align: center;
 }
 
+// アクション列は各項目を区切り線で分割（セル自身の padding は 0）
+.p-sustainability__td--action {
+  padding: 0;
+}
+
 .p-sustainability__mark {
   display: inline-block;
   width: calc(14 * var(--to-rem));
   height: calc(14 * var(--to-rem));
-  background-color: var(--color-accent);
+  background-color: var(--color-text-main);
   border-radius: 100%;
-}
-
-.p-sustainability__actionList {
-  display: flex;
-  flex-direction: column;
-  gap: calc(8 * var(--to-rem));
 }
 
 .p-sustainability__actionItem {
-  position: relative;
-  padding-inline-start: calc(16 * var(--to-rem));
+  padding-block: calc(8 * var(--to-rem));
+  padding-inline: calc(16 * var(--to-rem));
+  line-height: 1.6;
 }
 
-.p-sustainability__actionItem::before {
-  position: absolute;
-  inset-block-start: calc(10 * var(--to-rem));
-  inset-inline-start: 0;
-  width: calc(6 * var(--to-rem));
-  height: calc(6 * var(--to-rem));
-  content: "";
-  background-color: var(--color-accent);
-  border-radius: 100%;
+.p-sustainability__actionItem:not(:last-child) {
+  border-bottom: 1px solid var(--color-border-accent);
 }
 
 // ----- サステナビリティトピックス（news-list） -----
@@ -601,61 +744,8 @@
   }
 }
 
-// 一覧ボタン
+// 一覧リンク（共通 c-link・右寄せ）
 .p-sustainability__more {
   margin-top: calc(32 * var(--to-rem));
-  text-align: center;
-}
-
-.p-sustainability__moreBtn {
-  display: inline-flex;
-  gap: calc(12 * var(--to-rem));
-  align-items: center;
-  min-height: calc(48 * var(--to-rem));
-  padding-block: calc(8 * var(--to-rem));
-  padding-inline: calc(40 * var(--to-rem));
-  font-family: var(--base-font-family);
-  font-size: calc(16 * var(--to-rem));
-  font-weight: var(--fw-medium);
-  line-height: 1.5;
-  color: var(--color-accent);
-  border: 1px solid var(--color-accent);
-  border-radius: var(--radius-base);
-
-  @media (any-hover: hover) {
-    transition:
-      color var(--duration),
-      background-color var(--duration);
-  }
-}
-
-.p-sustainability__moreBtnIcon {
-  position: relative;
-  width: calc(16 * var(--to-rem));
-  height: calc(8 * var(--to-rem));
-  transition: transform var(--duration);
-}
-
-.p-sustainability__moreBtnIcon::after {
-  position: absolute;
-  inset-block-start: 50%;
-  inset-inline-end: 0;
-  width: calc(8 * var(--to-rem));
-  height: calc(8 * var(--to-rem));
-  content: "";
-  border-top: 1px solid currentcolor;
-  border-right: 1px solid currentcolor;
-  transform: translateY(-50%) rotate(45deg);
-}
-
-@media (any-hover: hover) {
-  .p-sustainability__moreBtn:hover {
-    color: var(--color-white);
-    background-color: var(--color-accent);
-  }
-
-  // ホバーで矢印を右に4pxスライド（共通リンク c-link と同挙動）
-  .p-sustainability__moreBtn:hover .p-sustainability__moreBtnIcon {
-    transform: translateX(calc(4 * var(--to-rem)));
-  }
+  text-align: end;
 }

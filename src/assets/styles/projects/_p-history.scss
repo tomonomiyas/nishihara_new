@@ -125,20 +125,19 @@
   border-top: 1px solid var(--color-border-accent);
 }
 
-// 年表行（PC: 年号 + 内容 の横並び / SP: 縦積み）
+// 年表行（年号 + 内容 の横並び。SP: 年号100px + 内容 / PC: 年号200px + 内容）
 .p-history__row {
+  display: flex;
+  align-items: flex-start;
   padding-block: calc(20 * var(--to-rem));
   border-bottom: 1px solid var(--color-border-accent);
   scroll-margin-top: calc(80 * var(--to-rem));
-
-  @include mq("pc") {
-    display: flex;
-    align-items: flex-start;
-  }
 }
 
 // 年号
 .p-history__year {
+  flex-shrink: 0;
+  width: calc(100 * var(--to-rem));
   font-family: var(--base-font-family);
   font-size: calc(16 * var(--to-rem));
   font-weight: var(--fw-bold);
@@ -146,7 +145,6 @@
   color: var(--color-accent);
 
   @include mq("pc") {
-    flex-shrink: 0;
     width: calc(200 * var(--to-rem));
   }
 }
@@ -159,13 +157,8 @@
 
 // 内容ブロック
 .p-history__body {
-  margin-top: calc(8 * var(--to-rem));
-
-  @include mq("pc") {
-    flex: 1;
-    min-width: 0;
-    margin-top: 0;
-  }
+  flex: 1;
+  min-width: 0;
 }
 
 .p-history__text {
@@ -176,10 +169,12 @@
   color: var(--color-text-main);
 }
 
-// リード文（各年の1行目を強調表示）
+// リード文（各年の1行目を強調表示。SP は本文と同サイズ、PC のみ拡大）
 .p-history__text--lead {
-  font-size: calc(20 * var(--to-rem));
-  line-height: 1.5;
+  @include mq("md") {
+    font-size: calc(20 * var(--to-rem));
+    line-height: 1.5;
+  }
 }
 
 .p-history__text + .p-history__text {
@@ -189,9 +184,11 @@
 // サイドナビ「会社案内」ラッパー（中身は共通コンポーネント c-localNav）
 .p-history__side {
   width: 100%;
+  margin-top: calc(64 * var(--to-rem));
 
   @include mq("pc") {
     flex-shrink: 0;
     width: calc(280 * var(--to-rem));
+margin-top: 0;
   }
 }

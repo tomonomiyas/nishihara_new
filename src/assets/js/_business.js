@@ -34,12 +34,12 @@ function initScrollSpy() {
   const linkMap = new Map();
   links.forEach(link => {
     const id = link.getAttribute("href")?.replace("#", "");
-    if (id) linkMap.set(id, link.closest(".p-localNav__item"));
+    if (id) linkMap.set(id, link.closest(".c-localNav__item"));
   });
 
   const setCurrent = id => {
     linkMap.forEach((navItem, key) => {
-      navItem.classList.toggle("p-localNav__item--current", key === id);
+      navItem.classList.toggle("c-localNav__item--current", key === id);
     });
   };
 

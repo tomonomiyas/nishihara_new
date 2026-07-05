@@ -48,8 +48,18 @@ get_header(); ?>
     <section class="p-contact">
         <div class="p-contact__inner l-inner">
 
-            <?php if ($step !== 'complete') : ?>
-            <!-- STEP インジケーター -->
+            <?php if ($step === 'input') : ?>
+            <p class="p-contact__lead">
+                お問い合わせ内容を下記にご記入ください。内容を確認のうえ、担当者より順次ご連絡いたします。<br>
+                なお、4営業日以内に返信がない場合は、送信エラーの可能性がございます。恐れ入りますが、再度ご連絡ください。
+            </p>
+
+            <p class="p-contact__note">
+                <span class="p-contact__noteBadge">必須</span>と記載されている項目は、必須の入力項目です。
+            </p>
+            <?php endif; ?>
+
+            <!-- STEP インジケーター（完了画面も STEP 03 を表示） -->
             <ol class="p-contactStep">
                 <?php
                 $steps = [
@@ -66,18 +76,9 @@ get_header(); ?>
                 </li>
                 <?php endforeach; ?>
             </ol>
-            <?php endif; ?>
 
             <?php if ($step === 'input') : ?>
             <!-- ───────── 入力画面 ───────── -->
-            <p class="p-contact__lead">
-                お問い合わせ内容を下記にご記入ください。内容を確認のうえ、担当者より順次ご連絡いたします。<br>
-                なお、4営業日以内に返信がない場合は、送信エラーの可能性がございます。恐れ入りますが、再度ご連絡ください。
-            </p>
-
-            <p class="p-contact__note">
-                <span class="p-contact__noteBadge">必須</span>と記載されている項目は、必須の入力項目です。
-            </p>
 
             <form action="<?php echo $action_url; ?>" method="post" class="p-form" novalidate>
                 <?php wp_nonce_field('contact_form', 'contact_nonce'); ?>
@@ -178,15 +179,19 @@ get_header(); ?>
 
             <?php else : ?>
             <!-- ───────── 完了画面 ───────── -->
-            <div class="p-contact__complete">
-                <p class="p-contact__completeTitle">送信完了</p>
-                <p class="p-contact__completeText">
-                    お問い合わせいただきありがとうございます。<br>
-                    内容を確認のうえ、担当者より折り返しご連絡させていただきます。
+            <div class="p-contactThanks__message">
+                <p class="p-contactThanks__lead">お問い合わせが完了しました</p>
+                <p class="p-contactThanks__text">
+                    お問い合わせを受け付けました。内容を確認のうえ、担当者より折り返しご連絡いたします。<br>
+                    ご連絡までに3〜4営業日ほどお時間を頂戴しております。あらかじめご了承ください。<br>
+                    <br>
+                    ※受付完了の自動返信メールをお送りしております。届かない場合は迷惑メールフォルダをご確認ください。それでも届かない場合は、お手数ですが再度お問い合わせいただくか、下記連絡先までお電話にてお問い合わせください。<br>
+                    電話番号：093-641-2055（受付時間 平日9：00〜17：00）
                 </p>
-                <div class="p-contact__completeButton">
-                    <a href="<?php echo esc_url(home_url('/')); ?>" class="c-btn c-btn--submit">トップページへ戻る</a>
-                </div>
+            </div>
+
+            <div class="p-contactThanks__action">
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="c-btn">トップページに戻る</a>
             </div>
             <?php endif; ?>
 

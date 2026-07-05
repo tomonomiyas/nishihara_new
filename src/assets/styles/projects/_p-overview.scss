@@ -1,22 +1,20 @@
 @use "../global" as *;
 
 .p-overview {
-  padding-block: calc(60 * var(--to-rem));
+  padding-block: calc(40 * var(--to-rem)) calc(64 * var(--to-rem));
 
   @include mq("md") {
     padding-block: calc(80 * var(--to-rem));
   }
 }
 
+// 本体レイアウト（PC のみ 左 main + 右 localNav の2カラム。
+// tab/sp は単カラムで、localNav を本体の下に全幅で配置）
 .p-overview__body {
-  display: flex;
-  flex-direction: column;
-  gap: calc(40 * var(--to-rem));
-  align-items: flex-start;
-
-  @include mq("lg") {
-    flex-direction: row;
+  @include mq("pc") {
+    display: flex;
     gap: calc(40 * var(--to-rem));
+    align-items: flex-start;
   }
 }
 
@@ -24,17 +22,23 @@
   width: 100%;
   min-width: 0;
 
-  @include mq("lg") {
+  @include mq("pc") {
     flex: 1;
   }
 }
 
 .p-overview__side {
   width: 100%;
+  margin-top: calc(60 * var(--to-rem));
 
-  @include mq("lg") {
+  @include mq("md") {
+    margin-top: calc(80 * var(--to-rem));
+  }
+
+  @include mq("pc") {
     flex-shrink: 0;
     width: calc(280 * var(--to-rem));
+    margin-top: 0;
   }
 }
 
@@ -43,13 +47,19 @@
   position: relative;
   display: flex;
   align-items: center;
-  min-height: calc(67 * var(--to-rem));
-  padding-inline: calc(32 * var(--to-rem));
+  min-height: calc(56 * var(--to-rem));
+  padding-inline: calc(24 * var(--to-rem));
   font-family: var(--base-font-family);
-  font-size: calc(20 * var(--to-rem));
+  font-size: calc(22 * var(--to-rem));
   font-weight: var(--fw-bold);
   color: var(--color-text-main);
   background-color: var(--color-bg-light);
+
+  @include mq("md") {
+    min-height: calc(67 * var(--to-rem));
+    padding-inline: calc(32 * var(--to-rem));
+    font-size: calc(24 * var(--to-rem));
+  }
 }
 
 .p-overview__title::before {
@@ -67,6 +77,11 @@
   width: 100%;
   border-collapse: collapse;
   border-top: 1px solid var(--color-border-accent);
+  margin-top: calc(24 * var(--to-rem));
+
+  @include mq("md"){ 
+  margin-top: calc(40 * var(--to-rem));
+  }
 }
 
 .p-overview__table tr {
@@ -81,11 +96,11 @@
 .p-overview__table td {
   display: block;
   width: 100%;
-  padding-block: calc(16 * var(--to-rem));
-  padding-inline: calc(16 * var(--to-rem));
+  padding-block: calc(8 * var(--to-rem));
+  padding-inline: calc(12 * var(--to-rem));
   font-family: var(--base-font-family);
   font-size: calc(16 * var(--to-rem));
-  line-height: 1.8;
+  line-height: 2;
   text-align: left;
   vertical-align: top;
   border-bottom: 1px solid var(--color-border-accent);
@@ -93,16 +108,20 @@
   @include mq("md") {
     display: table-cell;
     width: auto;
+    padding-block: calc(16 * var(--to-rem));
+    padding-inline: calc(16 * var(--to-rem));
+    line-height: 1.8;
   }
 }
 
 .p-overview__table th {
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-medium);
   color: var(--color-text-main);
   background-color: var(--color-bg-light);
 
   @include mq("md") {
     width: calc(260 * var(--to-rem));
+    font-weight: var(--fw-bold);
   }
 }
 

@@ -183,7 +183,8 @@
                         <div class="c-section-title c-section-title--with-line">
                             <h2 class="c-section-title__ja">広告ライブラリ</h2>
                         </div>
-                        <a href="<?php page_path('ad-library'); ?>" class="c-link">広告ライブラリ一覧</a>
+                        <?php $ad_archive_link = get_term_link('ad-library', 'news_category'); ?>
+                        <a href="<?php echo esc_url(is_wp_error($ad_archive_link) ? '#' : $ad_archive_link); ?>" class="c-link">広告ライブラリ一覧</a>
                     </div>
                     <?php
                     $args = array(
@@ -297,7 +298,7 @@
             </div>
             <ul class="p-top-group__list">
                 <li class="p-top-group__item">
-                    <a href="https://nishihara-shoji.co.jp/" target="_blank" rel="noopener noreferrer"
+                    <a href="https://www.nishihara-corp.jp/" target="_blank" rel="noopener noreferrer"
                         class="p-top-group__card">
                         <div class="p-top-group__logo-wrap">
                             <picture>
@@ -319,7 +320,7 @@
                     </a>
                 </li>
                 <li class="p-top-group__item">
-                    <a href="https://beetle-eng.co.jp/" target="_blank" rel="noopener noreferrer"
+                    <a href="https://beetleengineering.jp/" target="_blank" rel="noopener noreferrer"
                         class="p-top-group__card">
                         <div class="p-top-group__logo-wrap">
                             <picture>
@@ -342,7 +343,7 @@
                 </li>
                 <li class="p-top-group__item">
                     <div class="p-top-group__card">
-                        <a href="https://beetle-mgt.co.jp/" target="_blank" rel="noopener noreferrer"
+                        <a href="https://beetlemanagement.com/" target="_blank" rel="noopener noreferrer"
                             class="p-top-group__card-link">
                             <div class="p-top-group__logo-wrap">
                                 <picture>
@@ -353,17 +354,26 @@
                             </div>
                             <p class="p-top-group__item-title">株式会社 ビートルマネージメント ｜ 廃棄物情報管理事業</p>
                         </a>
+                        <svg class="p-top-group__external-icon" xmlns="http://www.w3.org/2000/svg" width="14"
+                            height="14" viewBox="0 0 14 14">
+                            <path d="M96,0V11.375h11.375V0Zm10.281,10.281H97.094V1.094h9.188Z"
+                                transform="translate(-93.375)" fill="#3072bf" />
+                            <path d="M1.094,106.281V96H0v11.375H11.375v-1.094H1.094Z" transform="translate(0 -93.375)"
+                                fill="#3072bf" />
+                            <path d="M205.3,131.778l3.223-3.223v2.319h1.094v-4.186h-4.186v1.094h2.319L204.531,131Z"
+                                transform="translate(-198.938 -123.224)" fill="#3072bf" />
+                        </svg>
                         <div class="p-top-group__subtitle-section">
                             <p class="p-top-group__subtitle">株式会社 ビートルマネージメント運用サービス</p>
                             <div class="p-top-group__sub-links">
-                                <a href="#" class="p-top-group__sub-link" target="_blank" rel="noopener noreferrer">
+                                <a href="https://beetlemanagement.com/outline" class="p-top-group__sub-link" target="_blank" rel="noopener noreferrer">
                                     <picture>
                                         <source srcset="<?php img_path('/logo_bee-net.webp'); ?>" type="image/webp">
                                         <img src="<?php img_path('/logo_bee-net.png'); ?>" alt="ビーネットシステム"
                                             class="p-top-group__logo">
                                     </picture>
                                 </a>
-                                <a href="#" class="p-top-group__sub-link" target="_blank" rel="noopener noreferrer">
+                                <a href="https://www.dusttalk.com/" class="p-top-group__sub-link" target="_blank" rel="noopener noreferrer">
                                     <picture>
                                         <source srcset="<?php img_path('/logo_dustalk.webp'); ?>" type="image/webp">
                                         <img src="<?php img_path('/logo_dustalk.png'); ?>" alt="ダストーク"
