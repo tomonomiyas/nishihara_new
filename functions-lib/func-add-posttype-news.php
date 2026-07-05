@@ -63,10 +63,12 @@ function my_register_default_news_categories()
   }
 
   $default_terms = array(
-    'notice'         => 'お知らせ',
-    'press-release'  => 'プレスリリース',
-    'ad-library'     => '広告ライブラリ',
-    'sustainability' => 'サステナビリティ',
+    'notice'          => 'お知らせ',
+    'press-release'   => 'プレスリリース',
+    'ad-library'      => '広告ライブラリ',
+    'sustainability'  => 'サステナビリティ',
+    // 活動報告：サステナビリティページ専用の中身（お知らせ一覧 /news/ には出さない）
+    'activity-report' => '活動報告',
   );
 
   foreach ($default_terms as $slug => $name) {

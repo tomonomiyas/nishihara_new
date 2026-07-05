@@ -183,7 +183,8 @@
                         <div class="c-section-title c-section-title--with-line">
                             <h2 class="c-section-title__ja">広告ライブラリ</h2>
                         </div>
-                        <a href="<?php page_path('ad-library'); ?>" class="c-link">広告ライブラリ一覧</a>
+                        <?php $ad_archive_link = get_term_link('ad-library', 'news_category'); ?>
+                        <a href="<?php echo esc_url(is_wp_error($ad_archive_link) ? '#' : $ad_archive_link); ?>" class="c-link">広告ライブラリ一覧</a>
                     </div>
                     <?php
                     $args = array(

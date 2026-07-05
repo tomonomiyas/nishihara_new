@@ -1,9 +1,9 @@
 <?php
 /**
  * archive-sustainability.php
- * 活動報告（カスタム投稿 sustainability）アーカイブ ＝ サステナビリティページ
+ * サステナビリティページ（sustainability 投稿タイプのアーカイブを器として使用）
  *
- * - メインループ: 活動報告（post_type sustainability）の投稿 → 活動報告カルーセル
+ * - 活動報告: カスタム投稿 sustainability の記事 → 活動報告カルーセル（詳細 = single-sustainability）
  * - トピックス: お知らせ（news）の news_category「サステナビリティ」記事
  * - 右カラム: 追従ローカルナビ（scrollspy）
  */
@@ -17,6 +17,9 @@ $local_nav = [
     ['id' => 'topics',      'label' => 'サステナビリティトピックス'],
 ];
 
+// 活動報告 参照元（カスタム投稿 sustainability の記事。詳細ページ = single-sustainability）
+$activity_post_type = 'sustainability';
+
 // トピックス参照元（お知らせ news のサステナビリティカテゴリー）
 $topics_post_type = 'news';
 $topics_taxonomy  = 'news_category';
@@ -24,32 +27,32 @@ $topics_term      = 'sustainability';
 
 // 推進計画 STEP
 $plan_steps = [
-    ['num' => 'STEP 01', 'text' => '推進計画のステップ説明テキストが入ります。推進計画のステップ説明テキストが入ります。'],
-    ['num' => 'STEP 02', 'text' => '推進計画のステップ説明テキストが入ります。推進計画のステップ説明テキストが入ります。'],
-    ['num' => 'STEP 03', 'text' => '推進計画のステップ説明テキストが入ります。推進計画のステップ説明テキストが入ります。'],
+    ['num' => 'STEP 01', 'text' => '「もっと明日」を楽しむために、私たちの歩み方は今の行動の積み重ねでできています。私たちは重要課題（マテリアリティ）を特定し、3つのステップを通じて循環型社会への道筋を切り拓きます。'],
+    ['num' => 'STEP 02', 'text' => '既存の境界線を、超えていく。 一つの業界、一つの役割という枠に閉じこもりません。異なる領域、異なる産業のパートナーと手を取り合い、それぞれの強みを掛け合わせることで、単独では成し得なかった新しい社会の仕組みを創造します。'],
+    ['num' => 'STEP 03', 'text' => '変化を、みんなのよろこびへ。私たちが起こす変化を通じてヒト・地域・自然と関わり、次世代にとっての「楽しさ」や「嬉しさ」につなげていきます。新しい仕組みが日常となり、それが当たり前の幸せとして定着する未来を目指します。'],
 ];
 
 // 重要課題（ESGマトリクス）
 $materiality_rows = [
     [
         'title' => '気候変動対策',
-        'e' => true, 's' => false, 'g' => false,
-        'actions' => ['プラスチックリサイクルの深化', 'エネルギー活用の検討', '行動変容の促進支援', '動静脈連携や官民学連携'],
+        'e' => true, 's' => true, 'g' => false,
+        'actions' => ['プラスチックリサイクルの深化', 'エネルギー活用の検討', '行動変容の促進支援'],
     ],
     [
         'title' => '資源循環の更なる促進',
         'e' => true, 's' => true, 'g' => false,
-        'actions' => ['資源循環に関するアクションプランが入ります。'],
+        'actions' => ['動静脈連携や官民学連携', '技術革新による高度化', 'AIによる加速的な高度化'],
     ],
     [
         'title' => '持続可能な地域コミュニティへの貢献',
-        'e' => false, 's' => true, 'g' => false,
-        'actions' => ['地域コミュニティに関するアクションプランが入ります。'],
+        'e' => false, 's' => true, 'g' => true,
+        'actions' => ['将来を見据えたあるべき姿の追求', '自然・環境への配慮', '事業継続の安定化'],
     ],
     [
         'title' => '誠実な事業継続とグループ力の強化',
         'e' => false, 's' => false, 'g' => true,
-        'actions' => ['事業継続に関するアクションプランが入ります。'],
+        'actions' => ['安全衛生活動による事業安定化', '多様な人財が挑戦し共生する組織', 'グループ特色を活かす経営'],
     ],
 ];
 
@@ -66,37 +69,44 @@ get_header(); ?>
     <!-- sustainability本体 -->
     <section class="p-sustainability">
         <div class="p-sustainability__inner l-inner">
+            <!-- 基本方針＋導入本文（左テキストブロック）／装飾画像（右）を横並び -->
+            <div class="p-sustainability__intro">
+                <div class="p-sustainability__introBody">
+                    <div class="p-sustainability__lead">
+                        <p class="p-sustainability__leadSub">サスティナビリティ基本方針</p>
+                        <p class="p-sustainability__leadMain">変わることを待たない。<br>変えることが私たちの使命だから。</p>
+                    </div>
+                    <p class="p-sustainability__introText">BEETLEグループは、資源循環に関わる多様なプロセスを担い、社会の変化と常に向き合ってきました。「捨てる」という行為の先にある意味や価値を見つめ直し、資源を次へつなぐこと。それは、次の世代の選択肢を守るための私たちの責任だと考えています。</p>
+                    <p class="p-sustainability__introText">変化のスピードが加速し、課題が複雑化する今、これまで以上に、先んじて行動することが求められています。分野や地域の枠を越えて手を取り合い、仕組みをつくり、取り組みを加速させる。人と人のつながりを力に、次代を形づくる基盤を築き、循環を次の世代へつないでいきます。</p>
+                </div>
+                <div class="p-sustainability__introImgs" aria-hidden="true">
+                    <span class="p-sustainability__introImg p-sustainability__introImg--03"></span>
+                    <span class="p-sustainability__introImg p-sustainability__introImg--01"></span>
+                    <span class="p-sustainability__introImg p-sustainability__introImg--02"></span>
+                </div>
+            </div>
+
             <div class="p-sustainability__body">
 
                 <!-- 左：メインコンテンツ -->
                 <div class="p-sustainability__main">
 
-                    <!-- 基本方針リード -->
-                    <div class="p-sustainability__lead">
-                        <p class="p-sustainability__leadSub">サスティナビリティ基本方針</p>
-                        <p class="p-sustainability__leadMain">変わることを待たない。<br>変えることが私たちの使命だから。</p>
-                    </div>
-
-                    <!-- 導入本文 + 装飾画像 -->
-                    <div class="p-sustainability__intro">
-                        <p class="p-sustainability__introText">BEETLEグループは、資源物や廃棄物の収集運搬から資源化および処理、情報管理やDXソリューションまでを一貫して担う「環境トータルサポートサービス」を提供しています。持続可能な社会の実現に向け、事業活動を通じて環境負荷の低減と地域社会への貢献に取り組んでいます。</p>
-                        <div class="p-sustainability__introImgs" aria-hidden="true">
-                            <span class="p-sustainability__introImg p-sustainability__introImg--03"></span>
-                            <span class="p-sustainability__introImg p-sustainability__introImg--01"></span>
-                            <span class="p-sustainability__introImg p-sustainability__introImg--02"></span>
-                        </div>
-                    </div>
-
                     <!-- 活動報告 -->
                     <section class="p-sustainability__block js-localNavTarget" id="activity">
                         <h2 class="p-sustainability__heading">活動報告</h2>
 
-                        <?php if (have_posts()) : ?>
+                        <?php
+                        $activity_query = new WP_Query([
+                            'post_type' => $activity_post_type,
+                            'posts_per_page' => -1,
+                        ]);
+                        ?>
+                        <?php if ($activity_query->have_posts()) : ?>
                         <div class="p-sustainability__activity">
                             <div class="p-sustainability__slider splide js-activitySlider" aria-label="活動報告">
                                 <div class="splide__track">
                                     <ul class="splide__list">
-                                        <?php while (have_posts()) : the_post(); ?>
+                                        <?php while ($activity_query->have_posts()) : $activity_query->the_post(); ?>
                                         <li class="splide__slide">
                                             <article class="p-sustainability__card">
                                                 <a class="p-sustainability__cardLink" href="<?php the_permalink(); ?>">
@@ -191,7 +201,7 @@ get_header(); ?>
                             <table class="p-sustainability__table">
                                 <thead>
                                     <tr>
-                                        <th scope="col" class="p-sustainability__th p-sustainability__th--issue">重要課題（マテリアリティ）</th>
+                                        <th scope="col" colspan="2" class="p-sustainability__th p-sustainability__th--issue">重要課題（マテリアリティ）</th>
                                         <th scope="col" class="p-sustainability__th p-sustainability__th--esg">E<span class="p-sustainability__thNote">（環境）</span></th>
                                         <th scope="col" class="p-sustainability__th p-sustainability__th--esg">S<span class="p-sustainability__thNote">（社会）</span></th>
                                         <th scope="col" class="p-sustainability__th p-sustainability__th--esg">G<span class="p-sustainability__thNote">（ガバナンス）</span></th>
@@ -199,8 +209,9 @@ get_header(); ?>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($materiality_rows as $row) : ?>
+                                    <?php foreach ($materiality_rows as $i => $row) : ?>
                                     <tr>
+                                        <td class="p-sustainability__td p-sustainability__td--no"><?php echo esc_html($i + 1); ?></td>
                                         <th scope="row" class="p-sustainability__td p-sustainability__td--issue"><?php echo esc_html($row['title']); ?></th>
                                         <td class="p-sustainability__td p-sustainability__td--esg">
                                             <?php if ($row['e']) : ?><span class="p-sustainability__mark" aria-label="該当"></span><?php endif; ?>
@@ -266,10 +277,8 @@ get_header(); ?>
                         wp_reset_postdata(); ?>
 
                         <div class="p-sustainability__more">
-                            <a class="p-sustainability__moreBtn" href="<?php echo esc_url(get_post_type_archive_link($topics_post_type)); ?>">
-                                <span class="p-sustainability__moreBtnText">サステナビリティトピックス一覧</span>
-                                <span class="p-sustainability__moreBtnIcon" aria-hidden="true"></span>
-                            </a>
+                            <?php $topics_archive_link = get_term_link($topics_term, $topics_taxonomy); ?>
+                            <a class="c-link" href="<?php echo esc_url(is_wp_error($topics_archive_link) ? '#' : $topics_archive_link); ?>">サステナビリティトピックス一覧</a>
                         </div>
                     </section>
 

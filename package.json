@@ -22,6 +22,7 @@
   },
   "scripts": {
     "dev": "concurrently \"yarn watch:scss\" \"vite --host\"",
+    "dev:css": "vite build --watch --config vite.config.css.js",
     "watch:scss": "node bin/watch-scss-globs.js",
     "build": "yarn format && rimraf assets && vite build",
     "preview": "vite preview",

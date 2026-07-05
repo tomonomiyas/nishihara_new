@@ -116,7 +116,7 @@ get_header(); ?>
                 <?php if (function_exists('bcn_display')) : ?>
                 <?php bcn_display(); ?>
                 <?php else : ?>
-                <a href="<?php page_path(); ?>">トップページ</a><span class="separator">&gt;</span>活動報告
+                <a href="<?php page_path(); ?>">トップページ</a><span class="separator">&gt;</span><a href="<?php echo esc_url($archive_url); ?>">サステナビリティ</a><span class="separator">&gt;</span><?php the_title(); ?>
                 <?php endif; ?>
             </div>
             <a href="#" class="p-breadcrumb__totop" aria-label="ページトップへ戻る">
