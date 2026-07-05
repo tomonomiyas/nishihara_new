@@ -5,17 +5,18 @@
  * カスタム投稿タイプ sustainability の single テンプレート
  */
 
-// サイドナビ項目（サステナビリティ配下・businessと同様の追従ナビ）
-$sustainability_nav = [
-    ['label' => '活動報告',                 'url' => get_post_type_archive_link('sustainability'), 'current' => true],
-    ['label' => '推進体制',                 'url' => '#'],
-    ['label' => '推進計画',                 'url' => '#'],
-    ['label' => '重要課題',                 'url' => '#'],
-    ['label' => 'サステナビリティトピックス', 'url' => '#'],
-];
-
 // 一覧（アーカイブ）へのリンク
 $archive_url = get_post_type_archive_link('sustainability');
+
+// サイドナビ項目（サステナビリティ配下・businessと同様の追従ナビ）
+// 各項目は archive-sustainability.php 内のアンカーセクション（#activity/#system/#plan/#materiality/#topics）へ遷移する
+$sustainability_nav = [
+    ['label' => '活動報告',                 'url' => $archive_url . '#activity',    'current' => true],
+    ['label' => '推進体制',                 'url' => $archive_url . '#system'],
+    ['label' => '推進計画',                 'url' => $archive_url . '#plan'],
+    ['label' => '重要課題',                 'url' => $archive_url . '#materiality'],
+    ['label' => 'サステナビリティトピックス', 'url' => $archive_url . '#topics'],
+];
 
 get_header(); ?>
 <main class="l-page p-sustainabilitySingle">
