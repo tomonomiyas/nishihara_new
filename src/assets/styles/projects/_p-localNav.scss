@@ -1,70 +1,132 @@
 @use "../global" as *;
 
-// 会社案内など下層ページ共通のローカルナビ（右カラム）
+// サステナビリティ活動報告アーカイブの追従サイドナビ（右カラム）
 // デザインは c-localNav（会社案内サイドナビ）に揃える。
+// SPファースト：既定は罫線リスト型（single-sustainability と同じ見た目）。
+// 2カラム化する lg（=__side が 280px サイドバーになる）以上でのみブルーヘッダ型に切り替える。
 // HTML構造・JS（アンカースクロール / current 切替）はそのまま、見た目のみ共通化する。
 .p-localNav {
   width: 100%;
+}
+
+// 項目リスト全体
+.p-localNav__list {
+  padding-block: calc(12 * var(--to-rem)) 0;
+  padding-inline: calc(20 * var(--to-rem));
 
   @include mq("md") {
-    flex-shrink: 0;
-    width: calc(280 * var(--to-rem));
+    padding-inline: calc(40 * var(--to-rem));
+  }
+
+  // lg：ブルーヘッダ型では左ボーダー＋インデント無し
+  @include mq("lg") {
+    padding-block: 0;
+    padding-inline: 0;
+    border-left: 2px solid var(--color-border-accent);
   }
 }
 
-// 見出し（青背景タブ）
+// 見出し（SP/タブレットはプレーンテキスト＋下線、lg でブルーヘッダ）
 .p-localNav__head {
   position: relative;
   display: flex;
   align-items: center;
-  height: calc(72 * var(--to-rem));
-  padding-inline: calc(32 * var(--to-rem));
+  padding-block: calc(4 * var(--to-rem));
   font-family: var(--base-font-family);
   font-size: calc(16 * var(--to-rem));
-  font-weight: var(--fw-bold);
-  color: var(--color-white);
-  background-color: var(--color-accent);
+  font-weight: var(--fw-medium);
+  line-height: 2;
+  color: var(--color-text-main);
+
+  @include mq("md") {
+    font-size: calc(20 * var(--to-rem));
+  }
+
+  // lg：白文字＋アクセント背景のブルーヘッダ
+  @include mq("lg") {
+    height: calc(72 * var(--to-rem));
+    padding-block: 0;
+    padding-inline: calc(32 * var(--to-rem));
+    font-size: calc(16 * var(--to-rem));
+    font-weight: var(--fw-bold);
+    color: var(--color-white);
+    background-color: var(--color-accent);
+  }
 }
 
-// 見出しの右矢印
-.p-localNav__head::after {
-  width: calc(6 * var(--to-rem));
-  height: calc(12 * var(--to-rem));
-  margin-inline-start: auto;
+// 見出し下の下線（SP/タブレットのみ）。l-inner のパディング分だけ外へ伸ばして
+// コンテンツ端＝画面端まで届かせる。lg のブルーヘッダ時は出さない。
+.p-localNav__head::before {
+  position: absolute;
+  right: calc(-1 * var(--padding-inner-sp));
+  bottom: 0;
+  left: calc(-1 * var(--padding-inner-sp));
+  height: 2px;
+  pointer-events: none;
   content: "";
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 12'%3E%3Cpath d='M0 0l6 6-6 6' fill='none' stroke='white'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-size: contain;
+  background-color: var(--color-border-accent);
+
+  @include mq("md") {
+    right: calc(-1 * var(--padding-inner-tab));
+    left: calc(-1 * var(--padding-inner-tab));
+  }
+
+  @include mq("lg") {
+    content: none;
+  }
 }
 
-// 項目リスト全体の左ボーダー
-.p-localNav__list {
-  border-left: 2px solid var(--color-border-accent);
+// 見出しの右矢印（lg のブルーヘッダ時のみ）
+.p-localNav__head::after {
+  @include mq("lg") {
+    width: calc(6 * var(--to-rem));
+    height: calc(12 * var(--to-rem));
+    margin-inline-start: auto;
+    content: "";
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 12'%3E%3Cpath d='M0 0l6 6-6 6' fill='none' stroke='white'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
 }
 
+// 項目リンク（SP/タブレットは罫線リスト、lg で左ボーダー区切り）
 .p-localNav__link {
   position: relative;
   display: flex;
   align-items: center;
-  min-height: calc(56 * var(--to-rem));
-  padding-block: calc(16 * var(--to-rem));
-  padding-inline: calc(32 * var(--to-rem));
+  padding-block: calc(8 * var(--to-rem));
   font-family: var(--base-font-family);
   font-size: calc(16 * var(--to-rem));
   font-weight: var(--fw-medium);
+  line-height: 2;
   color: var(--color-text-main);
+  border-bottom: 1px solid var(--color-border-accent);
   transition: color var(--duration);
+
+  @include mq("md") {
+    padding-block: calc(12 * var(--to-rem));
+  }
+
+  // lg：ブルーヘッダ型は罫線を持たず左ボーダーで区切る
+  @include mq("lg") {
+    min-height: calc(56 * var(--to-rem));
+    padding-block: calc(16 * var(--to-rem));
+    padding-inline: calc(32 * var(--to-rem));
+    border-bottom: none;
+  }
 }
 
-// カレント項目左の縦線（アクセント）
+// カレント項目左の縦線（アクセント）は lg のカレント項目のみ表示
 .p-localNav__item--current > .p-localNav__link::before {
-  position: absolute;
-  top: 0;
-  left: -2px;
-  width: calc(3 * var(--to-rem));
-  height: 100%;
-  content: "";
-  background-color: var(--color-accent);
+  @include mq("lg") {
+    position: absolute;
+    top: 0;
+    left: -2px;
+    width: calc(3 * var(--to-rem));
+    height: 100%;
+    content: "";
+    background-color: var(--color-accent);
+  }
 }
 
 @media (any-hover: hover) {
