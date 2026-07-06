@@ -1,17 +1,20 @@
 @use "../global" as *;
 
 .p-top-group {
-  padding-block: calc(100 * var(--to-rem));
+  padding-block: calc(40 * var(--to-rem));
   background-color: var(--color-bg-light); // #EFF6FA
 }
 
 .p-top-group__inner {
-  max-width: calc(1200 * var(--to-rem)); // export_0008 says cards are 580*2 + gap
+  max-width: calc(1220 * var(--to-rem)); // export_0008 says cards are 580*2 + gap
   padding-inline: var(--padding-inner);
   margin-inline: auto;
 
   .c-section-title {
-    margin-block-end: calc(50 * var(--to-rem));
+    margin-block-end: calc(32 * var(--to-rem));
+    @include mq("md"){ 
+      margin-block-end: calc(40 * var(--to-rem));
+    }
   }
 }
 
@@ -22,7 +25,6 @@
 
   @include mq(md) {
     grid-template-columns: repeat(2, 1fr);
-    gap: calc(40 * var(--to-rem));
   }
 }
 
@@ -31,6 +33,10 @@
   padding: calc(25 * var(--to-rem)) calc(20 * var(--to-rem));
   background-color: var(--color-white);
   border-radius: calc(2 * var(--to-rem));
+
+  @include mq("md"){ 
+  padding: calc(16 * var(--to-rem)) calc(15 * var(--to-rem));
+  }
 }
 
 // 1st & 2nd cards: Hover action for the whole card
@@ -116,8 +122,45 @@
 }
 
 .p-top-group__logo {
-  max-height: calc(50 * var(--to-rem));
+  width: auto;
+  max-width: 100%;
+  height: auto;
   object-fit: contain;
+}
+
+// 各グループ会社ロゴは縦横比がバラバラなので、アイテムごとにモディファイヤーで
+// 表示幅を個別調整する（SP / md でそれぞれ指定）。数値はデザイン基準の調整用。
+.p-top-group__logo--beetle {
+  width: calc(150 * var(--to-rem));
+
+  @include mq(md) {
+    width: calc(190 * var(--to-rem));
+  }
+}
+
+.p-top-group__logo--engineering {
+  width: calc(220 * var(--to-rem));
+
+  @include mq(md) {
+    width: calc(280 * var(--to-rem));
+  }
+}
+
+.p-top-group__logo--management {
+  width: calc(260 * var(--to-rem));
+
+  @include mq(md) {
+    width: calc(380 * var(--to-rem));
+    min-height: calc(50 * var(--to-rem));
+  }
+}
+
+.p-top-group__logo--rebit-japan {
+  width: calc(210 * var(--to-rem));
+
+  @include mq(md) {
+    width: calc(270 * var(--to-rem));
+  }
 }
 
 .p-top-group__item-title {
@@ -126,6 +169,24 @@
   line-height: 1.6;
   color: var(--color-text-main);
   text-align: center;
+}
+
+// SP: 会社名と事業名を2行に分ける（デザイン 0091 / 0092）。PC は「｜」区切りで1行。
+.p-top-group__item-title-name,
+.p-top-group__item-title-biz {
+  display: block;
+
+  @include mq(md) {
+    display: inline;
+  }
+}
+
+.p-top-group__item-title-sep {
+  display: none;
+
+  @include mq(md) {
+    display: inline;
+  }
 }
 
 .p-top-group__subtitle-section {
@@ -148,8 +209,12 @@
 
 .p-top-group__sub-links {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr; // SP: 1列で縦積み（デザイン 0092）
   gap: calc(8 * var(--to-rem));
+
+  @include mq(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   .p-top-group__item:nth-child(4) & {
     display: flex;
@@ -159,6 +224,10 @@
 
 .p-top-group__sub-link {
   position: relative;
+  display: flex; // SP: ロゴを中央寄せしてカード高さを揃える
+  align-items: center;
+  justify-content: center;
+  padding: calc(6 * var(--to-rem)) calc(16 * var(--to-rem));
   overflow: hidden;
   background-color: var(--color-white);
   border: 2px solid transparent;
@@ -185,13 +254,20 @@
       }
     }
   }
+}
 
-  .p-top-group__logo {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    border-block-end: none;
-  }
+.p-top-group__sub-link picture {
+  display: block;
+  width: min(100%, calc(150 * var(--to-rem)));
+  margin-inline: auto;
+}
+
+// サブリンク内のロゴのみ 4:1 のボックスに揃える（上部の会社ロゴには効かせない）
+.p-top-group__sub-link .p-top-group__logo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 200 / 50;
+  object-fit: contain;
 }
 
 .p-top-group__external-icon {
@@ -201,9 +277,23 @@
   z-index: 6;
 }
 
+// サブリンクカード右上の外部リンクアイコン（デザイン 0092）
+.p-top-group__sub-link-icon {
+  position: absolute;
+  top: calc(6 * var(--to-rem));
+  right: calc(6 * var(--to-rem));
+  z-index: 6;
+  width: calc(12 * var(--to-rem));
+  height: calc(12 * var(--to-rem));
+}
+
 .p-top-group__more {
-  margin-block-start: calc(60 * var(--to-rem));
+  margin-block-start: calc(32 * var(--to-rem));
   text-align: center;
+
+  @include mq("md"){ 
+    margin-block-start: calc(40 * var(--to-rem));
+  }
 }
 
 .p-top-group__more-btn {

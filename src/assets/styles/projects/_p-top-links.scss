@@ -1,11 +1,11 @@
 @use "../global" as *;
 
 .p-top-links {
-  padding-block: calc(80 * var(--to-rem));
+  padding-block: calc(40 * var(--to-rem));
 }
 
 .p-top-links__inner {
-  max-width: calc(1520 * var(--to-rem));
+  max-width: calc(1560 * var(--to-rem));
   padding-inline: var(--padding-inner);
   margin-inline: auto;
 }
@@ -13,10 +13,15 @@
 .p-top-links__list {
   display: flex;
   flex-direction: column;
-  gap: calc(20 * var(--to-rem));
+  gap: calc(40 * var(--to-rem));
 
   @include mq(md) {
     flex-direction: row;
+    align-items: flex-start; // カードごとに高さを持たせる（リンク数で高さが変わる）
+    gap: calc(20 * var(--to-rem));
+  }
+
+  @include mq(xl) {
     gap: calc(60 * var(--to-rem));
   }
 }
@@ -24,10 +29,15 @@
 .p-top-links__item {
   position: relative;
   flex: 1;
-  aspect-ratio: 730 / 240;
   overflow: hidden;
   background-color: var(--color-bg-light);
-  border-radius: calc(2 * var(--to-rem));
+  border-radius: calc(4 * var(--to-rem));
+
+  /* PC（pc=1260px以上）: カード＋ホバー展開レイアウト */
+  @include mq(pc) {
+    min-height: calc(240 * var(--to-rem));
+    border-radius: calc(2 * var(--to-rem));
+  }
 }
 
 .p-top-links__link {
@@ -36,11 +46,11 @@
   height: 100%;
 }
 
+/* --- 画像: カード全面（SP/タブレット・PC 共通で背面レイヤー） --- */
 .p-top-links__bg {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  z-index: 0;
 }
 
 .p-top-links__bg img {
@@ -50,78 +60,70 @@
   transition: transform var(--duration);
 }
 
-@media (any-hover: hover) {
-  .p-top-links__item:hover {
-    .p-top-links__bg img {
-      transform: scale(1.05);
-    }
-
-    .p-top-links__content {
-      pointer-events: none;
-      opacity: 0;
-      transform: translateY(calc(-4 * var(--to-rem)));
-    }
-
-    .p-top-links__hover {
-      pointer-events: auto;
-      opacity: 1;
-      transform: scaleY(1);
-    }
-
-    .p-top-links__hover-title {
-      opacity: 1;
-    }
-  }
-}
-
-.p-top-links__btn {
-  @include mq(md) {
-    display: flex;
-    justify-content: center;
-    margin-top: calc(83 * var(--to-rem));
-  }
-}
-
+/* --- タイトル帯（SP/タブレット: 画像上部に重なる約70pxの帯 / PC: カード内フロー） --- */
 .p-top-links__content {
   position: relative;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  padding: calc(45 * var(--to-rem)) calc(31 * var(--to-rem)) calc(20 * var(--to-rem)) calc(40 * var(--to-rem));
-  transition:
-    opacity 0.3s,
-    transform 0.3s;
+  min-height: calc(70 * var(--to-rem)); // パネル開始位置（＝画像が見える帯の高さ）
+  padding: calc(24 * var(--to-rem)) calc(16 * var(--to-rem)) 0;
+
+  @include mq(pc) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: calc(240 * var(--to-rem)); // カード高さの実体（幅非依存）
+    padding: calc(45 * var(--to-rem)) calc(31 * var(--to-rem)) calc(20 * var(--to-rem)) calc(40 * var(--to-rem));
+    transition:
+      opacity var(--duration),
+      transform var(--duration);
+  }
 }
 
 .p-top-links__title {
   font-family: var(--base-font-family);
-  font-size: calc(20 * var(--to-rem));
+  font-size: calc(16 * var(--to-rem));
   font-weight: var(--fw-bold);
-  line-height: 1.6;
+  line-height: calc(24 / 16);
   color: var(--color-bg-light); // #EFF6FA
   text-shadow: 0 3px 10px rgb(0 0 0 / 76%);
+
+  @include mq(pc) {
+    font-size: calc(20 * var(--to-rem));
+  }
 }
 
 .p-top-links__line {
   display: block;
   height: 1px;
+  margin-block-start: calc(4 * var(--to-rem));
   background-color: var(--color-white);
 }
 
 .p-top-links__line--company {
-  width: calc(80 * var(--to-rem));
+  width: calc(64 * var(--to-rem));
+
+  @include mq(pc) {
+    width: calc(80 * var(--to-rem));
+  }
 }
 
 .p-top-links__line--sustainability {
-  width: calc(158 * var(--to-rem));
+  width: calc(127 * var(--to-rem));
+
+  @include mq(pc) {
+    width: calc(158 * var(--to-rem));
+  }
 }
 
+/* View more サークル（PC のみ表示） */
 .p-top-links__more {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  display: none;
+
+  @include mq(pc) {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
 }
 
 .p-top-links__more-icon {
@@ -147,26 +149,44 @@
   white-space: nowrap;
 }
 
-/* Hover State Overlay */
+/* --- リンク一覧パネル（SP/タブレット: 画像に重なる半透明パネル・常時表示 / PC: ホバー展開オーバーレイ） --- */
 .p-top-links__hover {
-  position: absolute;
-  inset: 0;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  padding: calc(25 * var(--to-rem)) calc(40 * var(--to-rem));
-  pointer-events: none;
-  background-color: rgb(142 170 208 / 90%);
-  opacity: 0;
-  transition:
-    opacity 0.3s,
-    transform 0.3s;
-  transform: scaleY(0);
-  transform-origin: top;
+  position: relative;
+  z-index: 1;
+  padding: calc(16 * var(--to-rem));
+  background-color: rgb(142 170 208 / 90%); // #8EAAD0 90%
+
+  @include mq(pc) {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    padding: calc(25 * var(--to-rem)) calc(10 * var(--to-rem));
+    pointer-events: none;
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition:
+      opacity var(--duration),
+      transform var(--duration);
+  }
+
+  br {
+    display: none;
+    @media screen and (max-width:460px){
+      display: block;
+    }
+  }
 }
 
 .p-top-links__hover-title-wrap {
-  margin-block-end: calc(15 * var(--to-rem));
+  display: none; // 装飾英字は SP/タブレットでは非表示
+
+  @include mq(pc) {
+    display: block;
+    margin-block-end: calc(15 * var(--to-rem));
+  }
 }
 
 .p-top-links__hover-title {
@@ -190,8 +210,15 @@
 
 .p-top-links__hover-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: calc(12 * var(--to-rem)) calc(12 * var(--to-rem));
+  grid-template-columns: repeat(2, 1fr);
+  gap: calc(10 * var(--to-rem));
+
+  @include mq(pc) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: calc(12 * var(--to-rem));
+    width: min(100%, calc(650 * var(--to-rem)));
+    margin-inline: auto;
+  }
 }
 
 .p-top-links__hover-item {
@@ -200,28 +227,39 @@
 
 .p-top-links__hover-link {
   display: flex;
+  gap: calc(6 * var(--to-rem));
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: calc(41 * var(--to-rem));
+  padding-block: calc(10 * var(--to-rem));
   padding-inline: calc(12 * var(--to-rem));
-  font-size: calc(15 * var(--to-rem));
+  font-size: calc(14 * var(--to-rem));
   font-weight: var(--fw-medium);
+  line-height: 1.4;
   color: var(--color-text-main);
-  background-color: var(--color-bg-light);
+  background-color: var(--color-bg-light); // #EFF6FA
   border-radius: var(--radius-base);
   transition:
-    background-color 0.3s,
-    color 0.3s;
+    background-color var(--duration),
+    color var(--duration);
+    height: 100%;
 
   &::after {
+    flex-shrink: 0;
     width: calc(4 * var(--to-rem));
     height: calc(8 * var(--to-rem));
     content: "";
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 8'%3E%3Cpath d='M0 0l4 4-4 4' fill='none' stroke='%233171BF' stroke-width='1'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-size: contain;
-    transition: transform 0.3s;
+    transition: transform var(--duration);
+  }
+
+  @include mq(pc) {
+    gap: 0;
+    padding-block: calc(11 * var(--to-rem)); // 固定 height をやめ折り返しにも対応
+    padding-inline: calc(8 * var(--to-rem));
+    font-size: calc(15 * var(--to-rem));
   }
 
   @media (any-hover: hover) {
@@ -231,6 +269,31 @@
       &::after {
         transform: translateX(calc(4 * var(--to-rem)));
       }
+    }
+  }
+}
+
+/* PC（pc=1260px以上・hover対応端末）: ホバーでリンク一覧を展開 */
+@include mq(pc) {
+  @media (any-hover: hover) {
+    .p-top-links__item:hover .p-top-links__bg img {
+      transform: scale(1.05);
+    }
+
+    .p-top-links__item:hover .p-top-links__content {
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(calc(-4 * var(--to-rem)));
+    }
+
+    .p-top-links__item:hover .p-top-links__hover {
+      pointer-events: auto;
+      opacity: 1;
+      transform: scaleY(1);
+    }
+
+    .p-top-links__item:hover .p-top-links__hover-title {
+      opacity: 1;
     }
   }
 }

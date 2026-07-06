@@ -22,7 +22,7 @@
     margin-top: calc(120 * var(--to-rem));
   }
 
-  @include mq("lg") {
+  @include mq("pc") {
     flex-direction: row;
     gap: calc(40 * var(--to-rem));
   }
