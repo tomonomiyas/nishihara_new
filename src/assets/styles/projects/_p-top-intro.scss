@@ -1,8 +1,12 @@
 @use "../global" as *;
 
 .p-top-intro {
-  padding-block: calc(100 * var(--to-rem));
+  padding-block: calc(40 * var(--to-rem));
   text-align: center;
+
+  @include mq("md"){ 
+  padding-block: calc( 80* var(--to-rem));
+  }
 }
 
 .p-top-intro__catch {
@@ -16,9 +20,26 @@
   font-weight: var(--fw-bold);
   line-height: 1.4;
   color: var(--color-accent);
+  width: min(100%, calc(250 * var(--to-rem)));
+  margin-inline: auto;
 
   @include mq(md) {
+    width:  100%;
+    margin-inline: unset;
     font-size: calc(40 * var(--to-rem));
+  }
+}
+
+.p-top-intro__main-copy-line {
+  display: block;
+  text-align: left;
+
+  &:last-child {
+    text-align: right;
+  }
+
+  @include mq(md) {
+    display: inline;
   }
 }
 
@@ -33,15 +54,17 @@
 .p-top-intro__body {
   max-width: calc(1180 * var(--to-rem));
   padding-inline: var(--padding-inner);
-  margin-block-end: calc(60 * var(--to-rem));
+  margin-block-end: calc(54 * var(--to-rem));
   margin-inline: auto;
   font-family: var(--base-font-family);
   font-size: calc(16 * var(--to-rem));
   line-height: 2;
   color: var(--color-text-main);
-  text-align: center;
+  text-align: left;
 
   @include mq(md) {
+    margin-block-end: calc(50 * var(--to-rem));
+    text-align: center;
     line-height: 32 / 16;
   }
 }

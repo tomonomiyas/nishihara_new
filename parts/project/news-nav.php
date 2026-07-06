@@ -29,10 +29,6 @@ $news_archive_url = get_post_type_archive_link('news');
       </li>
       <?php if (!is_wp_error($news_terms) && !empty($news_terms)) : ?>
         <?php foreach ($news_terms as $term) : ?>
-          <?php // 活動報告はサステナビリティページ専用のため、お知らせのカテゴリーナビには出さない
-          if ($term->slug === 'activity-report') {
-            continue;
-          } ?>
           <?php $is_current = (is_tax('news_category', $term->term_id)); ?>
           <li class="p-news__navItem<?php echo $is_current ? ' p-news__navItem--current' : ''; ?>">
             <a class="p-news__navLink" href="<?php echo esc_url(get_term_link($term)); ?>"><?php echo esc_html($term->name); ?></a>

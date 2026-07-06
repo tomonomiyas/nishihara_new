@@ -63,8 +63,9 @@
   width: calc(30 * var(--to-rem));
   height: calc(30 * var(--to-rem));
   background-color: var(--color-accent);
+  border: 1px solid var(--color-accent);
   border-radius: 100%;
-  transition: opacity var(--duration);
+  transition: background-color var(--duration);
 }
 
 .p-breadcrumb__totopArrow {
@@ -76,10 +77,17 @@
   border-top: 2px solid var(--color-white);
   border-right: 2px solid var(--color-white);
   transform: translate(-50%, -50%) rotate(-45deg);
+  transition: border-color var(--duration);
 }
 
 @media (any-hover: hover) {
+  // hover 時にアイコンと背景色を反転（背景=白 / 矢印=アクセント）
   .p-breadcrumb__totop:hover {
-    opacity: 0.8;
+    background-color: var(--color-white);
+  }
+
+  .p-breadcrumb__totop:hover .p-breadcrumb__totopArrow {
+    border-top-color: var(--color-accent);
+    border-right-color: var(--color-accent);
   }
 }

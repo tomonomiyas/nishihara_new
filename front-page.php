@@ -76,7 +76,7 @@
                                 </li>
                                 <li class="p-top-links__hover-item">
                                     <a href="<?php page_path('company/group'); ?>"
-                                        class="p-top-links__hover-link">グループ企業・関連団体</a>
+                                        class="p-top-links__hover-link">グループ企業・<br>関連団体</a>
                                 </li>
                             </ul>
                         </div>
@@ -232,7 +232,7 @@
     <section class="p-top-intro">
         <div class="p-top-intro__inner l-inner">
             <div class="p-top-intro__catch">
-                <h2 class="p-top-intro__main-copy">まちの呼吸を、ミライの鼓動へ</h2>
+                <h2 class="p-top-intro__main-copy"><span class="p-top-intro__main-copy-line">まちの呼吸を、</span><span class="p-top-intro__main-copy-line">ミライの鼓動へ</span></h2>
                 <p class="p-top-intro__sub-copy">Town’s Breath, Future’s Pulse.</p>
             </div>
             <p class="p-top-intro__body">
@@ -255,6 +255,9 @@
                     </svg>
                 </button>
                 <picture>
+                    <source srcset="<?php img_path('/top_intro_diagram_sp.webp'); ?>" type="image/webp"
+                        media="(max-width: 767px)">
+                    <source srcset="<?php img_path('/top_intro_diagram_sp.png'); ?>" media="(max-width: 767px)">
                     <source srcset="<?php img_path('/top_intro_diagram.webp'); ?>" type="image/webp">
                     <img src="<?php img_path('/top_intro_diagram.png'); ?>" alt="西原商事グループの取り組み" width="948"
                         height="543">
@@ -284,8 +287,14 @@
                 </svg>
             </button>
             <div class="c-modal__image-wrap">
-                <img src="<?php img_path('/top_intro_diagram.png'); ?>" alt="西原商事グループの取り組み 大" width="1200"
-                    height="auto">
+                <picture>
+                    <source srcset="<?php img_path('/top_intro_diagram_sp.webp'); ?>" type="image/webp"
+                        media="(max-width: 767px)">
+                    <source srcset="<?php img_path('/top_intro_diagram_sp.png'); ?>" media="(max-width: 767px)">
+                    <source srcset="<?php img_path('/top_intro_diagram.webp'); ?>" type="image/webp">
+                    <img src="<?php img_path('/top_intro_diagram.png'); ?>" alt="西原商事グループの取り組み 大" width="1200"
+                        height="auto">
+                </picture>
             </div>
         </div>
     </div>
@@ -304,10 +313,10 @@
                             <picture>
                                 <source srcset="<?php img_path('/logo_beetle.webp'); ?>" type="image/webp">
                                 <img src="<?php img_path('/logo_beetle.png'); ?>" alt="株式会社西原商事"
-                                    class="p-top-group__logo">
+                                    class="p-top-group__logo p-top-group__logo--beetle">
                             </picture>
                         </div>
-                        <p class="p-top-group__item-title">株式会社 西原商事 ｜ 廃棄物収集・運搬事業</p>
+                        <p class="p-top-group__item-title"><span class="p-top-group__item-title-name">株式会社 西原商事</span><span class="p-top-group__item-title-sep"> ｜ </span><span class="p-top-group__item-title-biz">廃棄物収集・運搬事業</span></p>
                         <svg class="p-top-group__external-icon" xmlns="http://www.w3.org/2000/svg" width="14"
                             height="14" viewBox="0 0 14 14">
                             <path d="M96,0V11.375h11.375V0Zm10.281,10.281H97.094V1.094h9.188Z"
@@ -326,10 +335,10 @@
                             <picture>
                                 <source srcset="<?php img_path('/logo_beetle_eng.webp'); ?>" type="image/webp">
                                 <img src="<?php img_path('/logo_beetle_eng.png'); ?>" alt="株式会社ビートルエンジニアリング"
-                                    class="p-top-group__logo">
+                                    class="p-top-group__logo p-top-group__logo--engineering">
                             </picture>
                         </div>
-                        <p class="p-top-group__item-title">株式会社 ビートルエンジニアリング ｜廃棄物処理・リサイクル事業</p>
+                        <p class="p-top-group__item-title"><span class="p-top-group__item-title-name">株式会社 ビートルエンジニアリング</span><span class="p-top-group__item-title-sep"> ｜ </span><span class="p-top-group__item-title-biz">廃棄物処理・リサイクル事業</span></p>
                         <svg class="p-top-group__external-icon" xmlns="http://www.w3.org/2000/svg" width="14"
                             height="14" viewBox="0 0 14 14">
                             <path d="M96,0V11.375h11.375V0Zm10.281,10.281H97.094V1.094h9.188Z"
@@ -349,10 +358,10 @@
                                 <picture>
                                     <source srcset="<?php img_path('/logo_beetle_mgt.webp'); ?>" type="image/webp">
                                     <img src="<?php img_path('/logo_beetle_mgt.png'); ?>" alt="株式会社ビートルマネージメント"
-                                        class="p-top-group__logo">
+                                        class="p-top-group__logo p-top-group__logo--management">
                                 </picture>
                             </div>
-                            <p class="p-top-group__item-title">株式会社 ビートルマネージメント ｜ 廃棄物情報管理事業</p>
+                            <p class="p-top-group__item-title"><span class="p-top-group__item-title-name">株式会社 ビートルマネージメント</span><span class="p-top-group__item-title-sep"> ｜ </span><span class="p-top-group__item-title-biz">廃棄物情報管理事業</span></p>
                         </a>
                         <svg class="p-top-group__external-icon" xmlns="http://www.w3.org/2000/svg" width="14"
                             height="14" viewBox="0 0 14 14">
@@ -372,6 +381,15 @@
                                         <img src="<?php img_path('/logo_bee-net.png'); ?>" alt="ビーネットシステム"
                                             class="p-top-group__logo">
                                     </picture>
+                                    <svg class="p-top-group__sub-link-icon" xmlns="http://www.w3.org/2000/svg"
+                                        width="12" height="12" viewBox="0 0 14 14" aria-hidden="true">
+                                        <path d="M96,0V11.375h11.375V0Zm10.281,10.281H97.094V1.094h9.188Z"
+                                            transform="translate(-93.375)" fill="#3072bf" />
+                                        <path d="M1.094,106.281V96H0v11.375H11.375v-1.094H1.094Z"
+                                            transform="translate(0 -93.375)" fill="#3072bf" />
+                                        <path d="M205.3,131.778l3.223-3.223v2.319h1.094v-4.186h-4.186v1.094h2.319L204.531,131Z"
+                                            transform="translate(-198.938 -123.224)" fill="#3072bf" />
+                                    </svg>
                                 </a>
                                 <a href="https://www.dusttalk.com/" class="p-top-group__sub-link" target="_blank" rel="noopener noreferrer">
                                     <picture>
@@ -379,6 +397,15 @@
                                         <img src="<?php img_path('/logo_dustalk.png'); ?>" alt="ダストーク"
                                             class="p-top-group__logo">
                                     </picture>
+                                    <svg class="p-top-group__sub-link-icon" xmlns="http://www.w3.org/2000/svg"
+                                        width="12" height="12" viewBox="0 0 14 14" aria-hidden="true">
+                                        <path d="M96,0V11.375h11.375V0Zm10.281,10.281H97.094V1.094h9.188Z"
+                                            transform="translate(-93.375)" fill="#3072bf" />
+                                        <path d="M1.094,106.281V96H0v11.375H11.375v-1.094H1.094Z"
+                                            transform="translate(0 -93.375)" fill="#3072bf" />
+                                        <path d="M205.3,131.778l3.223-3.223v2.319h1.094v-4.186h-4.186v1.094h2.319L204.531,131Z"
+                                            transform="translate(-198.938 -123.224)" fill="#3072bf" />
+                                    </svg>
                                 </a>
                                 <a href="#" class="p-top-group__sub-link" target="_blank" rel="noopener noreferrer">
                                     <picture>
@@ -387,6 +414,15 @@
                                         <img src="<?php img_path('/logo_beetle-auction.png'); ?>" alt="ビートルオークション"
                                             class="p-top-group__logo">
                                     </picture>
+                                    <svg class="p-top-group__sub-link-icon" xmlns="http://www.w3.org/2000/svg"
+                                        width="12" height="12" viewBox="0 0 14 14" aria-hidden="true">
+                                        <path d="M96,0V11.375h11.375V0Zm10.281,10.281H97.094V1.094h9.188Z"
+                                            transform="translate(-93.375)" fill="#3072bf" />
+                                        <path d="M1.094,106.281V96H0v11.375H11.375v-1.094H1.094Z"
+                                            transform="translate(0 -93.375)" fill="#3072bf" />
+                                        <path d="M205.3,131.778l3.223-3.223v2.319h1.094v-4.186h-4.186v1.094h2.319L204.531,131Z"
+                                            transform="translate(-198.938 -123.224)" fill="#3072bf" />
+                                    </svg>
                                 </a>
                             </div>
                         </div>
@@ -400,10 +436,10 @@
                                 <picture>
                                     <source srcset="<?php img_path('/logo_rebit_japan.webp'); ?>" type="image/webp">
                                     <img src="<?php img_path('/logo_rebit_japan.png'); ?>" alt="株式会社リビットジャパン"
-                                        class="p-top-group__logo">
+                                        class="p-top-group__logo p-top-group__logo--rebit-japan">
                                 </picture>
                             </div>
-                            <p class="p-top-group__item-title">株式会社 リビットジャパン ｜ コンサルタント及びソリューション事業</p>
+                            <p class="p-top-group__item-title"><span class="p-top-group__item-title-name">株式会社 リビットジャパン</span><span class="p-top-group__item-title-sep"> ｜ </span><span class="p-top-group__item-title-biz">コンサルタント及びソリューション事業</span></p>
                         </a>
                         <svg class="p-top-group__external-icon" xmlns="http://www.w3.org/2000/svg" width="14"
                             height="14" viewBox="0 0 14 14">
@@ -423,6 +459,15 @@
                                         <img src="<?php img_path('/logo_rebit.png'); ?>" alt="リビット"
                                             class="p-top-group__logo">
                                     </picture>
+                                    <svg class="p-top-group__sub-link-icon" xmlns="http://www.w3.org/2000/svg"
+                                        width="12" height="12" viewBox="0 0 14 14" aria-hidden="true">
+                                        <path d="M96,0V11.375h11.375V0Zm10.281,10.281H97.094V1.094h9.188Z"
+                                            transform="translate(-93.375)" fill="#3072bf" />
+                                        <path d="M1.094,106.281V96H0v11.375H11.375v-1.094H1.094Z"
+                                            transform="translate(0 -93.375)" fill="#3072bf" />
+                                        <path d="M205.3,131.778l3.223-3.223v2.319h1.094v-4.186h-4.186v1.094h2.319L204.531,131Z"
+                                            transform="translate(-198.938 -123.224)" fill="#3072bf" />
+                                    </svg>
                                 </a>
                             </div>
                         </div>

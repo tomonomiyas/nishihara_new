@@ -142,74 +142,62 @@
                     <ul class="p-group__orgList">
                         <li class="p-group__orgItem">
                             <a class="p-group__orgLink" href="https://www.cps.go.jp/" target="_blank" rel="noopener noreferrer">
-                                <span class="p-group__orgText">サーキュラーパートナーズ</span>
-                                <img class="p-group__orgIcon" src="<?php img_path('/icon_external_link.svg'); ?>" alt="" width="12" height="12">
+                                <span class="p-group__orgText">サーキュラーパートナーズ</span><img class="p-group__orgIcon" src="<?php img_path('/icon_external_link_black.svg'); ?>" alt="" width="12" height="12">
                             </a>
                         </li>
                         <li class="p-group__orgItem">
                             <a class="p-group__orgLink" href="https://ondankataisaku.env.go.jp/decokatsu/" target="_blank" rel="noopener noreferrer">
-                                <span class="p-group__orgText">デコ活</span>
-                                <img class="p-group__orgIcon" src="<?php img_path('/icon_external_link.svg'); ?>" alt="" width="12" height="12">
+                                <span class="p-group__orgText">デコ活</span><img class="p-group__orgIcon" src="<?php img_path('/icon_external_link_black.svg'); ?>" alt="" width="12" height="12">
                             </a>
                         </li>
                         <li class="p-group__orgItem">
                             <a class="p-group__orgLink" href="https://www.biz-partnership.jp/" target="_blank" rel="noopener noreferrer">
-                                <span class="p-group__orgText">パートナーシップ構築宣言</span>
-                                <img class="p-group__orgIcon" src="<?php img_path('/icon_external_link.svg'); ?>" alt="" width="12" height="12">
+                                <span class="p-group__orgText">パートナーシップ構築宣言</span><img class="p-group__orgIcon" src="<?php img_path('/icon_external_link_black.svg'); ?>" alt="" width="12" height="12">
                             </a>
                         </li>
                         <li class="p-group__orgItem">
                             <a class="p-group__orgLink" href="https://cloma.net/" target="_blank" rel="noopener noreferrer">
-                                <span class="p-group__orgText">クリーン・オーシャン・マテリアル・アライアンス</span>
-                                <img class="p-group__orgIcon" src="<?php img_path('/icon_external_link.svg'); ?>" alt="" width="12" height="12">
+                                <span class="p-group__orgText">クリーン・オーシャン・マテリアル・アライアンス</span><img class="p-group__orgIcon" src="<?php img_path('/icon_external_link_black.svg'); ?>" alt="" width="12" height="12">
                             </a>
                         </li>
                         <li class="p-group__orgItem">
                             <a class="p-group__orgLink" href="https://www.jwma-tokyo.or.jp/" target="_blank" rel="noopener noreferrer">
-                                <span class="p-group__orgText">公益社団法人 全国都市清掃会議</span>
-                                <img class="p-group__orgIcon" src="<?php img_path('/icon_external_link.svg'); ?>" alt="" width="12" height="12">
+                                <span class="p-group__orgText">公益社団法人 全国都市清掃会議</span><img class="p-group__orgIcon" src="<?php img_path('/icon_external_link_black.svg'); ?>" alt="" width="12" height="12">
                             </a>
                         </li>
                         <li class="p-group__orgItem">
                             <a class="p-group__orgLink" href="http://kics-web.jp/" target="_blank" rel="noopener noreferrer">
-                                <span class="p-group__orgText">北九州環境ビジネス推進会</span>
-                                <img class="p-group__orgIcon" src="<?php img_path('/icon_external_link.svg'); ?>" alt="" width="12" height="12">
+                                <span class="p-group__orgText">北九州環境ビジネス推進会</span><img class="p-group__orgIcon" src="<?php img_path('/icon_external_link_black.svg'); ?>" alt="" width="12" height="12">
                             </a>
                         </li>
                         <li class="p-group__orgItem">
                             <a class="p-group__orgLink" href="https://ktq-gx.com/" target="_blank" rel="noopener noreferrer">
-                                <span class="p-group__orgText">北九州GX推進コンソーシアム</span>
-                                <img class="p-group__orgIcon" src="<?php img_path('/icon_external_link.svg'); ?>" alt="" width="12" height="12">
+                                <span class="p-group__orgText">北九州GX推進コンソーシアム</span><img class="p-group__orgIcon" src="<?php img_path('/icon_external_link_black.svg'); ?>" alt="" width="12" height="12">
                             </a>
                         </li>
                         <li class="p-group__orgItem">
                             <a class="p-group__orgLink" href="https://nature-kitakyushu.com/" target="_blank" rel="noopener noreferrer">
-                                <span class="p-group__orgText">北九州ネイチャーポジティブネットワーク</span>
-                                <img class="p-group__orgIcon" src="<?php img_path('/icon_external_link.svg'); ?>" alt="" width="12" height="12">
+                                <span class="p-group__orgText">北九州ネイチャーポジティブネットワーク</span><img class="p-group__orgIcon" src="<?php img_path('/icon_external_link_black.svg'); ?>" alt="" width="12" height="12">
                             </a>
                         </li>
                         <li class="p-group__orgItem">
                             <a class="p-group__orgLink" href="https://www.recycle-ken.or.jp/" target="_blank" rel="noopener noreferrer">
-                                <span class="p-group__orgText">公益社団法人 福岡県リサイクル総合研究事業化センター</span>
-                                <img class="p-group__orgIcon" src="<?php img_path('/icon_external_link.svg'); ?>" alt="" width="12" height="12">
+                                <span class="p-group__orgText">公益社団法人 福岡県リサイクル総合研究事業化センター</span><img class="p-group__orgIcon" src="<?php img_path('/icon_external_link_black.svg'); ?>" alt="" width="12" height="12">
                             </a>
                         </li>
                         <li class="p-group__orgItem">
                             <a class="p-group__orgLink" href="https://www.f-sanpai.or.jp/" target="_blank" rel="noopener noreferrer">
-                                <span class="p-group__orgText">公益社団法人 福岡県産業資源循環協会</span>
-                                <img class="p-group__orgIcon" src="<?php img_path('/icon_external_link.svg'); ?>" alt="" width="12" height="12">
+                                <span class="p-group__orgText">公益社団法人 福岡県産業資源循環協会</span><img class="p-group__orgIcon" src="<?php img_path('/icon_external_link_black.svg'); ?>" alt="" width="12" height="12">
                             </a>
                         </li>
                         <li class="p-group__orgItem">
                             <a class="p-group__orgLink" href="https://jaem.or.jp/" target="_blank" rel="noopener noreferrer">
-                                <span class="p-group__orgText">一般社団法人 廃棄物処理施設技術管理協会</span>
-                                <img class="p-group__orgIcon" src="<?php img_path('/icon_external_link.svg'); ?>" alt="" width="12" height="12">
+                                <span class="p-group__orgText">一般社団法人 廃棄物処理施設技術管理協会</span><img class="p-group__orgIcon" src="<?php img_path('/icon_external_link_black.svg'); ?>" alt="" width="12" height="12">
                             </a>
                         </li>
                         <li class="p-group__orgItem">
                             <a class="p-group__orgLink" href="https://www.asian-eca.org/" target="_blank" rel="noopener noreferrer">
-                                <span class="p-group__orgText">一般社団法人 アジア経営者連合会</span>
-                                <img class="p-group__orgIcon" src="<?php img_path('/icon_external_link.svg'); ?>" alt="" width="12" height="12">
+                                <span class="p-group__orgText">一般社団法人 アジア経営者連合会</span><img class="p-group__orgIcon" src="<?php img_path('/icon_external_link_black.svg'); ?>" alt="" width="12" height="12">
                             </a>
                         </li>
                     </ul>

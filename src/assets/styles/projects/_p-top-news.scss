@@ -1,9 +1,13 @@
 @use "../global" as *;
 
 .p-top-news {
-  padding-block: calc(80 * var(--to-rem));
+  padding-block: calc(40 * var(--to-rem));
   background-color: var(--color-bg-light); // #EFF6FA
   container-type: inline-size;
+
+  @include mq("md"){ 
+  padding-block: calc(43 * var(--to-rem)) calc(40 * var(--to-rem));
+  }
 }
 
 .p-top-news__columns {

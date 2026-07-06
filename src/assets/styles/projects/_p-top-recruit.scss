@@ -20,7 +20,7 @@
 .p-top-recruit__container {
   position: relative; // Added as origin for absolute child
   display: flex;
-  flex-direction: column-reverse; /* Mobile: Content below image */
+  flex-direction: column; /* Mobile: Content(blue) → button → image */
 
   @include mq(md) {
     flex-direction: row;
@@ -34,7 +34,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: calc(40 * var(--to-rem)) var(--padding-inner);
+  padding: calc(40 * var(--to-rem)) var(--padding-inner) calc(70 * var(--to-rem));
   overflow: hidden;
   background: linear-gradient(90deg, #3072bf 0%, #76cfd6 100%);
 
@@ -103,26 +103,52 @@
 }
 
 .p-top-recruit__btn-wrap {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  margin-block: calc(-28 * var(--to-rem)); /* SP: ボタンを青エリアと画像の境目にまたがせる（外形 56 の半分） */
+
   @include mq(md) {
     position: absolute;
     top: 50%;
     left: 50%;
-    z-index: 10;
-    transform: translate(calc(-50%), -50%); /* Design: button centered over the split */
+    display: block;
+    margin-block: 0;
+    transform: translate(-50%, -50%); /* Design: button centered over the split */
   }
 
   .c-btn {
+    /* SP（0093）: 白ボタン・アクセント文字/アイコン */
+    color: var(--color-accent);
+    background-color: var(--color-white);
+    border-color: var(--color-white);
+
     &::after {
       width: calc(14 * var(--to-rem));
       height: calc(14 * var(--to-rem));
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M96,0V11.375h11.375V0Zm10.281,10.281H97.094V1.094h9.188Z' transform='translate(-93.375)' fill='white'/%3E%3Cpath d='M1.094,106.281V96H0v11.375H11.375v-1.094H1.094Z' transform='translate(0 -93.375)' fill='white'/%3E%3Cpath d='M205.3,131.778l3.223-3.223v2.319h1.094v-4.186h-4.186v1.094h2.319L204.531,131Z' transform='translate(-198.938 -123.224)' fill='white'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M96,0V11.375h11.375V0Zm10.281,10.281H97.094V1.094h9.188Z' transform='translate(-93.375)' fill='%233072bf'/%3E%3Cpath d='M1.094,106.281V96H0v11.375H11.375v-1.094H1.094Z' transform='translate(0 -93.375)' fill='%233072bf'/%3E%3Cpath d='M205.3,131.778l3.223-3.223v2.319h1.094v-4.186h-4.186v1.094h2.319L204.531,131Z' transform='translate(-198.938 -123.224)' fill='%233072bf'/%3E%3C/svg%3E");
     }
 
-    @media (any-hover: hover) {
-      &:hover {
-        &::after {
-          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M96,0V11.375h11.375V0Zm10.281,10.281H97.094V1.094h9.188Z' transform='translate(-93.375)' fill='%233072bf'/%3E%3Cpath d='M1.094,106.281V96H0v11.375H11.375v-1.094H1.094Z' transform='translate(0 -93.375)' fill='%233072bf'/%3E%3Cpath d='M205.3,131.778l3.223-3.223v2.319h1.094v-4.186h-4.186v1.094h2.319L204.531,131Z' transform='translate(-198.938 -123.224)' fill='%233072bf'/%3E%3C/svg%3E");
-          transform: translateY(-50%); /* Disable the sliding animation of c-btn */
+    /* PC: アクセントボタン・白文字/アイコン */
+    @include mq(md) {
+      color: var(--color-white);
+      background-color: var(--color-accent);
+      border-color: var(--color-accent);
+
+      &::after {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M96,0V11.375h11.375V0Zm10.281,10.281H97.094V1.094h9.188Z' transform='translate(-93.375)' fill='white'/%3E%3Cpath d='M1.094,106.281V96H0v11.375H11.375v-1.094H1.094Z' transform='translate(0 -93.375)' fill='white'/%3E%3Cpath d='M205.3,131.778l3.223-3.223v2.319h1.094v-4.186h-4.186v1.094h2.319L204.531,131Z' transform='translate(-198.938 -123.224)' fill='white'/%3E%3C/svg%3E");
+      }
+
+      @media (any-hover: hover) {
+        &:hover {
+          color: var(--color-accent);
+          background-color: var(--color-white);
+
+          &::after {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M96,0V11.375h11.375V0Zm10.281,10.281H97.094V1.094h9.188Z' transform='translate(-93.375)' fill='%233072bf'/%3E%3Cpath d='M1.094,106.281V96H0v11.375H11.375v-1.094H1.094Z' transform='translate(0 -93.375)' fill='%233072bf'/%3E%3Cpath d='M205.3,131.778l3.223-3.223v2.319h1.094v-4.186h-4.186v1.094h2.319L204.531,131Z' transform='translate(-198.938 -123.224)' fill='%233072bf'/%3E%3C/svg%3E");
+            transform: translateY(-50%); /* Disable the sliding animation of c-btn */
+          }
         }
       }
     }

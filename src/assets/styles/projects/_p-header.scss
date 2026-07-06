@@ -28,13 +28,16 @@
 }
 
 .p-header__logo {
-  flex-shrink: 0;
-  width: calc(212 * var(--to-rem));
+  width: min(100%, calc(212 * var(--to-rem)));
   margin-inline-end: auto;
 
-  @include mq("md") {
-    width: calc(340 * var(--to-rem));
+  @include mq("md"){ 
+    width: min(100%, calc(300 * var(--to-rem)));
   }
+  @include mq("lg") {
+    width: min(100%, calc(340 * var(--to-rem)));
+  }
+
 }
 
 .p-header__logo a {
@@ -163,11 +166,12 @@
 
 .p-header__action-list {
   display: flex;
-  gap: calc(28 * var(--to-rem));
+  gap: calc(15 * var(--to-rem));
   align-items: center;
   height: inherit;
+  
 
-  @include mq("xl") {
+  @include mq("pc") {
     gap: calc(47 * var(--to-rem));
   }
 }

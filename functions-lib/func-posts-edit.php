@@ -15,18 +15,10 @@ function custom_main_query($query)
     $query->set('posts_per_page', '4');//SP用投稿数設定
   }
 
-  // お知らせアーカイブ（/news/）では「活動報告」カテゴリーを除外する。
-  // 活動報告はサステナビリティページ専用の中身のため、お知らせ一覧には混ぜない。
-  // ※ カテゴリー別アーカイブ（/news_category/xxx/）は is_tax のため対象外。
-  if ($query->is_post_type_archive('news')) {
-    $query->set('tax_query', array(
-      array(
-        'taxonomy' => 'news_category',
-        'field'    => 'slug',
-        'terms'    => array('activity-report'),
-        'operator' => 'NOT IN',
-      ),
-    ));
+  // お知らせ一覧（/news/）・カテゴリー別アーカイブは PC/SP とも1ページ10件。
+  // ※ 上の wp_is_mobile 設定より後に置いて上書きする。
+  if ($query->is_post_type_archive('news') || $query->is_tax('news_category')) {
+    $query->set('posts_per_page', 10);
   }
 }
 add_action('pre_get_posts', 'custom_main_query');

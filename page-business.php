@@ -14,7 +14,7 @@ $businesses = [
         'lead'     => '一般廃棄物・産業廃棄物・特別管理産業廃棄物まで幅広い品目の収集運搬を担っています。法人・企業向けの事業系廃棄物収集では、業種・排出量・回収頻度をヒアリングのうえ、定期回収/臨時回収、定額請求/指定袋運用/臨時請求など、お客様ごとに最適な運用プランをご提案します。',
         'mainImg'  => 'img_business--01-1',
         'cards'    => [
-            ['logo' => 'logo_beetle', 'alt' => 'BEETLE', 'url' => '#'],
+            ['logo' => 'logo_beetle', 'alt' => 'BEETLE', 'url' => 'https://www.nishihara-corp.jp/'],
         ],
         'steps'    => [
             [
@@ -44,7 +44,7 @@ $businesses = [
         'lead'     => '北九州・福岡を拠点に、資源物および各種廃棄物の処理・資源化を担う施設を運営しています。高いリサイクル率を基盤に、サーキュラーエコノミーの実装に挑戦しながら、取引先や自治体、教育機関との対話や視察の受け入れを通じて、次の循環をともに考える場づくりを進めています。',
         'mainImg'  => 'img_business--02-1',
         'cards'    => [
-            ['logo' => 'logo_beetle_eng', 'alt' => 'Beetle Engineering', 'url' => '#'],
+            ['logo' => 'logo_beetle_eng', 'alt' => 'Beetle Engineering', 'url' => 'https://beetleengineering.jp/'],
         ],
         'steps'    => [
             [
@@ -74,8 +74,8 @@ $businesses = [
         'lead'     => '東京・九州を拠点に、資源循環や廃棄物処理に関わる情報管理を一元化するソリューションを全国展開しています。全国ネットワークを活かし、適正処理の徹底からリサイクル推進、ESG対応までをトータルに支援します。',
         'mainImg'  => 'img_business--03-1',
         'cards'    => [
-            ['logo' => 'logo_beetle_mgt', 'alt' => 'Beetle Management', 'url' => '#'],
-            ['logo' => 'logo_bee-net', 'alt' => 'bee-net system', 'url' => '#'],
+            ['logo' => 'logo_beetle_mgt', 'alt' => 'Beetle Management', 'url' => 'https://beetlemanagement.com/'],
+            ['logo' => 'logo_bee-net', 'alt' => 'bee-net system', 'url' => 'https://beetlemanagement.com/outline'],
         ],
         'steps'    => [
             [
@@ -105,9 +105,9 @@ $businesses = [
         'lead'     => '環境分野の課題解決をテクノロジーで加速するDXサービスを展開しています。廃棄物・資源循環領域を中心に、現場で使われ続けるアプリや業務システムを自社開発。AIやデータ活用を通じて、業務効率化だけでなく行動変容を促す仕組みを設計し、プラットフォーム型ビジネスとして業界全体の変革に取り組んでいます。',
         'mainImg'  => 'img_business--04-1',
         'cards'    => [
-            ['logo' => 'logo_dustalk', 'alt' => 'DUSTALK', 'url' => '#'],
+            ['logo' => 'logo_dustalk', 'alt' => 'DUSTALK', 'url' => 'https://www.dusttalk.com/'],
             ['logo' => 'logo_beetle-auction', 'alt' => 'bee-bid', 'url' => '#'],
-            ['logo' => 'logo_rebit_japan', 'alt' => 'ReBit JAPAN', 'url' => '#'],
+            ['logo' => 'logo_rebit_japan', 'alt' => 'ReBit JAPAN', 'url' => 'https://rebit-japan.co.jp/'],
         ],
         'steps'    => [
             [
