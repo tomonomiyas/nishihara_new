@@ -8,14 +8,15 @@
   }
 }
 
-// 2カラム（左メイン／右追従ナビ）
+// 2カラム（左メイン／右追従ナビ）— サイドナビの見た目は共通 c-localNav に準拠。
+// business/company と同じく PC（pc=1260）で2カラム＋追従、それ未満は1カラム（罫線リスト型ナビ）。
 .p-sustainabilitySingle__body {
   display: flex;
   flex-direction: column;
   gap: calc(40 * var(--to-rem));
   align-items: flex-start;
 
-  @include mq("lg") {
+  @include mq("pc") {
     flex-direction: row;
   }
 }
@@ -24,7 +25,7 @@
   width: 100%;
   min-width: 0;
 
-  @include mq("lg") {
+  @include mq("pc") {
     flex: 1;
   }
 }
@@ -32,23 +33,12 @@
 .p-sustainabilitySingle__side {
   width: 100%;
 
-  @include mq("lg") {
+  @include mq("pc") {
+    position: sticky;
+    top: calc(var(--header-height) + 20px);
     flex-shrink: 0;
     width: calc(280 * var(--to-rem));
   }
-}
-
-// 右ナビの追従
-.p-sustainabilitySingle__nav {
-  @include mq("lg") {
-    position: sticky;
-    top: calc(var(--header-height) + 20px);
-  }
-}
-
-.p-localNav__headLink {
-  display: block;
-  color: inherit;
 }
 
 // 記事タイトル（薄青背景＋左青線）

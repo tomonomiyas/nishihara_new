@@ -438,13 +438,17 @@
 
 // サステナビリティ委員会（推進室＋企画部を囲むブラケット枠）
 .p-sustainability__orgCommittee {
+  // 縦ラベル分だけ左を広くする非対称パディング。内側コネクタの中央補正がこの値に自動追従する
+  --_pad-left: calc(56 * var(--to-rem));
+  --_pad-right: calc(20 * var(--to-rem)); // SP は枠を広めに（長い社名を1行維持するため 38 より詰める）
+
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   padding-block: calc(18 * var(--to-rem)); // デザイン実寸：箱と枠の上下余白 18px
-  padding-inline: calc(56 * var(--to-rem)) calc(20 * var(--to-rem)); // SP は枠を広めに（長い社名を1行維持するため 38 より詰める）
+  padding-inline: var(--_pad-left) var(--_pad-right);
   background-color: var(--color-bg-light);
   border-radius: var(--radius-base);
 }
@@ -488,6 +492,12 @@
 
 .p-sustainability__orgCommittee + .p-sustainability__orgConnector .p-sustainability__orgArrowImg {
   transform: translateY(calc(-9 * var(--to-rem))); // 連携：上へ
+}
+
+// 内側（運営）コネクタは委員会の左右非対称パディング分だけ右にズレるため、
+// 矢印＋ラベルごと全体中央（外側の指示報告・連携と同軸）へ引き戻す
+.p-sustainability__orgCommittee .p-sustainability__orgConnector {
+  transform: translateX(calc((var(--_pad-right) - var(--_pad-left)) / 2));
 }
 
 .p-sustainability__orgConnectorLabel {

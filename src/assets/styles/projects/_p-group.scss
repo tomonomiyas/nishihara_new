@@ -334,27 +334,46 @@
 
   @include mq("md") {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: calc(8 * var(--to-rem)) calc(40 * var(--to-rem));
+    gap: calc(16 * var(--to-rem)) calc(8 * var(--to-rem));
+  }
+
+  @include mq("pc"){ 
+  grid-template-columns: 439fr 410fr;
   }
 }
 
 .p-group__orgLink {
-  display: inline-flex;
-  gap: calc(10 * var(--to-rem));
-  align-items: center;
-  font-family: var(--base-font-family);
-  font-size: calc(16 * var(--to-rem));
-  font-weight: var(--fw-regular);
-  line-height: 2;
-  color: var(--color-text-main);
+  position: relative;
+  display: block;
+  padding-inline-start: calc(16 * var(--to-rem)); // シェブロン分の左スペース
   text-decoration: none;
   transition: color var(--duration);
+
+  @include mq("pc") {
+    white-space: nowrap;
+  }
+
+  // リンク左のチェブロン（大なり記号） XD: 1px stroke #3171BF。2行時はブロック縦中央に配置
+  &::before {
+    position: absolute;
+    inset-inline-start: 0;
+    top: 50%;
+    width: calc(6 * var(--to-rem));
+    height: calc(6 * var(--to-rem));
+    content: "";
+    border-top: 1px solid var(--color-accent);
+    border-right: 1px solid var(--color-accent);
+    transform: translateY(-50%) rotate(45deg);
+  }
 }
 
+// 外部リンクアイコンはテキスト末尾にインラインで密着（2行折返し時も最終行の末尾に付く）
 .p-group__orgIcon {
-  flex-shrink: 0;
+  display: inline-block;
   width: calc(12 * var(--to-rem));
   height: calc(12 * var(--to-rem));
+  margin-inline-start: calc(6 * var(--to-rem));
+  vertical-align: middle;
 }
 
 @media (any-hover: hover) {
@@ -363,4 +382,13 @@
     color: var(--color-accent);
     text-decoration: underline;
   }
+}
+
+.p-group__orgText{
+ font-family: var(--base-font-family);
+  font-size: calc(16 * var(--to-rem));
+  font-weight: var(--fw-regular);
+  line-height: 2;
+  color: var(--color-text-main);
+  letter-spacing: .0em;
 }

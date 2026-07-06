@@ -90,16 +90,16 @@ get_header(); ?>
                 </article>
                 <?php endwhile; ?>
 
-                <!-- 右：追従ローカルナビ -->
+                <!-- 右：追従ローカルナビ（会社案内サイドナビ c-localNav と共通デザイン） -->
                 <aside class="p-sustainabilitySingle__side">
-                    <nav class="p-localNav p-sustainabilitySingle__nav" aria-label="サステナビリティメニュー">
-                        <p class="p-localNav__head">
-                            <a class="p-localNav__headLink" href="<?php echo esc_url(get_post_type_archive_link('sustainability')); ?>">サステナビリティ</a>
+                    <nav class="c-localNav p-sustainabilitySingle__nav" aria-label="サステナビリティメニュー">
+                        <p class="c-localNav__head">
+                            <a href="<?php echo esc_url(get_post_type_archive_link('sustainability')); ?>">サステナビリティ</a>
                         </p>
-                        <ul class="p-localNav__list">
+                        <ul class="c-localNav__list">
                             <?php foreach ($sustainability_nav as $nav) : ?>
-                            <li class="p-localNav__item<?php echo !empty($nav['current']) ? ' p-localNav__item--current' : ''; ?>">
-                                <a class="p-localNav__link" href="<?php echo esc_url($nav['url']); ?>"><?php echo esc_html($nav['label']); ?></a>
+                            <li class="c-localNav__item<?php echo !empty($nav['current']) ? ' c-localNav__item--current' : ''; ?>">
+                                <a href="<?php echo esc_url($nav['url']); ?>"><?php echo esc_html($nav['label']); ?></a>
                             </li>
                             <?php endforeach; ?>
                         </ul>

@@ -14,5 +14,11 @@ function custom_main_query($query)
   if (wp_is_mobile()) {
     $query->set('posts_per_page', '4');//SP用投稿数設定
   }
+
+  // お知らせ一覧（/news/）・カテゴリー別アーカイブは PC/SP とも1ページ10件。
+  // ※ 上の wp_is_mobile 設定より後に置いて上書きする。
+  if ($query->is_post_type_archive('news') || $query->is_tax('news_category')) {
+    $query->set('posts_per_page', 10);
+  }
 }
 add_action('pre_get_posts', 'custom_main_query');

@@ -43,6 +43,31 @@ export function smoothScrollToEl(target) {
   animateScrollTo(Math.max(top, 0));
 }
 
+// ページ先頭へスクロール（reduce motion は即時、ネイティブ対応なら behavior:smooth、非対応は自前アニメ）
+export function smoothScrollToTop() {
+  if (prefersReduced()) {
+    window.scrollTo(0, 0);
+    return;
+  }
+  if (supportsNativeSmooth()) {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    return;
+  }
+  animateScrollTo(0);
+}
+
+// --- パンくずの「ページトップへ戻る」ボタン（href="#"） ---
+document.addEventListener("click", event => {
+  const totop = event.target.closest(".p-breadcrumb__totop");
+  if (!totop) return;
+
+  // 別タブで開く／修飾キー付きクリックはブラウザ標準動作に任せる
+  if (totop.target === "_blank" || event.metaKey || event.ctrlKey || event.shiftKey) return;
+
+  event.preventDefault();
+  smoothScrollToTop();
+});
+
 // --- 同一ページ内リンク（クリック） ---
 document.addEventListener("click", event => {
   const link = event.target.closest('a[href^="#"]');
