@@ -28,8 +28,6 @@
 }
 
 .p-header__logo {
-  position: relative;
-  z-index: var(--z-index-header); // ドロワー(899)より前面に出す
   width: min(100%, calc(212 * var(--to-rem)));
   margin-inline-end: auto;
 
@@ -234,8 +232,6 @@
 
 /* SP compact actions (EN / mail) — SPのみ表示 */
 .p-header__sp-actions {
-  position: relative;
-  z-index: var(--z-index-header); // ドロワー(899)より前面に出す
   display: flex;
   gap: calc(16 * var(--to-rem));
   align-items: center;
