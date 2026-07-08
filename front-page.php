@@ -5,7 +5,8 @@
         <div class="p-top-mv__image">
             <picture>
                 <source srcset="<?php img_path('/top_mv_01.webp'); ?>" type="image/webp">
-                <img src="<?php img_path('/top_mv_01.png'); ?>" width="1920" height="420" alt="" fetchpriority="high">
+                <img src="<?php img_path('/top_mv_01.png'); ?>" width="1920" height="420"
+                    alt="楽しいをもっと！うれしいをもっと！もっと明日！" fetchpriority="high">
             </picture>
             <!-- <div class="p-top-mv__content">
                 <div class="p-top-mv__title-wrap">
@@ -86,9 +87,13 @@
                     <div class="p-top-links__link">
                         <div class="p-top-links__bg">
                             <picture>
-                                <source srcset="<?php img_path('/top_links_bg02.webp'); ?>" type="image/webp">
-                                <img src="<?php img_path('/top_links_bg02.png'); ?>" alt="サステナビリティ" width="730"
-                                    height="240">
+                                <!-- PC -->
+                                <source media="(min-width: 768px)" srcset="<?php img_path('/top_links_bg02.webp'); ?>" type="image/webp">
+                                <source media="(min-width: 768px)" srcset="<?php img_path('/top_links_bg02.png'); ?>">
+                                <!-- SP -->
+                                <source srcset="<?php img_path('/top_links_bg02_sp.webp'); ?>" type="image/webp">
+                                <img src="<?php img_path('/top_links_bg02_sp.png'); ?>" alt="サステナビリティ" width="720"
+                                    height="384">
                             </picture>
                         </div>
                         <div class="p-top-links__content">
@@ -500,8 +505,13 @@
             <!-- 右側：画像エリア -->
             <div class="p-top-recruit__image-side">
                 <picture>
-                    <source srcset="<?php img_path('/top_recruit_bg.webp'); ?>" type="image/webp">
-                    <img src="<?php img_path('/top_recruit_bg.png'); ?>" alt="採用情報背景" class="p-top-recruit__image">
+                    <!-- PC -->
+                    <source media="(min-width: 768px)" srcset="<?php img_path('/top_recruit_pc.webp'); ?>" type="image/webp">
+                    <source media="(min-width: 768px)" srcset="<?php img_path('/top_recruit_pc.png'); ?>">
+                    <!-- SP -->
+                    <source srcset="<?php img_path('/top_recruit_sp.webp'); ?>" type="image/webp">
+                    <img src="<?php img_path('/top_recruit_sp.png'); ?>" alt="トラックを運転する社員" width="780"
+                        height="600" class="p-top-recruit__image" loading="lazy" decoding="async">
                 </picture>
             </div>
         </div>

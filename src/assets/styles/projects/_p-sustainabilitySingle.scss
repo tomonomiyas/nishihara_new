@@ -228,7 +228,7 @@
 // SNS共有ボタン
 .p-sustainabilitySingle__share {
   display: flex;
-  gap: calc(12 * var(--to-rem));
+  gap: calc(20 * var(--to-rem));
   align-items: center;
 }
 
@@ -237,13 +237,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: calc(56 * var(--to-rem));
-  height: calc(56 * var(--to-rem));
+  padding: 0;
   cursor: pointer;
-  background-color: var(--color-white);
-  border: 1px solid var(--color-border-accent);
-  border-radius: var(--radius-base);
-  transition: background-color var(--duration);
+  background-color: transparent;
+  border: none;
+  transition: opacity var(--duration);
 }
 
 .p-sustainabilitySingle__shareBtn img {
@@ -265,7 +263,7 @@
 
 @media (any-hover: hover) {
   .p-sustainabilitySingle__shareBtn:hover {
-    background-color: var(--color-bg-light);
+    opacity: 0.7;
   }
 }
 
