@@ -28,6 +28,8 @@
 }
 
 .p-header__logo {
+  position: relative;
+  z-index: var(--z-index-header); // ドロワー(899)より前面に出す
   width: min(100%, calc(212 * var(--to-rem)));
   margin-inline-end: auto;
 
@@ -232,6 +234,8 @@
 
 /* SP compact actions (EN / mail) — SPのみ表示 */
 .p-header__sp-actions {
+  position: relative;
+  z-index: var(--z-index-header); // ドロワー(899)より前面に出す
   display: flex;
   gap: calc(16 * var(--to-rem));
   align-items: center;
@@ -335,21 +339,25 @@
 
 .p-header__drawer {
   position: fixed;
-  inset: var(--header-height) 0 0;
+  inset: 0;
   z-index: calc(var(--z-index-header) - 1);
   display: none;
   overflow-y: auto;
   background-color: var(--color-white);
+  opacity: 0;
 }
 
 .p-header__drawer-inner {
   display: flex;
   flex-direction: column;
   min-height: 100%;
+  // ヘッダー（固定）が上に重なるぶんの余白。中身はスクロール時ヘッダー下へ潜る
+  padding-block-start: var(--header-height);
 }
 
 .p-header__drawer-nav {
   padding-inline: calc(35 * var(--to-rem));
+  border-top: 1px solid var(--color-border-accent);
 }
 
 .p-header__drawer-list {
