@@ -157,7 +157,7 @@
 
 .p-top-recruit__image-side {
   width: 100%;
-  height: calc(200 * var(--to-rem));
+  height: calc(300 * var(--to-rem)); // XD 0101 SP: 画像エリア 390×300
   overflow: hidden;
 
   @include mq(md) {

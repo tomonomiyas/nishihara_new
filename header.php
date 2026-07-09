@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" href="<?php temp_path('/favicon.ico'); ?>">
-    <link rel="apple-touch-icon" href="<?php temp_path('/apple-touch-icon.png'); ?>">
+    <?php // favicon / apple-touch-icon は WP サイトアイコン（設定 > 一般）で出力（wp_head） ?>
     <?php get_template_part('parts/common/adjust-admin-bar'); ?>
     <?php wp_head(); ?>
     <!-- =====start*form===== -->
@@ -199,99 +198,122 @@
                 <span></span>
                 <span></span>
             </button>
-            <div id="drawer-menu" class="p-header__drawer js-drawer" aria-hidden="true">
-                <nav class="p-header__drawer-nav">
-                    <ul class="p-header__drawer-list">
-                        <li class="p-header__drawer-item">
-                            <button type="button" class="p-header__drawer-accordion-title js-drawer-accordion"
-                                aria-expanded="false" aria-controls="accordion-company" aria-label="会社案内を展開">
-                                会社案内
-                            </button>
-                            <ul id="accordion-company" class="p-header__drawer-accordion-list" aria-hidden="true">
-                                <li class="p-header__drawer-accordion-item">
-                                    <a href="<?php page_path('company'); ?>">会社案内トップ</a>
-                                </li>
-                                <li class="p-header__drawer-accordion-item">
-                                    <a href="<?php page_path('company/message'); ?>">代表ご挨拶</a>
-                                </li>
-                                <li class="p-header__drawer-accordion-item">
-                                    <a href="<?php page_path('company/history'); ?>">グループのあゆみ</a>
-                                </li>
-                                <li class="p-header__drawer-accordion-item">
-                                    <a href="<?php page_path('company/philosophy'); ?>">企業理念</a>
-                                </li>
-                                <li class="p-header__drawer-accordion-item">
-                                    <a href="<?php page_path('company/group'); ?>">グループ会社・関連団体</a>
-                                </li>
-                                <li class="p-header__drawer-accordion-item">
-                                    <a href="<?php page_path('company/overview'); ?>">会社概要</a>
-                                </li>
-                                <li class="p-header__drawer-accordion-item">
-                                    <a href="<?php page_path('company/location'); ?>">拠点一覧</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="p-header__drawer-item">
-                            <button type="button" class="p-header__drawer-accordion-title js-drawer-accordion"
-                                aria-expanded="false" aria-controls="accordion-business" aria-label="事業紹介を展開">
-                                事業紹介
-                            </button>
-                            <ul id="accordion-business" class="p-header__drawer-accordion-list" aria-hidden="true">
-                                <li class="p-header__drawer-accordion-item">
-                                    <a href="<?php page_path('business'); ?>">事業紹介トップ</a>
-                                </li>
-                                <li class="p-header__drawer-accordion-item">
-                                    <a href="<?php page_path('business/#collection'); ?>">収集運搬事業</a>
-                                </li>
-                                <li class="p-header__drawer-accordion-item">
-                                    <a href="<?php page_path('business/#recycle'); ?>">処理・リサイクル事業</a>
-                                </li>
-                                <li class="p-header__drawer-accordion-item">
-                                    <a href="<?php page_path('business/#information'); ?>">情報管理事業</a>
-                                </li>
-                                <li class="p-header__drawer-accordion-item">
-                                    <a href="<?php page_path('business/#dx'); ?>">DXサービス事業</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="p-header__drawer-item">
-                            <button type="button" class="p-header__drawer-accordion-title js-drawer-accordion"
-                                aria-expanded="false" aria-controls="accordion-sustainability" aria-label="サステナビリティを展開">
-                                サステナビリティ
-                            </button>
-                            <ul id="accordion-sustainability" class="p-header__drawer-accordion-list" aria-hidden="true">
-                                <li class="p-header__drawer-accordion-item">
-                                    <a href="<?php page_path('sustainability'); ?>">サステナビリティトップ</a>
-                                </li>
-                                <li class="p-header__drawer-accordion-item">
-                                    <a href="<?php page_path('sustainability/#activity'); ?>">活動報告</a>
-                                </li>
-                                <li class="p-header__drawer-accordion-item">
-                                    <a href="<?php page_path('sustainability/#system'); ?>">推進体制</a>
-                                </li>
-                                <li class="p-header__drawer-accordion-item">
-                                    <a href="<?php page_path('sustainability/#plan'); ?>">推進計画</a>
-                                </li>
-                                <li class="p-header__drawer-accordion-item">
-                                    <a href="<?php page_path('sustainability/#materiality'); ?>">重要課題</a>
-                                </li>
-                                <li class="p-header__drawer-accordion-item">
-                                    <a href="<?php page_path('sustainability/#topics'); ?>">サステナビリティトピックス</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="p-header__drawer-item">
-                            <a href="<?php page_path('news'); ?>">
-                                <span class="c-line">お知らせ</span>
-                            </a>
-                        </li>
-                        <li class="p-header__drawer-item p-header__drawer-item--contact">
-                            <a href="<?php page_path('contact'); ?>">
-                                <span class="c-line">お問い合わせ</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
         </div>
     </header>
+
+    <div id="drawer-menu" class="p-header__drawer js-drawer" aria-hidden="true">
+        <div class="p-header__drawer-inner">
+            <nav class="p-header__drawer-nav">
+                <ul class="p-header__drawer-list">
+                    <li class="p-header__drawer-item">
+                        <button type="button" class="p-header__drawer-accordion-title js-drawer-accordion"
+                            aria-expanded="false" aria-controls="accordion-company" aria-label="会社案内を展開">
+                            会社案内
+                        </button>
+                        <ul id="accordion-company" class="p-header__drawer-accordion-list" aria-hidden="true">
+                            <li class="p-header__drawer-accordion-item">
+                                <a href="<?php page_path('company/message'); ?>">代表ご挨拶</a>
+                            </li>
+                            <li class="p-header__drawer-accordion-item">
+                                <a href="<?php page_path('company/philosophy'); ?>">企業理念</a>
+                            </li>
+                            <li class="p-header__drawer-accordion-item">
+                                <a href="<?php page_path('company/overview'); ?>">会社概要</a>
+                            </li>
+                            <li class="p-header__drawer-accordion-item">
+                                <a href="<?php page_path('company/location'); ?>">拠点一覧</a>
+                            </li>
+                            <li class="p-header__drawer-accordion-item">
+                                <a href="<?php page_path('company/history'); ?>">グループのあゆみ</a>
+                            </li>
+                            <li class="p-header__drawer-accordion-item">
+                                <a href="<?php page_path('company/group'); ?>">グループ会社・関連団体</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="p-header__drawer-item">
+                        <button type="button" class="p-header__drawer-accordion-title js-drawer-accordion"
+                            aria-expanded="false" aria-controls="accordion-business" aria-label="事業紹介を展開">
+                            事業紹介
+                        </button>
+                        <ul id="accordion-business" class="p-header__drawer-accordion-list" aria-hidden="true">
+                            <li class="p-header__drawer-accordion-item">
+                                <a href="<?php page_path('business/#collection'); ?>">収集運搬事業</a>
+                            </li>
+                            <li class="p-header__drawer-accordion-item">
+                                <a href="<?php page_path('business/#recycle'); ?>">処理・リサイクル事業</a>
+                            </li>
+                            <li class="p-header__drawer-accordion-item">
+                                <a href="<?php page_path('business/#information'); ?>">情報管理事業</a>
+                            </li>
+                            <li class="p-header__drawer-accordion-item">
+                                <a href="<?php page_path('business/#dx'); ?>">DXサービス事業</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="p-header__drawer-item">
+                        <button type="button" class="p-header__drawer-accordion-title js-drawer-accordion"
+                            aria-expanded="false" aria-controls="accordion-sustainability" aria-label="サステナビリティを展開">
+                            サステナビリティ
+                        </button>
+                        <ul id="accordion-sustainability" class="p-header__drawer-accordion-list" aria-hidden="true">
+                            <li class="p-header__drawer-accordion-item">
+                                <a href="<?php page_path('sustainability/#activity'); ?>">活動報告</a>
+                            </li>
+                            <li class="p-header__drawer-accordion-item">
+                                <a href="<?php page_path('sustainability/#system'); ?>">推進体制</a>
+                            </li>
+                            <li class="p-header__drawer-accordion-item">
+                                <a href="<?php page_path('sustainability/#plan'); ?>">推進計画</a>
+                            </li>
+                            <li class="p-header__drawer-accordion-item">
+                                <a href="<?php page_path('sustainability/#materiality'); ?>">重要課題</a>
+                            </li>
+                            <li class="p-header__drawer-accordion-item">
+                                <a href="<?php page_path('sustainability/#topics'); ?>">サステナビリティトピックス</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="p-header__drawer-item">
+                        <button type="button" class="p-header__drawer-accordion-title js-drawer-accordion"
+                            aria-expanded="false" aria-controls="accordion-news" aria-label="お知らせを展開">
+                            お知らせ
+                        </button>
+                        <ul id="accordion-news" class="p-header__drawer-accordion-list" aria-hidden="true">
+                            <li class="p-header__drawer-accordion-item">
+                                <?php $notice_link = get_term_link('notice', 'news_category'); ?>
+                                <a href="<?php echo esc_url(is_wp_error($notice_link) ? '#' : $notice_link); ?>">お知らせ</a>
+                            </li>
+                            <li class="p-header__drawer-accordion-item">
+                                <?php $press_link = get_term_link('press-release', 'news_category'); ?>
+                                <a href="<?php echo esc_url(is_wp_error($press_link) ? '#' : $press_link); ?>">プレスリリース</a>
+                            </li>
+                            <li class="p-header__drawer-accordion-item">
+                                <?php $ad_link = get_term_link('ad-library', 'news_category'); ?>
+                                <a href="<?php echo esc_url(is_wp_error($ad_link) ? '#' : $ad_link); ?>">広告ライブラリ</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="p-header__drawer-item">
+                        <a href="#" target="_blank" rel="noopener noreferrer">
+                            採用情報
+                            <span class="p-header__external-icon"></span>
+                        </a>
+                    </li>
+                    <li class="p-header__drawer-item">
+                        <a href="#" target="_blank" rel="noopener noreferrer">
+                            English
+                            <span class="p-header__external-icon"></span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="p-header__drawer-btn-wrap">
+                    <a href="<?php page_path('contact'); ?>" class="c-btn c-btn--contact p-header__drawer-contact-btn">お問い合わせ</a>
+                </div>
+            </nav>
+            <button type="button" class="p-header__drawer-close js-drawer-close">
+                <span class="p-header__drawer-close-icon"></span>
+                閉じる
+            </button>
+        </div>
+    </div>

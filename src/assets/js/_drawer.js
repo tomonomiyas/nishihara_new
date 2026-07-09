@@ -7,6 +7,8 @@ const BREAKPOINTS = {
 
 const ANIMATION = {
   DURATION: 500,
+  // アコーディオンの開閉はドロワー本体のフェードより速くする（--duration 相当）
+  ACCORDION_DURATION: 300,
 };
 
 const activeAnimations = new WeakMap();
@@ -135,18 +137,29 @@ function fadeOut(element, duration = ANIMATION.DURATION) {
 
 function slideDown(element, duration = ANIMATION.DURATION) {
   showElement(element);
-  const height = element.scrollHeight;
-  element.style.height = "0px";
+  // border-box + padding-block では height:0 でも padding 分だけ高さが残りクランプされる。
+  // jQuery slideDown と同様に padding も height と一緒に 0 から補間してデッドゾーンを消す。
+  const style = window.getComputedStyle(element);
+  const padTop = parseFloat(style.paddingTop) || 0;
+  const padBottom = parseFloat(style.paddingBottom) || 0;
+  const height = element.scrollHeight; // padding を含む border-box 高さ
   element.style.overflow = "hidden";
+  element.style.height = "0px";
+  element.style.paddingTop = "0px";
+  element.style.paddingBottom = "0px";
 
   animate(
     element,
     ratio => {
       element.style.height = `${height * ratio}px`;
+      element.style.paddingTop = `${padTop * ratio}px`;
+      element.style.paddingBottom = `${padBottom * ratio}px`;
     },
     () => {
       element.style.height = "";
       element.style.overflow = "";
+      element.style.paddingTop = "";
+      element.style.paddingBottom = "";
     },
     duration,
   );
@@ -154,19 +167,27 @@ function slideDown(element, duration = ANIMATION.DURATION) {
 
 function slideUp(element, duration = ANIMATION.DURATION) {
   rememberDisplay(element);
+  const style = window.getComputedStyle(element);
+  const padTop = parseFloat(style.paddingTop) || 0;
+  const padBottom = parseFloat(style.paddingBottom) || 0;
   const height = element.scrollHeight;
-  element.style.height = `${height}px`;
   element.style.overflow = "hidden";
+  element.style.height = `${height}px`;
 
   animate(
     element,
     ratio => {
-      element.style.height = `${height * (1 - ratio)}px`;
+      const inv = 1 - ratio;
+      element.style.height = `${height * inv}px`;
+      element.style.paddingTop = `${padTop * inv}px`;
+      element.style.paddingBottom = `${padBottom * inv}px`;
     },
     () => {
       element.style.display = "none";
       element.style.height = "";
       element.style.overflow = "";
+      element.style.paddingTop = "";
+      element.style.paddingBottom = "";
     },
     duration,
   );
@@ -188,13 +209,22 @@ document.addEventListener("DOMContentLoaded", function () {
   const drawer = document.querySelector(".js-drawer");
 
   if (hamburger && drawer) {
+    const closeDrawer = () => {
+      hamburger.classList.remove("is-open");
+      hamburger.setAttribute("aria-expanded", "false");
+      hamburger.setAttribute("aria-label", "メニューを開く");
+      drawer.setAttribute("aria-hidden", "true");
+      fadeOut(drawer);
+      enableBodyScroll();
+    };
+
     // ハンバーガーメニューのクリックでドロワーを開閉
     hamburger.addEventListener("click", () => {
       const isOpening = !hamburger.classList.contains("is-open");
-      hamburger.classList.toggle("is-open");
 
       if (isOpening) {
         // ドロワーを開く時：背景のスクロールを無効化してからフェードイン
+        hamburger.classList.add("is-open");
         hamburger.setAttribute("aria-expanded", "true");
         hamburger.setAttribute("aria-label", "メニューを閉じる");
         drawer.setAttribute("aria-hidden", "false");
@@ -202,24 +232,18 @@ document.addEventListener("DOMContentLoaded", function () {
         fadeIn(drawer);
       } else {
         // ドロワーを閉じる時：フェードアウトしてから背景のスクロールを有効化
-        hamburger.setAttribute("aria-expanded", "false");
-        hamburger.setAttribute("aria-label", "メニューを開く");
-        drawer.setAttribute("aria-hidden", "true");
-        fadeOut(drawer);
-        enableBodyScroll();
+        closeDrawer();
       }
     });
 
     // ドロワー内のリンクをクリックした時にドロワーを閉じる
     drawer.querySelectorAll("a[href]").forEach(link => {
-      link.addEventListener("click", () => {
-        hamburger.classList.remove("is-open");
-        hamburger.setAttribute("aria-expanded", "false");
-        hamburger.setAttribute("aria-label", "メニューを開く");
-        drawer.setAttribute("aria-hidden", "true");
-        fadeOut(drawer);
-        enableBodyScroll();
-      });
+      link.addEventListener("click", closeDrawer);
+    });
+
+    // 「閉じる」バーのクリックでドロワーを閉じる
+    drawer.querySelectorAll(".js-drawer-close").forEach(button => {
+      button.addEventListener("click", closeDrawer);
     });
 
     // タブレットサイズ以上にリサイズした時にドロワーを閉じる
@@ -228,12 +252,7 @@ document.addEventListener("DOMContentLoaded", function () {
       throttle(() => {
         if (window.matchMedia(`(min-width: ${BREAKPOINTS.DESKTOP}px)`).matches) {
           if (hamburger.classList.contains("is-open")) {
-            hamburger.classList.remove("is-open");
-            hamburger.setAttribute("aria-expanded", "false");
-            hamburger.setAttribute("aria-label", "メニューを開く");
-            drawer.setAttribute("aria-hidden", "true");
-            fadeOut(drawer);
-            enableBodyScroll();
+            closeDrawer();
           }
         }
       }),
@@ -248,7 +267,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (content) {
         const isOpening = this.classList.contains("is-open");
         const menuLabel = this.textContent.trim();
-        slideToggle(content);
+        slideToggle(content, ANIMATION.ACCORDION_DURATION);
         this.classList.toggle("is-open");
 
         if (isOpening) {
