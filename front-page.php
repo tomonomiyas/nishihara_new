@@ -4,8 +4,12 @@
     <section class="p-top-mv">
         <div class="p-top-mv__image">
             <picture>
-                <source srcset="<?php img_path('/top_mv_01.webp'); ?>" type="image/webp">
-                <img src="<?php img_path('/top_mv_01.png'); ?>" width="1920" height="420"
+                <!-- PC -->
+                <source media="(min-width: 768px)" srcset="<?php img_path('/top_mv_01.webp'); ?>" type="image/webp">
+                <source media="(min-width: 768px)" srcset="<?php img_path('/top_mv_01.jpg'); ?>">
+                <!-- SP -->
+                <source srcset="<?php img_path('/top_mv_01_sp.webp'); ?>" type="image/webp">
+                <img src="<?php img_path('/top_mv_01_sp.jpg'); ?>" width="390" height="400"
                     alt="楽しいをもっと！うれしいをもっと！もっと明日！" fetchpriority="high">
             </picture>
             <!-- <div class="p-top-mv__content">
